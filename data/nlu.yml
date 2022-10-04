@@ -89,3 +89,9 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: ask_place
+  example: |
+    - 灣仔有啲咩地方好去？
+    - 附近有啲咩地方好去?
+    - 附近有啲咩好玩?
