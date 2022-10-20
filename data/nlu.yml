@@ -19,79 +19,66 @@ nlu:
 
 - intent: goodbye
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+     - 再見
+     - 稍後再見
+     - 晚安
+     - 祝你今天過得愉快
+     - 回頭見
 
 - intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+  examples: |     
+     - 是的
+     - 的確
+     - 當然
+     - 聽起來很好
+     - 正確的
 
 - intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+  examples: |  
+     - 不
+     - 絕不
+     - 我不這麼認為
+     - 不喜歡那樣
+     - 沒門
 
 - intent: mood_great
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+     - 完美的
+     - 偉大的
+     - 驚人
+     - 精彩的
+     - 我感覺很好
+     - 我很好
+     - 我很棒
+     - 超級興奮
+     - 極好的
+     - 超好的
+     - 很完美
 
 - intent: mood_unhappy
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+     - 我的日子很糟糕
+     - 我很傷心
+     - 我感覺不太好
+     - 我很失望
+     - 超級傷心
+     - 我很難過
+     - 傷心
+     - 很傷心
+     - 不開心
+     - 不好
+     - 不是很好
+     - 極度悲傷
+     - 好傷心
+     - 好難過
 
 - intent: bot_challenge
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+     - 你是機器人嗎？
+     - 你是人嗎？
+     - 我在和機器人說話嗎？
+     - 我在和人說話嗎？
 
 - intent: ask_place
   example: |
-    - 灣仔有啲咩地方好去？
-    - 附近有啲咩地方好去?
-    - 附近有啲咩好玩?
+    - where
