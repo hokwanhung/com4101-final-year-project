@@ -25,13 +25,28 @@ responses:
   - text: "太好了，繼續！"
 
   utter_goodbye:
-  - text: "再見"
+  - text: "再見，希望我可以幫到你"
+  - text: "期待下次再同你傾計"
 
   utter_iamabot:
   - text: "我是一個機器人，由 Rasa 提供支持。"
 
   utter_ask_place:
-  - text: "香港冇嘢好玩 :D"
+  - text: "您可以試下去ODD ONE OUT"
+  - text: "您可以試下去金紫荊廣場"
+  - text: "您可以試下去太原街市集"
+  - text: "您可以試下去HarbourChill海濱休閒站"
+  - text: "您可以試下去水上運動及康樂主題區"
+  - text: "您可以試下去藍屋建築群"
+  - text: "您可以試下去和昌大押"
+  - text: "您可以試下去春園街"
+  - text: "您可以試下去舊灣仔郵政局"
+  - text: "您可以試下去添馬公園"
+  - text: "您可以試下去駱克道"
+  - text: "您可以試下去姻緣石"
+  - text: "您可以試下去香港藝術中心"
+  - text: "您可以試下去北帝廟"
+
 
 session_config:
   session_expiration_time: 60
