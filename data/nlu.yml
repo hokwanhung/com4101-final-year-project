@@ -16,13 +16,13 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-    -你好
-    -哈佬
-    -哈佬哈
-    -早晨
-    -晚上好
-    -午安
-    -你好，chatbot
+    - 你好
+    - 哈佬
+    - 哈佬哈
+    - 早晨
+    - 晚上好
+    - 午安
+    - 你好，chatbot
 
 - intent: goodbye
   examples: |
@@ -93,5 +93,6 @@ nlu:
     - 我可以去邊
     - 去邊好
     - 有咩好做
+    - 我好悶呀，附近有咩好做
     
     
