@@ -86,23 +86,27 @@ nlu:
      - 我在和機器人說話嗎？
      - 我在和人說話嗎？
 
-<<<<<<< Updated upstream
-- intent: ask_place
-  example: |
-=======
 - intent: ask_visit
   examples: |
->>>>>>> Stashed changes
     - 香港有咩好去處
     - 香港好去處
     - 我可以去邊
     - 去邊好
     - 有咩好做
     - 我好悶呀，附近有咩好做
-<<<<<<< Updated upstream
-    
-    
-=======
+
+- intent: ask_visit_view
+  examples: |
+    - 我想睇景
+    - 我想影相
+    - 有冇啲咩打卡位
+    - 夜景邊到最靚
+
+- intent: ask_visit_play
+  examples: |
+    - 香港有咩好玩
+    - 香港有咩好挽
+    - 附近有無藝術館
 
 - intent: ask_Food_CN
   examples: |
@@ -119,6 +123,7 @@ nlu:
     - 韓式拌飯
     - 附近有冇韓式炒年糕
     - 炸醬麵
+    
 
 - intent: ask_Food_JP
   examples: |
@@ -135,12 +140,6 @@ nlu:
 
 - intent: ask_Food_SEA
   examples: |
-    - 附近有啲咩中餐好食
-    - 我想食中餐
-    - 我想飲茶
-    - 附近有冇茶樓
-    - 我想食點心
-    - 我好悶呀，附近有咩好做
 
 - intent: ask_Buy_shopCenter
   examples: |
@@ -149,7 +148,21 @@ nlu:
 
 - intent: ask_Buy_SpecialShop
   examples: |
-    - 我想去買禮物俾同事
+    - 我想去買手信俾同事
     - 我想去買禮物俾朋友
-    -
->>>>>>> Stashed changes
+
+- intent: ask_Buy_Clothes
+  examples: |
+    - 想買衫
+    - 日式潮流
+    - 時尚服裝
+    - 韓式潮流
+
+- intent: ask_Buy_GlocerySMarket
+  examples: |
+    - 我想買零食
+    - 我想買嘢飲
+    - 好口渴
+    - 想買啲日用品
+    - 紙巾
+    - 濕紙巾
