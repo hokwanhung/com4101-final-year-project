@@ -86,13 +86,70 @@ nlu:
      - 我在和機器人說話嗎？
      - 我在和人說話嗎？
 
+<<<<<<< Updated upstream
 - intent: ask_place
   example: |
+=======
+- intent: ask_visit
+  examples: |
+>>>>>>> Stashed changes
     - 香港有咩好去處
     - 香港好去處
     - 我可以去邊
     - 去邊好
     - 有咩好做
     - 我好悶呀，附近有咩好做
+<<<<<<< Updated upstream
     
     
+=======
+
+- intent: ask_Food_CN
+  examples: |
+    - 附近有啲咩中餐好食
+    - 我想食中餐
+    - 我想飲茶
+    - 附近有冇茶樓
+    - 我想食點心
+
+- intent: ask_Food_KR
+  examples: |
+    - 我想食韓燒
+    - 我想食韓國嘢
+    - 韓式拌飯
+    - 附近有冇韓式炒年糕
+    - 炸醬麵
+
+- intent: ask_Food_JP
+  examples: |
+    - 我想食日本嘢
+    - 附近有啲咩壽司店
+    - 我想食拉麵
+    - 想食刺身
+    - 附近有冇壽喜燒食
+    - 我鍾意食蕎麥麵
+    - 烏龍麵
+    - 唐揚炸雞
+    - 天婦羅
+    - 日式放題
+
+- intent: ask_Food_SEA
+  examples: |
+    - 附近有啲咩中餐好食
+    - 我想食中餐
+    - 我想飲茶
+    - 附近有冇茶樓
+    - 我想食點心
+    - 我好悶呀，附近有咩好做
+
+- intent: ask_Buy_shopCenter
+  examples: |
+    - 我想行商場
+    - 想落街行下
+
+- intent: ask_Buy_SpecialShop
+  examples: |
+    - 我想去買禮物俾同事
+    - 我想去買禮物俾朋友
+    -
+>>>>>>> Stashed changes

@@ -29,7 +29,7 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: ask_place
+- story: ask_visit
   steps:
-    - intent: ask_place
+    - intent: ask_visit
       -action: utter_ask_place
