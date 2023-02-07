@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-museums",
+      "2": "I-museums",
+      "3": "L-museums",
+      "4": "U-museums",
+      "5": "B-outskirts_visit",
+      "6": "I-outskirts_visit",
+      "7": "L-outskirts_visit",
+      "8": "U-outskirts_visit",
+      "9": "B-theme_park",
+      "10": "I-theme_park",
+      "11": "L-theme_park",
+      "12": "U-theme_park",
+      "13": "B-view",
+      "14": "I-view",
+      "15": "L-view",
+      "16": "U-view",
+      "17": "B-visit_events",
+      "18": "I-visit_events",
+      "19": "L-visit_events",
+      "20": "U-visit_events",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-museums": 1,
+      "I-museums": 2,
+      "L-museums": 3,
+      "U-museums": 4,
+      "B-outskirts_visit": 5,
+      "I-outskirts_visit": 6,
+      "L-outskirts_visit": 7,
+      "U-outskirts_visit": 8,
+      "B-theme_park": 9,
+      "I-theme_park": 10,
+      "L-theme_park": 11,
+      "U-theme_park": 12,
+      "B-view": 13,
+      "I-view": 14,
+      "L-view": 15,
+      "U-view": 16,
+      "B-visit_events": 17,
+      "I-visit_events": 18,
+      "L-visit_events": 19,
+      "U-visit_events": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]
