@@ -75,46 +75,46 @@ nlu:
 
   - intent: ask_visit_sceneries # Maybe we can first do lookup table, then use nlu to search
     examples: | # Extract specific locations as intents, and directly provide relevant resources.
-      - 我想睇景
+      - 我想[睇景](view)
       - 我想揾影相
-      - 有無啲咩打卡位
-      - 夜景邊到最靚
-      - 香港影相邊度最好
+      - 有無啲咩[打卡位](view)
+      - [夜景](view)邊到最靚
+      - 香港[影相](view)邊度最好
 
   - intent: ask_visit_parks
     examples: |
-      - 香港有咩主題公園
-      - 想玩機動游戲
-      - 有無咩水族舘或者海洋館
-      - 邊度係香港迪士尼公園
+      - 香港有咩[主題公園](theme_park)
+      - 想玩[機動游戲](theme_park)
+      - 有無咩[水族舘](theme_park)或者[海洋館](theme_park)
+      - 邊度係[香港迪士尼公園](theme_park)
       - 想睇巡游或者烟花，有無推薦
 
   - intent: ask_visit_museums
     examples: |
-      - 香港有咩博物館
-      - 有無邊度有化石睇
-      - 附近有無藝術館
+      - 香港有咩[博物館](museums)
+      - 有無邊度有[化石](museums)睇
+      - 附近有無[藝術館](museums)
       - 有無咩可以學習既地方
-      - 有無咩地方可以揾到香港歷史
-      - 香港有咩好睇既名勝古跡
+      - 有無咩地方可以揾到[香港歷史](museums)
+      - 香港有咩好睇既[古文物](museums)
 
   - intent: ask_visit_outskirts
     examples: |
-      - 香港有無咩好靚既郊外風光
-      - 我想係香港行山登高
-      - 如果我想露營，有無咩推薦到俾我
-      - 我想揾d少人而且室外的好地方
-      - 香港有無話邊度可以賞花
-      - 想係香港拍大自然
+      - 香港有無咩好靚既[郊外風光](outskirts_visit)
+      - 我想係香港[行山](outskirts_visit)[登高](outskirts_visit)
+      - 如果我想[露營](outskirts_visit)，有無咩推薦到俾我
+      - 我想揾d[室外少人](outskirts_visit)的好地方
+      - 香港有無話邊度可以[賞花](outskirts_visit)
+      - 想係香港拍[大自然](outskirts_visit)
 
   - intent: ask_visit_events
     examples: |
-      - 最近有無咩活動
-      - 香港有咩限時展覽
-      - 我想揾一d大型展覽
-      - 目前有邊d演唱會係香港搞
-      - 邊度有d定期活動可以玩下
-      - 香港最近有咩有趣d既事
+      - 最近有無咩[活動](visit_events)
+      - 香港有咩[限時展覽](visit_events)
+      - 我想揾一d[大型展覽](visit_events)
+      - 目前有邊d[演唱會](visit_events)係香港搞
+      - 邊度有d[定期活動](visit_events)可以玩下
+      - 香港最近有咩[有趣d既事](visit_events)
   #
   # Based on 'Buy' (Not checked)
   #
