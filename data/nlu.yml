@@ -67,43 +67,49 @@ nlu:
   - intent: ask_visit # Maybe we can set if confidence of below is lower than 50%, then we use this to search again?
     examples: |
       - 香港有咩好去處
-      - 我可以去邊度好
-      - 我好悶呀，附近有咩好做
+      - 去邊度好
+      - 我好悶呀
+      - 附近有咩好做
       - 我想周圍行下
       - 有無咩地方好推薦
       - 有無咩地方好玩
+      - 推薦去邊度玩
 
   - intent: ask_visit_sceneries # Maybe we can first do lookup table, then use nlu to search
     examples: | # Extract specific locations as intents, and directly provide relevant resources.
       - 我想[睇景](view)
-      - 我想揾影相
+      - 我想揾[靚景](view)
       - 有無啲咩[打卡位](view)
-      - [夜景](view)邊到最靚
+      - [夜景](view)邊度最靚
       - 香港[影相](view)邊度最好
 
   - intent: ask_visit_parks
     examples: |
       - 香港有咩[主題公園](theme_park)
       - 想玩[機動游戲](theme_park)
-      - 有無咩[水族舘](theme_park)或者[海洋館](theme_park)
+      - 有無咩[水族舘](theme_park)推薦
+      - 邊度有[海洋館](theme_park)
       - 邊度係[香港迪士尼公園](theme_park)
-      - 想睇巡游或者烟花，有無推薦
+      - 想睇[巡游表演](theme_park)
+      - 想睇[煙花](theme_park)
 
   - intent: ask_visit_museums
     examples: |
       - 香港有咩[博物館](museums)
+      - 我想去參觀[科學館](museums)
       - 有無邊度有[化石](museums)睇
       - 附近有無[藝術館](museums)
-      - 有無咩可以學習既地方
+      - 有無咩地方可以去[學嘢](museums)
       - 有無咩地方可以揾到[香港歷史](museums)
-      - 香港有咩好睇既[古文物](museums)
+      - 香港有咩好睇嘅[古文物](museums)
 
   - intent: ask_visit_outskirts
     examples: |
-      - 香港有無咩好靚既[郊外風光](outskirts_visit)
-      - 我想係香港[行山](outskirts_visit)[登高](outskirts_visit)
-      - 如果我想[露營](outskirts_visit)，有無咩推薦到俾我
-      - 我想揾d[室外少人](outskirts_visit)的好地方
+      - 香港有無咩好靚嘅[郊外風光](outskirts_visit)
+      - 我想係香港[行山](outskirts_visit)
+      - 我想去[登高](outskirts_visit)
+      - 如果我想[露營](outskirts_visit)，有無咩推薦
+      - 我想揾啲[室外少人](outskirts_visit)的好地方
       - 香港有無話邊度可以[賞花](outskirts_visit)
       - 想係香港拍[大自然](outskirts_visit)
 
@@ -111,10 +117,10 @@ nlu:
     examples: |
       - 最近有無咩[活動](visit_events)
       - 香港有咩[限時展覽](visit_events)
-      - 我想揾一d[大型展覽](visit_events)
-      - 目前有邊d[演唱會](visit_events)係香港搞
-      - 邊度有d[定期活動](visit_events)可以玩下
-      - 香港最近有咩[有趣d既事](visit_events)
+      - 我想揾一啲[大型展覽](visit_events)
+      - 目前有邊啲[演唱會](visit_events)係香港搞
+      - 邊度有啲[定期活動](visit_events)可以玩下
+      - 香港最近有咩[有趣嘅嘢](visit_events)
   #
   # Based on 'Buy' (Not checked)
   #
@@ -149,52 +155,54 @@ nlu:
   #
   - intent: ask_food_cn
     examples: |
-      - 附近有啲咩中餐好食
-      - 我想食中餐
-      - 我想飲茶
-      - 附近有冇茶樓
-      - 我想食點心
-      - 川菜
-      - 湘菜
-      - 粵菜
-      - 閩菜
-      - 蘇菜
-      - 浙菜
-      - 徽菜
-      - 魯菜
+      - 附近有啲咩[中餐](food_cn)好食
+      - 附近有冇[茶樓](food_cn)
+      - 有冇[點心](food_cn)
+      - 我想去食[中菜](food_cn)
+      - 想食[酒樓](food_cn)
+      - 想去食[川菜](food_cn)
+      - 我想食[湘菜](food_cn)
+      - 我想食[粵菜](food_cn)
+      - 我想食[閩菜](food_cn)
+      - 我想食[蘇菜](food_cn)
+      - 我想食[浙菜](food_cn)
+      - 我想食[徽菜](food_cn)
+      - 我想食[魯菜](food_cn)
+      - 我想去[飲茶](food_cn)
 
   - intent: ask_food_kr
     examples: |
-      - 我想食韓燒
-      - 我想食韓國嘢
-      - 韓式拌飯
-      - 附近有冇韓式炒年糕
-      - 炸醬麵
-      - 我想食泡菜
-      - 我想食韓式炸雞
-      - 我想飲人蔘雞湯
-      - 附近有冇韓式燉鍋
+      - 附近有啲咩[韓式餐廳](food_kr)好食
+      - 附近有冇[韓式燉鍋](food_kr)
+      - 有冇[韓燒](food_kr)
+      - 我想去食[韓國嘢](food_kr)
+      - 想食[泡菜](food_kr)
+      - 我想食[韓式炒年糕](food_kr)
+      - 想去食[炸醬麵](food_kr)
+      - 我想食[韓式炸雞](food_kr)
+      - 我想飲[人蔘雞湯](food_kr)
 
   - intent: ask_food_jp
-    examples: |
-      - 我想食日本嘢
-      - 附近有啲咩壽司店
-      - 我想食拉麵
-      - 想食刺身
-      - 附近有冇壽喜燒食
-      - 我鍾意食蕎麥麵
-      - 烏龍麵
-      - 唐揚炸雞
-      - 天婦羅
-      - 日式放題
-      - Omakase
+    examples: | 
+      - 附近有啲咩[壽司](food_jp)好食
+      - 附近有冇[壽喜燒](food_jp)
+      - 有冇[Omakase](food_jp)
+      - 我想去食[日本嘢](food_jp)
+      - 想去食[拉麵](food_jp)
+      - 想食[刺身](food_jp)
+      - 我想食[蕎麥麵](food_jp)
+      - 我想食[烏龍麵](food_jp)
+      - 我想食[唐揚炸雞](food_jp)
+      - 我想食[天婦羅](food_jp)
+      - 我想去[日式放題](food_jp)
 
   - intent: ask_food_sea
     examples: |
-      - 我想食海鮮
-      - 邊度有得買大閘蟹
-      - 我想食魚
-      - 我想食龍蝦
-      - 附近有冇海鮮蒸氣鍋
-      - 我想食鮑魚
+      - 附近有啲咩[海鮮](food_sea)好食
+      - 附近有冇[海鮮蒸氣鍋](food_sea)
+      - 邊度有得買[大閘蟹](food_sea)
+      - 我想去食[魚](food_sea)
+      - 想食[龍蝦](food_sea)
+      - 我想食[蠔](food_sea)
+      - 想去食[鮑魚](food_sea)
 
