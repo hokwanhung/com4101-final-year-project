@@ -1,0 +1,6 @@
+[
+  {
+    "name": "user_name",
+    "pattern": "re.compile(u'[^\\u4E00-\\u9FA5]')"
+  }
+]

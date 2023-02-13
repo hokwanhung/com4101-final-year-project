@@ -14,6 +14,7 @@ pipeline:
   - name: SpacyTokenizer # WhiteSpaceTokenizer - not applied, Chinese often has no whitespace. // Maybe later Jieba?
   - name: SpacyFeaturizer
   - name: RegexFeaturizer
+    use_regexes: True
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
