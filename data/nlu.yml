@@ -22,6 +22,7 @@ nlu:
   - intent: inform_name # We might be able to detect their gender.
     examples: |
       - 你好，我姓[陳](user_name)
+      - 你好，我姓[ ](user_name)
       - 我叫[Brain](user_name)
       - 小姓[梁](user_name)
       - 叫我[何]先生(user_name)
