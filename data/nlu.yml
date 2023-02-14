@@ -107,6 +107,7 @@ nlu:
       - 有無咩[水族舘](theme_park)推薦
       - 邊度有[海洋館](theme_park)
       - 邊度係[香港迪士尼公園](theme_park)
+      - [海洋公園](theme_park)喺邊
       - 想睇[巡游表演](theme_park)
       - 想睇[煙花](theme_park)
 
@@ -116,28 +117,26 @@ nlu:
       - 我想去參觀[科學館](museums)
       - 有無邊度有[化石](museums)睇
       - 附近有無[藝術館](museums)
-      - 有無咩地方可以去[學嘢](museums)
       - 有無咩地方可以揾到[香港歷史](museums)
       - 香港有咩好睇嘅[古文物](museums)
 
   - intent: ask_visit_outskirts
     examples: |
       - 香港有無咩好靚嘅[郊外風光](outskirts_visit)
-      - 我想係香港[行山](outskirts_visit)
+      - 我想喺香港[行山](outskirts_visit)
       - 我想去[登高](outskirts_visit)
       - 如果我想[露營](outskirts_visit)，有無咩推薦
-      - 我想揾啲[室外少人](outskirts_visit)的好地方
-      - 香港有無話邊度可以[賞花](outskirts_visit)
-      - 想係香港拍[大自然](outskirts_visit)
+      - 我想揾啲[室外少人](outskirts_visit)嘅地方
+      - 香港邊度可以[賞花](outskirts_visit)
+      - 想喺香港拍[大自然](outskirts_visit)
 
   - intent: ask_visit_events
     examples: |
       - 最近有無咩[活動](visit_events)
       - 香港有咩[限時展覽](visit_events)
       - 我想揾一啲[大型展覽](visit_events)
-      - 目前有邊啲[演唱會](visit_events)係香港搞
-      - 邊度有啲[定期活動](visit_events)可以玩下
-      - 香港最近有咩[有趣嘅嘢](visit_events)
+      - 目前有邊啲[演唱會](visit_events)喺香港搞
+      
   #
   # Based on 'Buy' (Not checked)
   #
