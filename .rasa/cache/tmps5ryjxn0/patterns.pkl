@@ -1,0 +1,6 @@
+[
+  {
+    "name": "user_name",
+    "pattern": "."
+  }
+]
