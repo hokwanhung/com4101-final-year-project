@@ -222,3 +222,6 @@ nlu:
       - 我想食[蠔](food_sea)
       - 想去食[鮑魚](food_sea)
 
+  - regex: user_name
+    examples: |
+      - .
