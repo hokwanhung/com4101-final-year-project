@@ -9,23 +9,24 @@ language: "zh"
 pipeline:
 # # A sequence of steps that train a model using NLU data.
 # # See https://rasa.com/docs/rasa/tuning-your-model for more information.
-  - name: SpacyNLP
-    model: zh_core_web_md
-  - name: SpacyTokenizer # WhiteSpaceTokenizer - not applied, Chinese often has no whitespace. // Maybe later Jieba?
-  - name: SpacyFeaturizer
+  - name: "JiebaTokenizer"
   - name: RegexFeaturizer
-    use_regexes: True
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
-    analyzer: "char_wb"
+    analyzer: char_wb
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
     epochs: 100
+    constrain_similarities: true
   - name: EntitySynonymMapper
   - name: ResponseSelector
     epochs: 100
+    constrain_similarities: true
+  - name: FallbackClassifier
+    threshold: 0.7
+    ambiguity_threshold: 0.1
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
