@@ -16,7 +16,7 @@ action_endpoint:
 # By-default the conversations are stored in memory.
 # https://rasa.com/docs/rasa/tracker-stores
 tracker_store:
-  type: sql
+  type: SQL
   dialect: "mysql"
   url: "localhost"
   port: "3306"
