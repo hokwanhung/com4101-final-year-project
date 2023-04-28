@@ -27,11 +27,6 @@ pipeline:
     epochs: 100
     retrieval_intent: faq # only activate when detects intent with the prefix of "faq".
 
-
-
-
-
-
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
