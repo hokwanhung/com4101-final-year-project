@@ -6,6 +6,19 @@ stories:
   # It is actually the dialogue training data that allows Rasa to predict the next best action to take.
   # Story paths are also useful to define which entities are extracted from the same intent.
 
+  # A story path seems not to be necessary to part with a greeting intent.
+  # Rasa will use the story that best matches the conversation so fat and continues.
+  # Or if neither one is possible, Rasa will use a fallback action.
+
+  - story: greet user path # User story: Greet chatbot to start a conversation
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - story: greet user with name path # User story: Greet chatbot with name to start a conversation
+    steps:
+      - intent: inform_name
+
   - story: indirect information path  # User story: Ask relevant nearby information (indirect)
     steps:
       - intent: greet
@@ -16,8 +29,11 @@ stories:
   # - story: direct information path # User story: Ask relevant nearby information (direct)
   #   steps:
 
-  # - story: hotel booking path # User story: Book hotel rooms
-  #   steps:
+  - story: hotel booking path # User story: Book hotel rooms
+    steps:
+      - intent: greet
+      - action: action_how_to_greet
+      - intent: ask_registration{}
 
   # - story: feeling extraction path # User story: Express user feelings
   #   steps:
