@@ -10,13 +10,13 @@ stories:
   # Rasa will use the story that best matches the conversation so fat and continues.
   # Or if neither one is possible, Rasa will use a fallback action.
 
-  - story: greet user path # User story: Greet chatbot to start a conversation
+  - setory: greet user path # User story: Greet chatbot to start a conversation
     steps:
       - intent: greet
       - action: utter_ask_name
       - intent: greet_with_name
         entities:
-          - username: "陳"
+          - usernam: "陳"
       - action: utter_greet_with_name
 
   - story: greet user with name path # User story: Greet chatbot with name to start a conversation

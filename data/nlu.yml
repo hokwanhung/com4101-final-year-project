@@ -51,6 +51,7 @@ nlu:
       - 取消
       - 下次見，希望能再聊聊天。
       - 感謝你的陪伴，期待下次見面。
+      - 88
 
   - intent: affirm
     examples: |
@@ -63,6 +64,11 @@ nlu:
       - 無錯
       - 繼續
       - 下一步
+      - 同意
+      - 誠然
+      - 果真
+      - 贊同
+      - 贊成
 
   - intent: deny
     examples: |
@@ -70,8 +76,12 @@ nlu:
       - 絕不
       - 反對
       - 否
+      - 否定
+      - 不能
+      - 錯
       - 沒門
       - 上一步
+      - 不同意
 
   - intent: alternative
     examples: |
@@ -83,6 +93,10 @@ nlu:
       - 有無新選項？
       - 有無新推薦？
       - 有d咩其他可以揀？
+      - 我想要第二啲
+      - 我唔要呢一個
+      - 比啲第二啲選擇我
+      - 我想要其他
 
   - intent: alternative
     examples: |
@@ -103,6 +117,9 @@ nlu:
       - 有咩酒店我可以訂？
       - 我想住酒店
       - 有咩酒店推薦？
+      - 有啲咩酒店我可以揀?
+      - 我正在尋找一家好的酒店，你有任何建議嗎？
+      - 能否推薦一家低價位但品質不錯的酒店？
 
   #- intent: ask_registration_with_location
   #  examples: |
