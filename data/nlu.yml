@@ -1,23 +1,20 @@
 version: "2.0"
-
-
-
 nlu:
   #
   # General nlu
   #
-  - intent: greet
-    examples: |
-      - 嘿伙計 
-      - 開始
+  - intent: greet_neutral
+    examples: | 
+      - 開始我哋嘅對話
       - 我們走吧 
       - 你好
       - 你好？
+      - 早晨！
       - 早上好
       - 中午好
       - 下午好
       - 晚上好
-      - 早晨！
+      - 晚安
       - 哈佬哈
 
   - intent: greet_with_name # We might be able to detect their gender.
@@ -27,18 +24,33 @@ nlu:
       - 我叫[Brain](username)
       - 小姓[梁](username)
       - 叫我[何](username)先生
+      - 叫我[黃](username)小姐
+      - 叫我[吳](username)女士
+      - 我的名字叫[你](username)
       - 叫我[Germaine](username)
       - My name is [Andy](username)
+      - 我是[姓名](username)
+      - 本人[姓名](username)
+      - 我叫做[姓名](username)
+      - 我自稱[名字]((username)
+      - 本大爺的名字叫[Ben](username)
+      - 在下[關雲長](username)
+      - 我乃[迪奧](username)
+      - 我的名字叫[吉良吉影](username)，33歲。住在杜王町東北部的別墅區一帶，未婚。我在龜友連鎖店服務。每天都要加班到晚上8點才能回家。我不抽煙，酒僅止於淺嚐。晚上11點睡，每天要睡足8個小時。睡前，我一定喝一杯溫牛奶，然後做20分鐘的柔軟操，上了床，馬上熟睡。一覺到天亮，決不把疲勞和壓力留到第二天。醫生都說我很正常。
+      - 我是[迪奧](username)噠
 
   - intent: goodbye
     examples: |
       - 稍後再見
+      - 再見
       - 結束
-      - 晚安
+      - 祝你有個愉快的夜晚
       - 祝你今天過得愉快
       - 回頭見
       - 完成
       - 取消
+      - 下次見，希望能再聊聊天。
+      - 感謝你的陪伴，期待下次見面。
 
   - intent: affirm
     examples: |
@@ -247,3 +259,7 @@ nlu:
   - regex: user_name
     examples: |
       - .
+  - intent: greet_negative
+    examples: |
+      - 喂
+      - 垃圾
