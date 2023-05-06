@@ -60,4 +60,4 @@ stories:
             - intent: ask_visit_parks
             - intent: ask_visit_outskirts
             - intent: ask_visit_events
-        - action
+        - action: action_ask_visit
