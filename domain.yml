@@ -132,6 +132,10 @@ responses:
     - text: "您可以試下去香港藝術中心"
     - text: "您可以試下去北帝廟"
 
+  utter_ask_visit:
+    - text: "請問您希望尋找什麼遊玩的地方"
+  utter_ask_food:
+    - text: "請問您希望尋找什麼種類的食物"
 actions:
   - action_how_to_greet
   - action_connect_database

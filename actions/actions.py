@@ -98,7 +98,7 @@ class ActionVisit(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
-        with open(last+".csv", "r") as f: ##example the same name as intent+ csv, like ask_visit.csv
+        with open(last+".csv", "r") as f: ##example the same name as intent+ csv, like ask_visit_parks.csv
             lines = f.readlines()
             if lines.count() > 3:
                 random.shuffle(lines)
