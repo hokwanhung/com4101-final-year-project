@@ -145,41 +145,41 @@ nlu:
 
   - intent: ask_visit_sceneries # Maybe we can first do lookup table, then use nlu to search
     examples: | # Extract specific locations as intents, and directly provide relevant resources.
-      - 我想[睇景](view)
-      - 我想揾[靚景](view)
-      - 有無啲咩[打卡位](view)
-      - [夜景](view)邊度最靚
-      - 香港[影相](view)邊度最好
+      - 我想[睇景](visit_sceneries)
+      - 我想揾[靚景](visit_sceneries)
+      - 有無啲咩[打卡位](visit_sceneries)
+      - [夜景](visit_sceneries)邊度最靚
+      - 香港[影相](visit_sceneries)邊度最好
 
   - intent: ask_visit_parks
     examples: |
-      - 香港有咩[主題公園](theme_park)
-      - 想玩[機動游戲](theme_park)
-      - 有無咩[水族舘](theme_park)推薦
-      - 邊度有[海洋館](theme_park)
-      - 邊度係[香港迪士尼公園](theme_park)
-      - [海洋公園](theme_park)喺邊
-      - 想睇[巡游表演](theme_park)
-      - 想睇[煙花](theme_park)
+      - 香港有咩[主題公園](visit_parks)
+      - 想玩[機動游戲](visit_parks)
+      - 有無咩[水族舘](visit_parks)推薦
+      - 邊度有[海洋館](visit_parks)
+      - 邊度係[香港迪士尼公園](visit_parks)
+      - [海洋公園](visit_parks)喺邊
+      - 想睇[巡游表演](visit_parks)
+      - 想睇[煙花](visit_parks)
 
   - intent: ask_visit_museums
     examples: |
-      - 香港有咩[博物館](museums)
-      - 我想去參觀[科學館](museums)
-      - 有無邊度有[化石](museums)睇
-      - 附近有無[藝術館](museums)
-      - 有無咩地方可以揾到[香港歷史](museums)
-      - 香港有咩好睇嘅[古文物](museums)
+      - 香港有咩[博物館](visit_museums)
+      - 我想去參觀[科學館](visit_museums)
+      - 有無邊度有[化石](visit_museums)睇
+      - 附近有無[藝術館](visit_museums)
+      - 有無咩地方可以揾到[香港歷史](visit_museums)
+      - 香港有咩好睇嘅[古文物](visit_museums)
 
   - intent: ask_visit_outskirts
     examples: |
-      - 香港有無咩好靚嘅[郊外風光](outskirts_visit)
-      - 我想喺香港[行山](outskirts_visit)
-      - 我想去[登高](outskirts_visit)
-      - 如果我想[露營](outskirts_visit)，有無咩推薦
-      - 我想揾啲[室外少人](outskirts_visit)嘅地方
-      - 香港邊度可以[賞花](outskirts_visit)
-      - 想喺香港拍[大自然](outskirts_visit)
+      - 香港有無咩好靚嘅[郊外風光](visit_outskirts)
+      - 我想喺香港[行山](visit_outskirts)
+      - 我想去[登高](visit_outskirts)
+      - 如果我想[露營](visit_outskirts)，有無咩推薦
+      - 我想揾啲[室外少人](visit_outskirts)嘅地方
+      - 香港邊度可以[賞花](visit_outskirts)
+      - 想喺香港拍[大自然](visit_outskirts)
 
   - intent: ask_visit_events
     examples: |
