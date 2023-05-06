@@ -66,3 +66,19 @@ class ActionConnectDatabase(Action):
             dispatcher.utter_message(text="連接數據庫失敗，請重試")
 
         return []
+
+
+class ActionFood(Action):
+
+    def name(self) -> Text:
+        return "action_ask_food"
+
+    def run(self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        last = tracker.get_intent_of_latest_message().replace("ask_food_", "")
+
+        dispatcher.utter_message(text="here you go wai")
+
+        return []
