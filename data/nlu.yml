@@ -220,6 +220,10 @@ nlu:
   #
   # Based on 'Eat' (Not checked)
   #
+  - intent: ask_food
+    examples: |
+      - 我希望找些食物
+
   - intent: ask_food_cn
     examples: |
       - 附近有啲咩[中餐](food_cn)好食
