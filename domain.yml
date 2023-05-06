@@ -27,10 +27,10 @@ entities:
   - username
   - is_not_initial
   - hotel_location
-  - view
-  - theme_park
-  - museums
-  - outskirts_visit
+  - visit_sceneries
+  - visit_parks
+  - visit_museums
+  - visit_outskirts
   - visit_events
   - food_cn
   - food_kr
