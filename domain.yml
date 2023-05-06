@@ -136,6 +136,7 @@ actions:
   - action_how_to_greet
   - action_connect_database
   - action_ask_food
+  - action_ask_visit
 
 session_config:
   session_expiration_time: 60 # Value in minutes
