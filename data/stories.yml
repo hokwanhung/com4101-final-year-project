@@ -45,6 +45,8 @@ stories:
 
   - story: ask food
     steps:
+      - intent: ask_food
+      - action: utter_ask_food
       - or:
         - intent: ask_food_jp
         - intent: ask_food_kr
@@ -54,8 +56,9 @@ stories:
 
   - story:
       steps:
+        - intent: ask_visit
+        - action: utter_ask_visit
         - or:
-            - intent: ask_visit
             - intent: ask_visit_sceneries
             - intent: ask_visit_parks
             - intent: ask_visit_outskirts
