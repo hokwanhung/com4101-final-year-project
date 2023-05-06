@@ -52,4 +52,12 @@ stories:
         - intent: ask_food_sea
       - action: action_ask_food
 
-  - story
+  - story:
+      steps:
+        - or:
+            - intent: ask_visit
+            - intent: ask_visit_sceneries
+            - intent: ask_visit_parks
+            - intent: ask_visit_outskirts
+            - intent: ask_visit_events
+        - action
