@@ -73,7 +73,6 @@ class SentimentAnalyzer(Component):
             # receive enough training data
             entity = None
         else:
-            print("waiww" + str(message.data))
             if "action_name" in message.data:
                 tokens = message.data['action_name']
             elif "text" in message.data:
