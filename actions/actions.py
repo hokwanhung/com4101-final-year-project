@@ -18,7 +18,7 @@ from rasa_sdk.events import SlotSet
 
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
-
+import random
 
 class ActionHowToGreet(Action):
 
@@ -77,8 +77,33 @@ class ActionFood(Action):
             dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        last = tracker.get_intent_of_latest_message().replace("ask_food_", "")
+        last = tracker.get_intent_of_latest_message()
+        with open(last + ".csv", "r") as f:
+            lines = f.readlines()
+            if lines.count() > 3:
+                random.shuffle(lines)
+                result = [lines[0], lines[1], lines[2]]
+            f.close()
+        dispatcher.utter_message(text="我推薦您去{}, {}或者{}".format(result))
 
-        dispatcher.utter_message(text="here you go wai")
+        return []
+
+class ActionVisit(Action):
+
+    def name(self) -> Text:
+        return "action_ask_visit"
+
+    def run(self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        last = tracker.get_intent_of_latest_message()
+        with open(last+".csv", "r") as f: ##example the same name as intent+ csv, like ask_visit.csv
+            lines = f.readlines()
+            if lines.count() > 3:
+                random.shuffle(lines)
+                result = [lines[0], lines[1], lines[2]]
+            f.close()
+        dispatcher.utter_message(text="您可以嘗試去{}, {}或者{}".format(result))
 
         return []
