@@ -9,7 +9,11 @@ rules:
       - intent: goodbye
       - action: utter_goodbye
 
-  - rule: Say 'I am a bot' anytime the user challenges
+  - rule: ok
     steps:
-      - intent: bot_challenge
-      - action: utter_iamabot
+      - intent: ask_food_kr
+      - action: action_ask_food
+#  - rule: Say 'I am a bot' anytime the user challenges
+#    steps:
+#      - intent: bot_challenge
+#      - action: utter_iamabot

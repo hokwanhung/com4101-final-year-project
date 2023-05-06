@@ -27,9 +27,18 @@ entities:
   - username
   - is_not_initial
   - hotel_location
+  - view
+  - theme_park
+  - museums
+  - outskirts_visit
+  - visit_events
+  - food_cn
+  - food_kr
+  - food_jp
+  - food_sea
 
 # Serves as the chatbot's memory.
-# The data can then be used throughout the conversation.
+# The data can then be used throughout the conversfation.
 # Acts as a key-value pair to store information.
 # Slot name can match the names of the entities.
 slots:
@@ -42,7 +51,33 @@ slots:
   hotel_location:
     type: text
     auto_fill: true
-
+  view:
+    type: text
+    auto_fill: true
+  theme_park:
+    type: text
+    auto_fill: true
+  museums:
+    type: text
+    auto_fill: true
+  outskirts_visit:
+    type: text
+    auto_fill: true
+  visit_events:
+    type: text
+    auto_fill: true
+  food_cn:
+    type: text
+    auto_fill: true
+  food_kr:
+    type: text
+    auto_fill: true
+  food_jp:
+    type: text
+    auto_fill: true
+  food_sea:
+    type: text
+    auto_fill: true
 
 responses:
   utter_ask_name:
@@ -100,6 +135,7 @@ responses:
 actions:
   - action_how_to_greet
   - action_connect_database
+  - action_ask_food
 
 session_config:
   session_expiration_time: 60 # Value in minutes
