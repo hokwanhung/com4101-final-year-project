@@ -84,7 +84,7 @@ class ActionFood(Action):
                 random.shuffle(lines)
                 result = [lines[0], lines[1], lines[2]]
             f.close()
-        dispatcher.utter_message(text="我推薦您去{}, {}或者{}".format(result))
+        dispatcher.utter_message(text="我推薦您去{}, {}或者{}".format(result[0], result[1], result[2]))
         dispatcher.utter_message(text="食咩啊唔好食啦")
 
         return []
