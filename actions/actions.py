@@ -15,7 +15,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
 import random
@@ -78,14 +78,13 @@ class ActionFood(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
-        with open(last + ".csv", "r") as f:
+        with open(os.getcwd()+"\\CSV\\"+last + ".csv", "r") as f:
             lines = f.readlines()
-            if lines.count() > 3:
+            if len(lines) > 3:
                 random.shuffle(lines)
-                result = [lines[0], lines[1], lines[2]]
+                result = [lines[0].replace("\n",""), lines[1].replace("\n",""), lines[2].replace("\n","")]
             f.close()
         dispatcher.utter_message(text="我推薦您去{}, {}或者{}".format(result[0], result[1], result[2]))
-        dispatcher.utter_message(text="食咩啊唔好食啦")
 
         return []
 
@@ -99,12 +98,12 @@ class ActionVisit(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
-        with open(last+".csv", "r") as f: ##example the same name as intent+ csv, like ask_visit_parks.csv
+        with open(os.getcwd()+"\\CSV\\"+last + ".csv", "r") as f: ##example the same name as intent+ csv, like ask_visit_parks.csv
             lines = f.readlines()
-            if lines.count() > 3:
+            if len(lines)> 3:
                 random.shuffle(lines)
-                result = [lines[0], lines[1], lines[2]]
+                result = [lines[0].replace("\n",""), lines[1].replace("\n",""), lines[2].replace("\n","")]
             f.close()
-        dispatcher.utter_message(text="您可以嘗試去{}, {}或者{}".format(result))
+        dispatcher.utter_message(text="您可以嘗試去{}, {}或者{}".format(result[0], result[1], result[2]))
 
         return []
