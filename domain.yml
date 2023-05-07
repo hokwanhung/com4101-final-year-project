@@ -136,6 +136,7 @@ responses:
     - text: "請問您希望尋找什麼遊玩的地方"
   utter_ask_food:
     - text: "請問您希望尋找什麼種類的食物"
+
 actions:
   - action_how_to_greet
   - action_connect_database
