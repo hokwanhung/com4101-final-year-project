@@ -187,16 +187,16 @@ nlu:
       - [夜景](visit_sceneries)邊度最靚
       - 香港[影相](visit_sceneries)邊度最好
 
-  - intent: ask_visit_parks
-    examples: |
-      - 香港有咩[主題公園](visit_parks)
-      - 想玩[機動游戲](visit_parks)
-      - 有無咩[水族舘](visit_parks)推薦
-      - 邊度有[海洋館](visit_parks)
-      - 邊度係[香港迪士尼公園](visit_parks)
-      - [海洋公園](visit_parks)喺邊
-      - 想睇[巡游表演](visit_parks)
-      - 想睇[煙花](visit_parks)
+#  - intent: ask_visit_parks
+#    examples: |
+#      - 香港有咩[主題公園](visit_parks)
+#      - 想玩[機動游戲](visit_parks)
+#      - 有無咩[水族舘](visit_parks)推薦
+#      - 邊度有[海洋館](visit_parks)
+#      - 邊度係[香港迪士尼公園](visit_parks)
+#      - [海洋公園](visit_parks)喺邊
+#      - 想睇[巡游表演](visit_parks)
+#      - 想睇[煙花](visit_parks)
 
   - intent: ask_visit_museums
     examples: |
@@ -219,10 +219,13 @@ nlu:
 
   - intent: ask_visit_events
     examples: |
-      - 最近有無咩[活動](visit_events)
-      - 香港有咩[限時展覽](visit_events)
-      - 我想揾一啲[大型展覽](visit_events)
-      - 目前有邊啲[演唱會](visit_events)喺香港搞
+      - 我想行商場
+#  - intent: ask_visit_events
+#    examples: |
+#      - 最近有無咩[活動](visit_events)
+#      - 香港有咩[限時展覽](visit_events)
+#      - 我想揾一啲[大型展覽](visit_events)
+#      - 目前有邊啲[演唱會](visit_events)喺香港搞
 
   #
   # Based on Buy (Not checked)

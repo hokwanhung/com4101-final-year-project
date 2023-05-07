@@ -12,11 +12,9 @@ intents:
   - alternative
   - ask_registration # Hotel Registration
   - ask_visit # Relevant Nearby Information
-  - ask_visit_sceneries
-  - ask_visit_parks
+  - ask_visit_shopping
   - ask_visit_museums
   - ask_visit_outskirts
-  - ask_visit_events
   - ask_buy_centres
   - ask_buy_special
   - ask_buy_clothing
