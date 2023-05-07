@@ -1,7 +1,7 @@
-set this before running function
-set PYTHONPATH=E:\GitHub\FYPProjectDefault\actions;%PYTHONPATH%
-replace E:\GitHub\FYPProjectDefault\actions; with your project directory
-echo %PYTHONPATH%
+# set this before running function
+# set PYTHONPATH=E:\GitHub\FYPProjectDefault\actions;%PYTHONPATH%
+# replace E:\GitHub\FYPProjectDefault\actions; with your project directory
+# echo %PYTHONPATH%
 # Use the below code to install correct packages:
 # "COPY requirements.txt ./"
 # "RUN pip install --no-cache-dir -r requirements.txt"

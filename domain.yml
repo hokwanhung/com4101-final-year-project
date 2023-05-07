@@ -19,6 +19,7 @@ intents:
   - ask_buy_clothing
   - ask_buy_groceries
   - ask_food_cn
+  - ask_food_cn
   - ask_food_kr
   - ask_food_jp
   - ask_food_sea
