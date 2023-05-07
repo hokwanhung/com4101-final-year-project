@@ -1,9 +1,60 @@
 version: "2.0"
 nlu:
   #
+  # Sentiment nlu
+  #
+  - intent: affirm
+    examples: |
+      - 是的
+      - 確實
+      - 的確
+      - 當然
+      - 聽起來很好
+      - 正確
+      - 無錯
+      - 繼續
+      - 下一步
+      - 同意
+      - 誠然
+      - 果真
+      - 贊同
+      - 贊成
+
+  - intent: deny
+    examples: |
+      - 不是
+      - 絕不
+      - 反對
+      - 否
+      - 否定
+      - 不能
+      - 錯
+      - 沒門
+      - 上一步
+      - 不同意
+
+  - intent: compliment
+    examples: |
+      - 你很好
+      - 做得好
+      - 迅速有用
+      - 謝謝！
+      - 感謝！
+      - 贊
+      - 方便好用
+
+  - intent: criticise
+    examples: |
+      - 你很沒用
+      - 我需要真人幫忙
+      - 蠢AI
+      - 垃圾chatbot
+      - 
+
+  #
   # General nlu
   #
-  - intent: greet_neutral
+  - intent: greet
     examples: | 
       - 開始我哋嘅對話
       - 我們走吧 
@@ -52,36 +103,6 @@ nlu:
       - 下次見，希望能再聊聊天。
       - 感謝你的陪伴，期待下次見面。
       - 88
-
-  - intent: affirm
-    examples: |
-      - 是的
-      - 確實
-      - 的確
-      - 當然
-      - 聽起來很好
-      - 正確
-      - 無錯
-      - 繼續
-      - 下一步
-      - 同意
-      - 誠然
-      - 果真
-      - 贊同
-      - 贊成
-
-  - intent: deny
-    examples: |
-      - 不是
-      - 絕不
-      - 反對
-      - 否
-      - 否定
-      - 不能
-      - 錯
-      - 沒門
-      - 上一步
-      - 不同意
 
   - intent: alternative
     examples: |
@@ -280,7 +301,3 @@ nlu:
   - regex: user_name
     examples: |
       - .
-  - intent: greet_negative
-    examples: |
-      - 喂
-      - 垃圾
