@@ -1,3 +1,6 @@
+# If the domain file cannot be found, use the below code:
+# "rasa train --domain path/to/your/domain.yml" to specify it.
+
 version: "2.0"
 
 intents:
