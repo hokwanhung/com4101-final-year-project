@@ -16,11 +16,55 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import ConversationPaused, SessionStarted
+from rasa_sdk.forms import FormAction
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
 from datetime import datetime, timedelta
 import random
+
+
+#
+# Sentiment nlu
+#
+class FeedbackForm(FormAction):
+    def name(self) -> Text:
+        return "Feedback_form"
+
+    @staticmethod
+    def required_slots(tracker: "Tracker") -> List[Text]:
+        return ["feedback"]
+
+    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
+        return {
+            "feedback": [self.from_text()]
+        }
+
+    def submit(
+        self,
+        dispatcher: "CollectingDispatcher",
+        tracker: "Tracker",
+        domain: "DomainDict",
+    ) -> List[EventType]:
+        dispatcher.utter_message()
+        return []
+
+
+class ActionEndConversation(Action):
+    # To simulate how the conversation would end (rasa does not have relevant functionalities).
+    def name(self) -> Text:
+        return "action_end_conversation"
+
+    def run(
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Pause conversation for 30 seconds
+        dispatcher.utter_message(
+            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
+        dispatcher.utter_message(text="期待您下一次再度光臨。")
+        return [ConversationPaused(), SessionStarted(datetime.now() + timedelta(seconds=30))]
 
 
 #
@@ -47,22 +91,6 @@ class ActionHowToGreet(Action):
 
         return [SlotSet("is_not_initial", is_not_initial)]
 
-
-class ActionPauseConversation(Action):
-    # To simulate how the conversation would end (rasa does not have relevant functionalities).
-    def name(self) -> Text:
-        return "action_pause"
-
-    def run(
-            self,
-            dispatcher: "CollectingDispatcher",
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # Pause conversation for 30 seconds
-        dispatcher.utter_message(
-            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
-        dispatcher.utter_message(text="期待您下一次再度光臨。")
-        return [ConversationPaused(), SessionStarted(datetime.now() + timedelta(seconds=30))]
 
 #
 # Hotel Registration
