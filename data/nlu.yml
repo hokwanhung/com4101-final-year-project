@@ -240,16 +240,16 @@ nlu:
 
   - intent: ask_visit_shopping
     examples: |
-      - 我想行商場
-      - 想落街行下
-      - 有邊啲著名嘅購物區域
-      - 有咩推薦嘅購物中心
-      - 香港有咩商場有名牌店或奢侈品店
-      - 邊度有shopping centre
-      - 邊度有shopping mall
-      - 我想去shopping
-      - 我要去掃貨
-      - 有無化妝品專櫃
+      - 我想[行商場](visit_shopping)
+      - 想[落街行](visit_shopping)下
+      - 有邊啲著名嘅[購物區域](visit_shopping)
+      - 有咩推薦嘅[購物中心](visit_shopping)
+      - 香港有咩商場有[名牌店](visit_shopping)或[奢侈品店](visit_shopping)
+      - 邊度有[shopping centre](visit_shopping)
+      - 邊度有[shopping mall](visit_shopping)
+      - 我想去[shopping](visit_shopping)
+      - 我要去[掃貨](visit_shopping)
+      - 有無[化妝品專櫃](visit_shopping)
 #  - intent: ask_visit_events
 #    examples: |
 #      - 最近有無咩[活動](visit_events)
@@ -260,16 +260,17 @@ nlu:
   #
   # Based on Buy (Not checked)
   #
-  - intent: ask_buy
-    examples: |
-      - 想買衫
-      - 日式潮流
+
 
 #  - intent: ask_buy_special
 #    examples: |
 #      - 我想去買手信俾同事
 #      - 我想去買禮物俾朋友
-
+  - intent: ask_buy
+    examples: |
+      - 我想求其買啲嘢
+      - 附近有啲咩嘢買
+      - 我想買啲嘢
   - intent: ask_buy_clothing
     examples: |
       - 想買衫
@@ -336,6 +337,7 @@ nlu:
       - [醋](buy_groceries)
       - [調味料](buy_groceries)
       - [醬油](buy_groceries)
+
 
   #
   # Based on Eat (Not checked)
