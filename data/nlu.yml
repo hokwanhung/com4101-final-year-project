@@ -238,7 +238,18 @@ nlu:
       - 香港邊度可以[賞花](visit_outskirts)
       - 想喺香港拍[大自然](visit_outskirts)
 
-
+  - intent: ask_visit_shopping
+    examples: |
+      - 我想行商場
+      - 想落街行下
+      - 有邊啲著名嘅購物區域
+      - 有咩推薦嘅購物中心
+      - 香港有咩商場有名牌店或奢侈品店
+      - 邊度有shopping centre
+      - 邊度有shopping mall
+      - 我想去shopping
+      - 我要去掃貨
+      - 有無化妝品專櫃
 #  - intent: ask_visit_events
 #    examples: |
 #      - 最近有無咩[活動](visit_events)
@@ -251,25 +262,13 @@ nlu:
   #
   - intent: ask_buy
     examples: |
-      - 我想行商場
+      - 想買衫
+      - 日式潮流
 
-  - intent: ask_buy_centres
-    examples: |
-      - 我想行商場
-      - 想落街行下
-      - 有邊啲著名嘅購物區域
-      - 有咩推薦嘅購物中心
-      - 香港有咩商場有名牌店或奢侈品店
-      - 邊度有shopping centre
-      - 邊度有shopping mall
-      - 我想去shopping
-      - 我要去掃貨
-      - 有無化妝品專櫃
-
-  - intent: ask_buy_special
-    examples: |
-      - 我想去買手信俾同事
-      - 我想去買禮物俾朋友
+#  - intent: ask_buy_special
+#    examples: |
+#      - 我想去買手信俾同事
+#      - 我想去買禮物俾朋友
 
   - intent: ask_buy_clothing
     examples: |

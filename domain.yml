@@ -18,7 +18,7 @@ intents:
   - ask_visit_shopping
   - ask_visit_museums
   - ask_visit_outskirts
-  - ask_buy_centres
+  - ask_buy
   - ask_buy_special
   - ask_buy_clothing
   - ask_buy_groceries
@@ -188,7 +188,7 @@ responses:
     - text: "請問您希望尋找什麼種類的食物,香港比較出名為日式, 韓式, 中式, 東南亞食物"
 
   utter_ask_buy:
-    - text: "請問您希望尋找什麼種類的食物,香港比較出名為日式, 韓式, 中式, 東南亞食物"
+    - text: "請問您希望尋找什麼種類的食物, 比如說日用品，商場"
 
 actions:
   - feedback_form
