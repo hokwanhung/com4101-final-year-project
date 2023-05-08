@@ -19,7 +19,6 @@ intents:
   - ask_visit_museums
   - ask_visit_outskirts
   - ask_buy
-  - ask_buy_special
   - ask_buy_clothing
   - ask_buy_groceries
   - ask_food
@@ -44,6 +43,7 @@ entities:
   - food_kr
   - food_jp
   - food_sea
+  - buy_groceries
 
 # Serves as the chatbot's memory.
 # The data can then be used throughout the conversfation.
@@ -74,25 +74,28 @@ slots:
     auto_fill: true
 
   # Relevant Information
-  view:
+#  view:
+#    type: text
+#    auto_fill: true
+
+#  theme_park:
+#    type: text
+#    auto_fill: true
+
+  visit_museums:
     type: text
     auto_fill: true
 
-  theme_park:
+  visit_outskirts:
     type: text
     auto_fill: true
 
-  museums:
+  visit_shopping:
     type: text
     auto_fill: true
-
-  outskirts_visit:
-    type: text
-    auto_fill: true
-
-  visit_events:
-    type: text
-    auto_fill: true
+#  visit_events:
+#    type: text
+#    auto_fill: true
 
   food_cn:
     type: text
@@ -110,6 +113,10 @@ slots:
     type: text
     auto_fill: true
 
+  buy_groceries:
+    type: text
+    auto_fill: true
+    
 forms:
   # Can use ignore_intent to ignore unwanted intents to be filled as forms.
   feedback_form:
@@ -182,13 +189,13 @@ responses:
 
   # Hotel Relevant Information
   utter_ask_visit:
-    - text: "請問您希望尋找什麼遊玩的地方?"
+    - text: "請問您希望尋找什麼遊玩的地方,比較建議做的事為去大自然, 參觀博物館以及購物"
 
   utter_ask_food:
     - text: "請問您希望尋找什麼種類的食物,香港比較出名為日式, 韓式, 中式, 東南亞食物"
 
   utter_ask_buy:
-    - text: "請問您希望尋找什麼種類的食物, 比如說日用品，商場"
+    - text: "請問您希望做什麼活動, 比如說買日用品, 逛商場"
 
 actions:
   - feedback_form
