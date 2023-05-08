@@ -180,3 +180,29 @@ class ActionVisit(Action):
             dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
             return
         return []
+
+class ActionBuy(Action):
+
+    def name(self) -> Text:
+        return "action_ask_buy"
+
+    def run(self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        last = tracker.get_intent_of_latest_message()
+        if last == "ask_visit_museums" or last == "ask_visit_outskirts" or last == "ask_visit_shopping":
+
+            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r",
+                      errors='ignore') as f:  ##example the same name as intent+ csv, like ask_visit_parks.csv
+                lines = f.readlines()
+                if len(lines) > 3:
+                    random.shuffle(lines)
+                    result = [lines[0].replace("\n", ""), lines[1].replace("\n", ""), lines[2].replace("\n", "")]
+                f.close()
+            dispatcher.utter_message(text="您可以嘗試去這些地方購物, 比如說,{}, {}或者{}".format(result[0], result[1], result[2]))
+
+        else:
+            dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
+            return
+        return []

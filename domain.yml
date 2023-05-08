@@ -187,6 +187,9 @@ responses:
   utter_ask_food:
     - text: "請問您希望尋找什麼種類的食物,香港比較出名為日式, 韓式, 中式, 東南亞食物"
 
+  utter_ask_buy:
+    - text: "請問您希望尋找什麼種類的食物,香港比較出名為日式, 韓式, 中式, 東南亞食物"
+
 actions:
   - feedback_form
   - action_end_conversation
@@ -194,6 +197,7 @@ actions:
   - action_connect_database
   - action_ask_food
   - action_ask_visit
+  - action_ask_buy
 
 session_config:
   session_expiration_time: 60 # Value in minutes
