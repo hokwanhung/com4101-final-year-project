@@ -191,7 +191,7 @@ class ActionBuy(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
-        if last == "ask_visit_museums" or last == "ask_visit_outskirts" or last == "ask_visit_shopping":
+        if last == "ask_buy_groceries" or last == "ask_buy_clothing" :
 
             with open(os.getcwd() + "\\csv\\" + last + ".csv", "r",
                       errors='ignore') as f:  ##example the same name as intent+ csv, like ask_visit_parks.csv
