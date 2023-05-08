@@ -90,3 +90,12 @@ stories:
           - intent: ask_visit_museums
           - intent: ask_visit_outskirts
       - action: action_ask_visit
+
+  - story: ask buy path
+    steps:
+      - intent: ask_buy
+      - action: utter_ask_buy
+      - or:
+          - intent: ask_buy_groceries
+          - intent: ask_buy_clothing
+      - action: action_ask_buy
