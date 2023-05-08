@@ -78,6 +78,9 @@ class ActionFood(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
+        if last != "ask_food_cn" or last != "ask_food_jp" or last != "ask_food_kr" or last != "ask_food_sea":
+            dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
+            return
         with open(os.getcwd()+"\\csv\\"+last + ".csv", "r") as f:
             lines = f.readlines()
             if len(lines) > 3:
@@ -98,6 +101,9 @@ class ActionVisit(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
+        if last != "ask_visit_museums" or last != "ask_visit_outskirts" or last != "ask_visit_shopping":
+            dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
+            return
         with open(os.getcwd()+"\\csv\\"+last + ".csv", "r") as f: ##example the same name as intent+ csv, like ask_visit_parks.csv
             lines = f.readlines()
             if len(lines)> 3:
