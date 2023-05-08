@@ -272,6 +272,7 @@ nlu:
 
   - intent: ask_food_cn
     examples: |
+      - [中式食物](food_cn)
       - 附近有啲咩[中餐](food_cn)好食
       - 附近有冇[茶樓](food_cn)
       - 有冇[點心](food_cn)
@@ -415,6 +416,7 @@ nlu:
 
   - intent: ask_food_kr
     examples: |
+      - [韓式食物](food_kr)
       - 附近有啲咩[韓式餐廳](food_kr)好食
       - 附近有冇[韓式燉鍋](food_kr)
       - 有冇[韓燒](food_kr)
@@ -539,6 +541,7 @@ nlu:
 
   - intent: ask_food_jp
     examples: |
+      - [日式食物](food_jp)
       - 附近有啲咩[壽司](food_jp)好食
       - 附近有冇[壽喜燒](food_jp)
       - 有冇[Omakase](food_jp)
@@ -636,6 +639,7 @@ nlu:
 
   - intent: ask_food_sea
     examples: |
+      - [東南亞食物](food_sea)
       - 附近有啲咩[海鮮](food_sea)好食
       - 附近有冇[海鮮蒸氣鍋](food_sea)
       - 邊度有得買[大閘蟹](food_sea)
