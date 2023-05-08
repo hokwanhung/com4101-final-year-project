@@ -238,9 +238,7 @@ nlu:
       - 香港邊度可以[賞花](visit_outskirts)
       - 想喺香港拍[大自然](visit_outskirts)
 
-  - intent: ask_visit_shopping
-    examples: |
-      - 我想行商場
+
 #  - intent: ask_visit_events
 #    examples: |
 #      - 最近有無咩[活動](visit_events)
@@ -251,6 +249,10 @@ nlu:
   #
   # Based on Buy (Not checked)
   #
+  - intent: ask_buy
+    examples: |
+      - 我想行商場
+
   - intent: ask_buy_centres
     examples: |
       - 我想行商場
@@ -278,12 +280,63 @@ nlu:
 
   - intent: ask_buy_groceries
     examples: |
-      - 我想買零食
-      - 我想買嘢飲
+      - 我想買[零食](buy_groceries)
+      - 我想買[嘢飲](buy_groceries)
       - 好口渴
-      - 想買啲日用品
-      - 紙巾
-      - 濕紙巾
+      - 想買啲[日用品](buy_groceries)
+      - [紙巾](buy_groceries)
+      - [濕紙巾](buy_groceries)
+      - [牙刷](buy_groceries)
+      - [牙膏](buy_groceries)
+      - [洗髮水](buy_groceries)
+      - [潤髮乳](buy_groceries)
+      - [護髮素](buy_groceries)
+      - [沐浴露](buy_groceries)
+      - [香皂](buy_groceries)
+      - [洗面奶](buy_groceries)
+      - [化妝棉](buy_groceries)
+      - [化妝水](buy_groceries)
+      - [乳液](buy_groceries)
+      - [面霜](buy_groceries)
+      - [身體乳液](buy_groceries)
+      - [防曬霜](buy_groceries)
+      - [卸妝油](buy_groceries)
+      - [卸妝水](buy_groceries)
+      - [唇膏](buy_groceries)
+      - [口紅](buy_groceries)
+      - [睫毛膏](buy_groceries)
+      - [眼線筆](buy_groceries)
+      - [眼影](buy_groceries)
+      - [腮紅](buy_groceries)
+      - [粉底液](buy_groceries)
+      - [粉餅](buy_groceries)
+      - [遮瑕膏](buy_groceries)
+      - [指甲油](buy_groceries)
+      - [衛生棉](buy_groceries)
+      - [護墊](buy_groceries)
+      - [面膜](buy_groceries)
+      - [眼膜](buy_groceries)
+      - [口罩](buy_groceries)
+      - [衛生紙](buy_groceries)
+      - [油炸薯片](buy_groceries)
+      - [糖果](buy_groceries)
+      - [餅乾](buy_groceries)
+      - [巧克力](buy_groceries)
+      - [咖啡](buy_groceries)
+      - [茶葉](buy_groceries)
+      - [牛奶](buy_groceries)
+      - [酸奶](buy_groceries)
+      - [果汁](buy_groceries)
+      - [飲用水](buy_groceries)
+      - [麵包](buy_groceries)
+      - [雞蛋](buy_groceries)
+      - [米飯](buy_groceries)
+      - [麵條](buy_groceries)
+      - [方便麵](buy_groceries)
+      - [沙拉醬](buy_groceries)
+      - [醋](buy_groceries)
+      - [調味料](buy_groceries)
+      - [醬油](buy_groceries)
 
   #
   # Based on Eat (Not checked)
