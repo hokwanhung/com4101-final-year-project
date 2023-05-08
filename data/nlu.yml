@@ -179,13 +179,13 @@ nlu:
       - 有無咩地方好玩
       - 推薦去邊度玩
 
-  - intent: ask_visit_sceneries # Maybe we can first do lookup table, then use nlu to search
-    examples: | # Extract specific locations as intents, and directly provide relevant resources.
-      - 我想[睇景](visit_sceneries)
-      - 我想揾[靚景](visit_sceneries)
-      - 有無啲咩[打卡位](visit_sceneries)
-      - [夜景](visit_sceneries)邊度最靚
-      - 香港[影相](visit_sceneries)邊度最好
+#  - intent: ask_visit_sceneries # Maybe we can first do lookup table, then use nlu to search
+#    examples: | # Extract specific locations as intents, and directly provide relevant resources.
+#      - 我想[睇景](visit_sceneries)
+#      - 我想揾[靚景](visit_sceneries)
+#      - 有無啲咩[打卡位](visit_sceneries)
+#      - [夜景](visit_sceneries)邊度最靚
+#      - 香港[影相](visit_sceneries)邊度最好
 
 #  - intent: ask_visit_parks
 #    examples: |
@@ -217,7 +217,7 @@ nlu:
       - 香港邊度可以[賞花](visit_outskirts)
       - 想喺香港拍[大自然](visit_outskirts)
 
-  - intent: ask_visit_events
+  - intent: ask_visit_shopping
     examples: |
       - 我想行商場
 #  - intent: ask_visit_events
@@ -279,7 +279,7 @@ nlu:
       - 我想食[徽菜](food_cn)
       - 我想食[魯菜](food_cn)
       - 我想去[飲茶](food_cn)
-      [- [宮保雞丁](food_cn)
+      - [宮保雞丁](food_cn)
       - [麻婆豆腐](food_cn)
       - [紅燒肉](food_cn)
       - [魚香茄子](food_cn)
@@ -600,7 +600,8 @@ nlu:
       - [滷肉飯](food_jp)
       - [漁夫之菜](food_jp)
       - [濃厚拉麵](food_jp)
-      - [濃厚味噌湯](food_jp)- [烏冬湯](food_jp)
+      - [濃厚味噌湯](food_jp)
+      - [烏冬湯](food_jp)
       - [炙燒金槍魚](food_jp)
       - [炒飯](food_jp)
       - [炸蝦天婦羅](food_jp)
@@ -609,7 +610,8 @@ nlu:
       - [煮蝦](food_jp)
       - [牛肉壽司](food_jp)
       - [牛肉湯](food_jp)
-      - [牛肉燒麵](food_jp)- [瓦鍋](food_jp)
+      - [牛肉燒麵](food_jp)
+      - [瓦鍋](food_jp)
       - [甜不辣](food_jp)
       - [碳烤鯖魚](food_jp)
       - [竹輪](food_jp)
@@ -728,7 +730,7 @@ nlu:
       - [星洲炸豆腐](food_sea)
       - [印尼咖哩魚丸湯](food_sea)
       - [泰式芒果糯米飯](food_sea)
-      - [印尼炸雞   - [
+      - [印尼炸雞](food_sea)
   - regex: user_name
     examples: |
       - .

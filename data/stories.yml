@@ -60,8 +60,7 @@ stories:
       - intent: ask_visit
       - action: utter_ask_visit
       - or:
-          - intent: ask_visit_sceneries
-          - intent: ask_visit_parks
+          - intent: ask_visit_shopping
+          - intent: ask_visit_museums
           - intent: ask_visit_outskirts
-          - intent: ask_visit_events
       - action: action_ask_visit
