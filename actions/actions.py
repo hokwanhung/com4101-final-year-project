@@ -28,6 +28,12 @@ from firebase_admin import credentials
 from firebase_admin import auth
 from firebase_admin import db
 import numpy as np
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common import WebDriverException
 
 
 #
@@ -401,17 +407,46 @@ class ActionFood(Action):
 
             with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore') as f:
                 lines = f.readlines()
-                if len(lines) > 2:
+                if len(lines) >= 2:
                     random.shuffle(lines)
-                result = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
+                    results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
+                    dispatcher.utter_message(
+                        text="我推薦您去{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
                 f.close()
-            dispatcher.utter_message(text="我推薦您去{}或者{}，您可以參考下面兩個網址：".format(result[0], result[1]))
 
             # New Flow
+            options = webdriver.ChromeOptions()
+            options.add_experimental_option('excludeSwitches', ['enable-logging'])
+            try:
+                for result in results:
+                    driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
 
+                    driver.get("https://www.google.com/")
 
+                    cookie_button = driver.find_element(By.ID, "L2AGLb")
+                    cookie_button.click()
+
+                    search_box = WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.ID, "APjFqb"))
+                    )
+                    search_box.send_keys(result)
+                    search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
+                    search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
+                    search_button.click()
+
+                    WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH, "//div[@class='yuRUbf']"))
+                    )
+                    url_panel = driver.find_element(By.XPATH, "//div[@class='yuRUbf']")
+                    url_element = url_panel.find_element(By.CSS_SELECTOR, "a")
+                    url = url_element.get_attribute("href")
+
+                    dispatcher.utter_message(url)
+            except WebDriverException:
+                dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
-            dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
+            dispatcher.utter_message(
+                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺🥺🥺。")
 
         return []
 
@@ -428,18 +463,51 @@ class ActionVisit(Action):
         last = tracker.get_intent_of_latest_message()
         if last == "ask_visit_museums" or last == "ask_visit_outskirts" or last == "ask_visit_shopping":
 
+            # example the same name as intent+ csv, like ask_visit_parks.csv
             with open(os.getcwd() + "\\csv\\" + last + ".csv", "r",
-                      errors='ignore') as f:  ##example the same name as intent+ csv, like ask_visit_parks.csv
+                      errors='ignore') as f:
                 lines = f.readlines()
-                if len(lines) > 3:
+                if len(lines) >= 2:
                     random.shuffle(lines)
-                    result = [lines[0].replace("\n", ""), lines[1].replace("\n", ""), lines[2].replace("\n", "")]
+                    results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
+                    dispatcher.utter_message(
+                        text="您可以嘗試去{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
                 f.close()
-            dispatcher.utter_message(text="您可以嘗試去{}, {}或者{}".format(result[0], result[1], result[2]))
 
+            # New Flow
+            options = webdriver.ChromeOptions()
+            options.add_experimental_option('excludeSwitches', ['enable-logging'])
+            try:
+                for result in results:
+                    driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
+
+                    driver.get("https://www.google.com/")
+
+                    cookie_button = driver.find_element(By.ID, "L2AGLb")
+                    cookie_button.click()
+
+                    search_box = WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.ID, "APjFqb"))
+                    )
+                    search_box.send_keys(result)
+                    search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
+                    search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
+                    search_button.click()
+
+                    WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH, "//div[@class='yuRUbf']"))
+                    )
+                    url_panel = driver.find_element(By.XPATH, "//div[@class='yuRUbf']")
+                    url_element = url_panel.find_element(By.CSS_SELECTOR, "a")
+                    url = url_element.get_attribute("href")
+
+                    dispatcher.utter_message(url)
+            except WebDriverException:
+                dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
-            dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
-            return
+            dispatcher.utter_message(
+                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺🥺🥺。")
+
         return []
 
 
@@ -455,21 +523,50 @@ class ActionBuy(Action):
         last = tracker.get_intent_of_latest_message()
         if last == "ask_buy_groceries" or last == "ask_buy_clothing":
 
-            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r",
-                      errors='ignore') as f:  ##example the same name as intent+ csv, like ask_visit_parks.csv
+            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore') as f:
                 lines = f.readlines()
-                if len(lines) > 3:
+                if len(lines) >= 2:
                     random.shuffle(lines)
-                    result = [lines[0].replace("\n", ""), lines[1].replace("\n", ""), lines[2].replace("\n", "")]
+                    results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
+                    dispatcher.utter_message(
+                        text="您可以嘗試去這些地方購物, 比如說,{}或者{}，貴客您".format(results[0], results[1]))
                 f.close()
-            dispatcher.utter_message(
-                text="您可以嘗試去這些地方購物, 比如說,{}, {}或者{}".format(result[0], result[1], result[2]))
 
+            # New Flow
+            options = webdriver.ChromeOptions()
+            options.add_experimental_option('excludeSwitches', ['enable-logging'])
+            try:
+                for result in results:
+                    driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
+
+                    driver.get("https://www.google.com/")
+
+                    cookie_button = driver.find_element(By.ID, "L2AGLb")
+                    cookie_button.click()
+
+                    search_box = WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.ID, "APjFqb"))
+                    )
+                    search_box.send_keys(result)
+                    search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
+                    search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
+                    search_button.click()
+
+                    WebDriverWait(driver, 10).until(
+                        EC.visibility_of_element_located((By.XPATH, "//div[@class='yuRUbf']"))
+                    )
+                    url_panel = driver.find_element(By.XPATH, "//div[@class='yuRUbf']")
+                    url_element = url_panel.find_element(By.CSS_SELECTOR, "a")
+                    url = url_element.get_attribute("href")
+
+                    dispatcher.utter_message(url)
+            except WebDriverException:
+                dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
-            dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
+            dispatcher.utter_message(
+                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺🥺🥺。")
 
         return []
-
 
 # class ActionOutOfScope(Action):
 #     def name(self) -> Text:
