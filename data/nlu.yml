@@ -286,12 +286,67 @@ nlu:
       - 我想求其買啲嘢
       - 附近有啲咩嘢買
       - 我想買啲嘢
+      - 我想買嘢
+      - 有咩嘢可以買
+      - 有咩買
+      - 買嘢
   - intent: ask_buy_clothing
     examples: |
       - 想買衫
+      - 買衣服
       - 日式潮流
       - 時尚服裝
       - 韓式潮流
+      - [上衣](buy_clothing)
+      - [T恤](buy_clothing)
+      - [襯衫](buy_clothing)
+      - [背心](buy_clothing)
+      - [毛衣](buy_clothing)
+      - [針織衫](buy_clothing)
+      - [外套](buy_clothing)
+      - [大衣](buy_clothing)
+      - [風衣](buy_clothing)
+      - [皮衣](buy_clothing)
+      - [夾克](buy_clothing)
+      - [牛仔外套](buy_clothing)
+      - [運動衫](buy_clothing)
+      - [運動外套](buy_clothing)
+      - [運動背心](buy_clothing)
+      - [運動褲](buy_clothing)
+      - [短褲](buy_clothing)
+      - [長褲](buy_clothing)
+      - [牛仔褲](buy_clothing)
+      - [休閒褲](buy_clothing)
+      - [西裝](buy_clothing)
+      - [西裝褲](buy_clothing)
+      - [西裝外套](buy_clothing)
+      - [連身裙](buy_clothing)
+      - [迷你裙](buy_clothing)
+      - [襯裙](buy_clothing)
+      - [牛仔裙](buy_clothing)
+      - [背帶裙](buy_clothing)
+      - [長裙](buy_clothing)
+      - [洋裝](buy_clothing)
+      - [吊帶洋裝](buy_clothing)
+      - [襯衫裙](buy_clothing)
+      - [連身褲](buy_clothing)
+      - [短袖](buy_clothing)
+      - [長袖](buy_clothing)
+      - [打底襪](buy_clothing)
+      - [長筒襪](buy_clothing)
+      - [短筒襪](buy_clothing)
+      - [膝襪](buy_clothing)
+      - [護腿](buy_clothing)
+      - [手套](buy_clothing)
+      - [圍巾](buy_clothing)
+      - [帽子](buy_clothing)
+      - [帽子](buy_clothing)
+      - [頭巾](buy_clothing)
+      - [口罩](buy_clothing)
+      - [皮帶](buy_clothing)
+      - [鞋子](buy_clothing)
+      - [運動鞋](buy_clothing)
+      - [涼鞋](buy_clothing)
 
   - intent: ask_buy_groceries
     examples: |
