@@ -17,7 +17,7 @@ stories:
   - story: end conversation path
     steps:
       - intent: goodbye
-      - action: utter_goodbye
+#      - action: utter_goodbye
       - action: utter_ask_comments
       - checkpoint: response_await
 
