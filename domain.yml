@@ -28,6 +28,7 @@ intents:
   - ask_food_kr
   - ask_food_jp
   - ask_food_sea
+  - nlu_fallback
 #  - ask_visit_sceneries
 
 entities:
@@ -219,6 +220,8 @@ responses:
   utter_ask_buy:
     - text: "請問您希望做什麼活動, 比如說買日用品, 買衣服"
 
+  utter_ask_rephrase:
+    - text: "I'm sorry, I didn't quite understand that. Could you rephrase?"
 actions:
   - feedback_form # Sentiment nlu
   - action_submit_feedback
@@ -228,6 +231,7 @@ actions:
   - action_ask_food # Hotel Relevant Information
   - action_ask_visit
   - action_ask_buy
+  - action_default_fallback
 
 session_config:
   session_expiration_time: 60 # Value in minutes

@@ -125,3 +125,4 @@ stories:
           - intent: ask_buy_clothing
       - action: action_ask_buy
       - action: action_append_sentiment_list
+
