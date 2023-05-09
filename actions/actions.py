@@ -15,7 +15,7 @@ from typing import Any, Text, Dict, List, Union
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, EventType
-from rasa_sdk.events import ConversationPaused, SessionStarted
+from rasa_sdk.events import ConversationPaused, SessionStarted, UserUtteranceReverted
 from rasa_sdk.forms import FormAction, FormValidationAction
 import os
 from sqlalchemy import create_engine
@@ -405,3 +405,25 @@ class ActionBuy(Action):
             dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
 
         return []
+
+
+class ActionDefaultFallback(Action):
+    def name(self) -> Text:
+        return "action_default_fallback"
+
+    def run(
+            self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        # tell the user they are being passed to a customer service agent
+        dispatcher.utter_message(text="希望你能夠換一種說法, 或者用一些簡單的詞語, 因為我並不聰明")
+
+        # assume there's a function to call customer service
+        # pass the tracker so that the agent has a record of the conversation between the user
+        # and the bot for context
+
+
+        # pause the tracker so that the bot stops responding to user input
+        return [ConversationPaused(), UserUtteranceReverted()]
