@@ -233,7 +233,9 @@ nlu:
     examples: |
       - 我想訂[兩個](people_num)人的酒店房。
       - [十個](people_num)
-      - []
+      - [6個](people_num)
+      - [5](people_num)人
+      - [一](people_num)人
 
   #- intent: ask_registration_with_location
   #  examples: |
