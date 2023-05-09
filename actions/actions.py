@@ -38,7 +38,7 @@ class FeedbackForm(FormAction):
 
     def name(self) -> Text:
         # Returns the name of the form.
-        return "Feedback_form"
+        return "feedback_form"
 
     @staticmethod
     def required_slots(tracker: "Tracker") -> List[Text]:
@@ -205,10 +205,10 @@ class ActionAppendSentimentList(Action):
 
         # Get the "sentiment" entity
         sentiment_entity = next((e for e in latest_message['entities'] if e['entity'] == 'sentiment'), None)
+        # print(sentiment_entity)
         # It seems the value can be gotten:
         # e.g. {'entity': 'sentiment', 'confidence_entity': 0.53994163996895, 'value': 'neg',
         # 'extractor': 'sentiment_extractor (sentiment)'}
-        print(sentiment_entity)
 
         if sentiment_entity:
             # If the "sentiment" entity exists, get its value and confidence
