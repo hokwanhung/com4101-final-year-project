@@ -154,15 +154,15 @@ nlu:
 
   - intent: feedback_examples
     examples: |
-      - 總體而言，我認爲這個chatbot的功能完善，方便簡單快捷。
-      - 其實都算好用。
-      - 這個chatbot唔錯。
-      - 幾好。
-      - 正正常常。
-      - 我覺得功能可以多d
-      - 有時候有d死板。
-      - 好似無想象中咁好用。
-      - 我試過俾佢卡bug。
+      - [總體而言，我認爲這個chatbot的功能完善，方便簡單快捷。](feedback)
+      - [其實都算好用。](feedback)
+      - [這個chatbot唔錯。](feedback)
+      - [幾好。](feedback)
+      - [正正常常。](feedback)
+      - [我覺得功能可以多d](feedback)
+      - [有時候有d死板。](feedback)
+      - [好似無想象中咁好用。](feedback)
+      - [我試過俾佢卡bug。](feedback)
 
   #
   # User Identification

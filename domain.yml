@@ -132,19 +132,19 @@ slots:
     type: text
     auto_fill: true
     
-forms:
-  feedback_form: # Can use ignore_intent to ignore unwanted intents to be filled as forms.
-    required_slots:
-      feedback:
-        - type: from_text
-          intent: feedback_examples
-        - type: from_text
-          intent: affrim
-        - type: from_text
-          intent: deny
-#    validation:
+#forms:
+#  feedback_form: # Can use ignore_intent to ignore unwanted intents to be filled as forms.
+#    required_slots:
 #      feedback:
-#        - action: validate_feedback_form
+#        - type: from_text
+#          intent: feedback_examples
+#        - type: from_text
+#          intent: affrim
+#        - type: from_text
+#          intent: deny
+##    validation:
+##      feedback:
+##        - action: validate_feedback_form
 
 
 responses:
@@ -222,9 +222,10 @@ responses:
 
   utter_ask_rephrase:
     - text: "I'm sorry, I didn't quite understand that. Could you rephrase?"
+
 actions:
-  - feedback_form # Sentiment nlu
-  - action_submit_feedback
+#  - feedback_form # Sentiment nlu
+  - action_validate_feedback
   - action_end_conversation
   - action_append_sentiment_list
   - action_connect_database # Hotel Registration
