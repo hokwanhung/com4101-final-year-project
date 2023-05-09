@@ -553,7 +553,7 @@ class ActionBuy(Action):
                     random.shuffle(lines)
                     results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                     dispatcher.utter_message(
-                        text="您可以嘗試去這些地方購物, 比如說,{}或者{}，貴客您".format(results[0], results[1]))
+                        text="您可以嘗試去這些地方購物, 比如說,{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
                 f.close()
                 print(results)
 
