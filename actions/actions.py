@@ -232,6 +232,9 @@ class ActionAppendSentimentList(Action):
 #
 # Hotel Registration
 #
+class HotelInfo
+
+
 class ActionConnectDatabase(Action):
 
     def name(self) -> Text:
@@ -283,7 +286,7 @@ class ActionFood(Action):
             dispatcher.utter_message(text="我推薦您去{}, {}或者{}".format(result[0], result[1], result[2]))
         else:
             dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
-            return
+
         return []
 
 
@@ -338,5 +341,5 @@ class ActionBuy(Action):
 
         else:
             dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
-            return
+
         return []
