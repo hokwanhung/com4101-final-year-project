@@ -211,13 +211,13 @@ responses:
 
   # Hotel Relevant Information
   utter_ask_visit:
-    - text: "請問您希望尋找什麼遊玩的地方,比較建議做的事為去大自然, 參觀博物館以及購物"
+    - text: "請問您希望尋找什麼遊玩的地方,比較建議做的事為去大自然, 參觀博物館以及行商場"
 
   utter_ask_food:
     - text: "請問您希望尋找什麼種類的食物,香港比較出名為日式, 韓式, 中式, 東南亞食物"
 
   utter_ask_buy:
-    - text: "請問您希望做什麼活動, 比如說買日用品, 逛商場"
+    - text: "請問您希望做什麼活動, 比如說買日用品, 買衣服"
 
 actions:
   - feedback_form # Sentiment nlu
