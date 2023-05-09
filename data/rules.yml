@@ -7,3 +7,10 @@ rules:
     steps:
       - intent: identify_bot
       - action: utter_iamabot
+
+
+  - rule: Implementation of the Two-Stage-Fallback
+    steps:
+    - intent: nlu_fallback
+    - action: action_default_fallback
+#    - active_loop: action_two_stage_fallback
