@@ -391,6 +391,8 @@ class ActionConnectDatabase(Action):
 
 #
 # Ask Hotel Relevant Information
+# Go to the directory: venv/Lib/site-packages/rasa/core/channels/console.py
+# Change the default value of DEFAULT_STREAM_READING_TIMEOUT_IN_SECONDS to more than 10, in my case I changed it to 30 it worked.
 #
 
 class ActionFood(Action):
@@ -420,16 +422,18 @@ class ActionFood(Action):
             options = webdriver.ChromeOptions()
             options.add_experimental_option('detach', True)
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+            urls = []
+
             try:
                 for result in results:
                     driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
-
                     driver.get("https://www.google.com/")
 
                     cookie_button = driver.find_element(By.ID, "L2AGLb")
                     cookie_button.click()
 
-                    search_box = WebDriverWait(driver, 10).until(
+                    search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
                     search_box.send_keys(result)
@@ -437,14 +441,21 @@ class ActionFood(Action):
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
 
-                    WebDriverWait(driver, 10).until(
+                    WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.XPATH, "//div[@class='yuRUbf']"))
                     )
                     url_panel = driver.find_element(By.XPATH, "//div[@class='yuRUbf']")
                     url_element = url_panel.find_element(By.CSS_SELECTOR, "a")
                     url = url_element.get_attribute("href")
 
-                    dispatcher.utter_message(url)
+                    urls.append(url)
+
+                    driver.close()
+
+                # Must dispatch messages at last
+                print(urls)
+                dispatcher.utter_message(urls[0])
+                dispatcher.utter_message(urls[1])
             except WebDriverException:
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
@@ -482,16 +493,17 @@ class ActionVisit(Action):
             options = webdriver.ChromeOptions()
             options.add_experimental_option('detach', True)
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+            urls = []
             try:
                 for result in results:
                     driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
-
                     driver.get("https://www.google.com/")
 
                     cookie_button = driver.find_element(By.ID, "L2AGLb")
                     cookie_button.click()
 
-                    search_box = WebDriverWait(driver, 10).until(
+                    search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
                     search_box.send_keys(result)
@@ -499,14 +511,20 @@ class ActionVisit(Action):
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
 
-                    WebDriverWait(driver, 10).until(
+                    WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.XPATH, "//div[@class='yuRUbf']"))
                     )
                     url_panel = driver.find_element(By.XPATH, "//div[@class='yuRUbf']")
                     url_element = url_panel.find_element(By.CSS_SELECTOR, "a")
                     url = url_element.get_attribute("href")
 
-                    dispatcher.utter_message(url)
+                    urls.append(url)
+                    driver.close()
+
+                print(urls)
+                dispatcher.utter_message(urls[0])
+                dispatcher.utter_message(urls[1])
+
             except WebDriverException:
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
@@ -543,16 +561,19 @@ class ActionBuy(Action):
             options = webdriver.ChromeOptions()
             options.add_experimental_option('detach', True)
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+            urls = []
+
             try:
+                driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
                 for result in results:
                     driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
-
                     driver.get("https://www.google.com/")
 
                     cookie_button = driver.find_element(By.ID, "L2AGLb")
                     cookie_button.click()
 
-                    search_box = WebDriverWait(driver, 10).until(
+                    search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
                     search_box.send_keys(result)
@@ -560,14 +581,19 @@ class ActionBuy(Action):
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
 
-                    WebDriverWait(driver, 10).until(
+                    WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.XPATH, "//div[@class='yuRUbf']"))
                     )
                     url_panel = driver.find_element(By.XPATH, "//div[@class='yuRUbf']")
                     url_element = url_panel.find_element(By.CSS_SELECTOR, "a")
                     url = url_element.get_attribute("href")
 
-                    dispatcher.utter_message(url)
+                    urls.append(url)
+                    driver.close()
+
+                print(urls)
+                dispatcher.utter_message(urls[0])
+                dispatcher.utter_message(urls[1])
             except WebDriverException:
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
