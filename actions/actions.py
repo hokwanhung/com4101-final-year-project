@@ -91,11 +91,11 @@ from selenium.common import WebDriverException
 #         dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
 #
 #         # Initialize to Firebase
-#         json_path = os.path.join(os.path.dirname(__file__), "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+#         json_path = os.path.join(os.path.dirname(__file__), "Own_Json.json") # Replace with own json file
 #         cred = credentials.Certificate(json_path)
 #         firebase_admin.initialize_app(cred,
 #                                       {
-#                                           'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+#                                           'databaseURL': 'databaseURL': "Own_https.app"}) # Replace with own databaseURL.
 #
 #         # Get a database reference to the "users" node
 #         ref = db.reference("users")
@@ -162,11 +162,11 @@ class ActionValidateFeedback(Action):
             firebase_admin.get_app()
         except ValueError:
             json_path = os.path.join(os.path.dirname(__file__),
-                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+                                     "Own_Json.json") # Replace with own json file
             cred = credentials.Certificate(json_path)
             firebase_admin.initialize_app(cred,
                                           {
-                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+                                              'databaseURL': "Own_https.app"}) # Replace with own databaseURL.
 
         # Get a database reference to the "users" node
         ref = db.reference("users")
@@ -204,11 +204,11 @@ class ActionEndConversation(Action):
             firebase_admin.get_app()
         except ValueError:
             json_path = os.path.join(os.path.dirname(__file__),
-                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+                                     "Own_Json.json") # Replace with own json file
             cred = credentials.Certificate(json_path)
             firebase_admin.initialize_app(cred,
                                           {
-                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+                                              'databaseURL': "Own_https.app"})  # Replace with own databaseURL.
 
         # Get a database reference to the "users" node
         ref = db.reference("users")
@@ -249,11 +249,11 @@ class ActionEndConversation(Action):
             firebase_admin.get_app()
         except ValueError:
             json_path = os.path.join(os.path.dirname(__file__),
-                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+                                     "Own_Json.json") # Replace with own json file
             cred = credentials.Certificate(json_path)
             firebase_admin.initialize_app(cred,
                                           {
-                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+                                              'databaseURL': "Own_https.app"})  # Replace with own databaseURL.
 
         # Get a database reference to the "users" node
         ref = db.reference("users")
