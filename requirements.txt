@@ -173,7 +173,7 @@ tarsafe==0.0.3
 tensorboard==2.6.0
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
-tensorflow==2.6.5
+tensorflow==2.11.1
 tensorflow-addons==0.14.0
 tensorflow-estimator==2.6.0
 tensorflow-hub==0.10.0
