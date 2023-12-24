@@ -1,2 +1,7 @@
+# Rasa-related
+.rasa
+models/
 
-FYPProjectDefault.zip
+# Firebase-related
+actions/*.json
+actions/__pycache__
