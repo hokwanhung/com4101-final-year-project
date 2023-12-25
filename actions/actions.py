@@ -440,9 +440,9 @@ class ActionBuy(Action):
         return []
 
 
-class ActionDefaultFallback(Action):
+class ActionOutOfScope(Action):
     def name(self) -> Text:
-        return "action_default_fallback"
+        return "action_out_of_scope"
 
     def run(
             self,
@@ -451,7 +451,7 @@ class ActionDefaultFallback(Action):
             domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
         # tell the user they are being passed to a customer service agent
-        dispatcher.utter_message(text="希望你能夠換一種說法, 或者用一些簡單的詞語, 因為我並不聰明")
+        dispatcher.utter_message(text="不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。")
 
         # assume there's a function to call customer service
         # pass the tracker so that the agent has a record of the conversation between the user
