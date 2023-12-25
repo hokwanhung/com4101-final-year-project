@@ -28,7 +28,9 @@ stories:
       - action: feedback_form
       - active_loop: feedback_form # Indicates that the form should be activated after the previous action was run.
       - slot_was_set:
-          feedback: "評論與意見"
+        - requested_slot: feedback
+      - slot_was_set:
+          - feedback: "評論與意見"
       - action: feedback_form
 
 
