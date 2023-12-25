@@ -16,7 +16,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, EventType
 from rasa_sdk.events import ConversationPaused, SessionStarted
-from rasa_sdk.forms import FormAction
+from rasa_sdk.forms import FormAction, FormValidationAction
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
@@ -48,7 +48,7 @@ class FeedbackForm(FormAction):
     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
         # Maps the slot names to their values using a disctionary.
         return {
-            "feedback": [self.from_text()]
+            "feedback": self.from_text()
         }
 
     def submit(
@@ -88,6 +88,7 @@ class FeedbackForm(FormAction):
 
         # Set the uuid to slot.
         return [SlotSet("conversation_id", conversation_byte)]
+
 
 class ActionSubmitFeedback(Action):
     def name(self) -> Text:
@@ -227,32 +228,6 @@ class ActionAppendSentimentList(Action):
             print("Sorry, I could not detect the sentiment of your message.")
 
         return [SlotSet("sentiment_list", sentiment_list)]
-
-
-#
-# General nlu
-#
-class ActionHowToGreet(Action):
-
-    def name(self) -> Text:
-        return "action_how_to_greet"
-
-    def run(self,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        is_not_initial = tracker.get_slot("is_not_initial")  # default value: false
-
-        if not is_not_initial:
-            # First time: ask the user's name.
-            dispatcher.utter_message(text="先生/女士你好，請問我應該怎麽稱呼你？")
-            is_not_initial = True
-        else:
-            username = tracker.get_slot("username")
-            dispatcher.utter_message(text="%s先生/女士，你好，很榮幸為你提供服務。".format(username))
-
-        return [SlotSet("is_not_initial", is_not_initial)]
-
 
 #
 # Hotel Registration
