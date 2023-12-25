@@ -19,7 +19,7 @@ stories:
       - intent: goodbye
 #      - action: utter_goodbye
       - action: utter_ask_comments
-      - checkpoint: response_await
+      - checkpoint: response_await # Proved to be a correct way in using checkpoints
 
   - story: accept comment path
     steps:
@@ -32,7 +32,6 @@ stories:
         - requested_slot: feedback
       - slot_was_set:
           - feedback: "評論與意見"
-      - action: feedback_form
       - action: action_submit_feedback
       - action: action_end_conversation
 
