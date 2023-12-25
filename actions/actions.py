@@ -403,9 +403,10 @@ class ActionFood(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
+        print(last)
         if last == "ask_food_cn" or last == "ask_food_jp" or last == "ask_food_kr" or last == "ask_food_sea":
 
-            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore') as f:
+            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore', encoding='utf-8') as f:
                 lines = f.readlines()
                 if len(lines) >= 2:
                     random.shuffle(lines)
@@ -463,11 +464,11 @@ class ActionVisit(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
+        print(last)
         if last == "ask_visit_museums" or last == "ask_visit_outskirts" or last == "ask_visit_shopping":
 
             # example the same name as intent+ csv, like ask_visit_parks.csv
-            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r",
-                      errors='ignore') as f:
+            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore', encoding='utf-8') as f:
                 lines = f.readlines()
                 if len(lines) >= 2:
                     random.shuffle(lines)
@@ -525,9 +526,10 @@ class ActionBuy(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         last = tracker.get_intent_of_latest_message()
+        print(last)
         if last == "ask_buy_groceries" or last == "ask_buy_clothing":
 
-            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore') as f:
+            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore', encoding='utf-8') as f:
                 lines = f.readlines()
                 if len(lines) >= 2:
                     random.shuffle(lines)
