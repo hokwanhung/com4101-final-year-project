@@ -16,7 +16,7 @@ stories:
       - action: utter_ask_name
       - intent: greet_with_name
         entities:
-          - usernam: "陳"
+          - username: "陳"
       - action: utter_greet_with_name
 
   - story: greet user with name path # User story: Greet chatbot with name to start a conversation
@@ -42,25 +42,28 @@ stories:
       - intent: ask_registration
       - action: action_connect_database
 
+#
+# User story: Ask nearby information
+#
 
-  - story: ask food
+#  - story: ask food
+#   steps:
+#      - intent: ask_food
+#      - action: utter_ask_food
+#      - or:
+#        - intent: ask_food_jp
+#        - intent: ask_food_kr
+#        - intent: ask_food_cn
+#        - intent: ask_food_sea
+#      - action: action_ask_food
+
+  - story: ask visit path
     steps:
-      - intent: ask_food
-      - action: utter_ask_food
-      - or:
-        - intent: ask_food_jp
-        - intent: ask_food_kr
-        - intent: ask_food_cn
-        - intent: ask_food_sea
-      - action: action_ask_food
-
-  - story:
-      steps:
-        - intent: ask_visit
-        - action: utter_ask_visit
-        - or:
-            - intent: ask_visit_sceneries
-            - intent: ask_visit_parks
-            - intent: ask_visit_outskirts
-            - intent: ask_visit_events
-        - action: action_ask_visit
+      - intent: ask_visit
+      - action: utter_ask_visit
+#        - or:
+#            - intent: ask_visit_sceneries
+#            - intent: ask_visit_parks
+#            - intent: ask_visit_outskirts
+      - intent: ask_visit_events
+      - action: action_ask_visit
