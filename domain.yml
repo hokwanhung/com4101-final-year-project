@@ -223,11 +223,14 @@ responses:
   utter_ask_buy:
     - text: "請問您希望做什麼活動, 比如說買日用品, 買衣服"
 
+  utter_ask_actions:
+    - text: "請問我還有什麽可以幫到您的嗎？"
+    - text: "如果還有什麽我可以幫上忙的話，請您儘管跟我説。"
+
 #  utter_out_of_scope:
 #    - text: "不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。"
 
 actions:
-#  - feedback_form # Sentiment nlu
   - action_validate_feedback
   - action_end_conversation
   - action_append_sentiment_list
@@ -236,6 +239,7 @@ actions:
   - action_ask_visit
   - action_ask_buy
 #  - action_out_of_scope
+#  - feedback_form # Sentiment nlu
 
 session_config:
   session_expiration_time: 60 # Value in minutes
