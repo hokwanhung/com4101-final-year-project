@@ -141,6 +141,9 @@ forms:
           intent: affrim
         - type: from_text
           intent: deny
+    validation:
+      feedback:
+        - action: validate_feedback_form
 
 
 responses:
@@ -221,7 +224,6 @@ actions:
   - action_submit_feedback
   - action_end_conversation
   - action_append_sentiment_list
-  - action_how_to_greet # General nlu
   - action_connect_database # Hotel Registration
   - action_ask_food # Hotel Relevant Information
   - action_ask_visit
