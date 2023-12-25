@@ -58,9 +58,9 @@ class FeedbackForm(FormAction):
             domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
         print("復核信息中")
-        feedback = tracker.get_slot("feedback")
+        feedback = str(tracker.get_slot("feedback"))
 
-        if feedback is not None:
+        if feedback is None:
             dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
             return {"feedback": None}
         else:
@@ -136,11 +136,16 @@ class ActionEndConversation(Action):
             dispatcher: "CollectingDispatcher",
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # Initialize to Firebase
-        json_path = os.path.join(os.path.dirname(__file__), "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
-        cred = credentials.Certificate(json_path)
-        firebase_admin.initialize_app(cred, {
-            'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+        # Get a Firebase Instance (if not exist, then create one)
+        try:
+            firebase_admin.get_app()
+        except ValueError:
+            json_path = os.path.join(os.path.dirname(__file__),
+                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+            cred = credentials.Certificate(json_path)
+            firebase_admin.initialize_app(cred,
+                                          {
+                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
 
         # Get a database reference to the "users" node
         ref = db.reference("users")
@@ -177,18 +182,22 @@ class ActionEndConversation(Action):
         #
         # Save the record to Firebase
         #
-        # Initialize to Firebase
-        json_path = os.path.join(os.path.dirname(__file__), "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
-        cred = credentials.Certificate(json_path)
-        firebase_admin.initialize_app(cred,
-                                      {
-                                          'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+        # Get a Firebase Instance (if not exist, then create one)
+        try:
+            firebase_admin.get_app()
+        except ValueError:
+            json_path = os.path.join(os.path.dirname(__file__),
+                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+            cred = credentials.Certificate(json_path)
+            firebase_admin.initialize_app(cred,
+                                          {
+                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
 
         # Get a database reference to the "users" node
         ref = db.reference("users")
 
         # Add the new key-value pair to Firebase
-        ref.child(conversation_byte).update({
+        ref.child(str(conversation_byte)).update({
             "overall_sentiment": weighted_average
         })
 
@@ -213,6 +222,7 @@ class ActionAppendSentimentList(Action):
     ) -> List[Dict[Text, Any]]:
         # Get the current value of the "sentiment_list" slot
         sentiment_list = tracker.slots.get("sentiment_list", [])
+        print(sentiment_list)
 
         # Initialize the sentiment_list if there is not a sentiment_list beforehand.
         if sentiment_list is None:
