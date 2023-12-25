@@ -4,11 +4,6 @@ rules:
   # Simple intent-to-action mappings.
   # Flows that the bot MUST follow.
 
-  - rule: Say hello whenever the user says hello
-    steps:
-      - intent: greet
-      - action: action_how_to_greet
-
   - rule: Say goodbye anytime the user says goodbye
     steps:
       - intent: goodbye
