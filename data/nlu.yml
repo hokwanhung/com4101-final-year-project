@@ -150,6 +150,17 @@ nlu:
       - 你知道自己係機械人嗎？
 
   #
+  # User Identification
+  #
+  - intent: anonymous
+    examples: |
+      - 我想匿名回答
+      - 我不想登入
+      - 不登入評價
+      - 匿名繼續操作
+      - 不要管我的身份
+
+  #
   # Hotel Registration
   #
   - intent: ask_registration
