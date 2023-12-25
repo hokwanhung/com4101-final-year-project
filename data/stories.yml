@@ -44,9 +44,7 @@ stories:
 
 
 # User story: Ask nearby information
-
-
-  - story: ask food
+  - story: ask food path
     steps:
       - intent: ask_food
       - action: utter_ask_food
