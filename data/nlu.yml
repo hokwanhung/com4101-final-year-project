@@ -19,6 +19,10 @@ nlu:
       - 果真
       - 贊同
       - 贊成
+      - 好
+      - yes
+      - sure
+      - okay
 
   - intent: deny
     examples: |
@@ -32,6 +36,9 @@ nlu:
       - 沒門
       - 上一步
       - 不同意
+      - 吾要
+      - no
+      - cancel
 
   - intent: compliment
     examples: |

@@ -118,12 +118,6 @@ responses:
 
 3️⃣ 情感功能 - 有意見或想法想反饋給酒店，但又不想面對面提供？您可以留下您寶貴的意見給我，我會幫你轉達給相應方～"
 
-  utter_did_that_help:
-    - text: "有幫到你的忙嗎？"
-
-  utter_happy:
-    - text: "太好了，繼續！"
-
   utter_goodbye:
     - text: "感謝你的陪伴，我們下次再聊。"
     - text: "祝你一路順風，保重。"
@@ -156,6 +150,16 @@ responses:
 
 3️⃣ 情感功能 - 有意見或想法想反饋給酒店，但又不想面對面提供？您可以留下您寶貴的意見給我，我會幫你轉達給相應方～"
 
+  utter_did_that_help:
+    - text: "有幫到你的忙嗎？"
+
+  utter_happy:
+    - text: "太好了，繼續！"
+
+  utter_ask_comments:
+    - text: "很感謝您使用這個聊天機器人的服務，請問您要留下您使用後的意見或感想嗎？這些回應將會被儲存於數據庫中，讓我們可以於未來改善我們的服務。"
+
+  # Hotel Relevant Information
   utter_ask_visit:
     - text: "請問您希望尋找什麼遊玩的地方?"
 
