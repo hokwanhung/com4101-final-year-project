@@ -3,32 +3,29 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - 嘿 
+    - 嘿伙計 
+    - 開始
+    - 我們走吧 
+    - 你好 
+    - 早上好 
+    - 中午好
+    - 下午好
+    - 晚上好 
+    - 早晨
+    - 午安
+    - 晚安
 
 - intent: goodbye
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - 再見
+    - 稍後見
+    - 稍後再見
+    - 結束
+    - 晚安
+    - 再見
+    - 祝你今天過得愉快
+    - 回頭見
 
 - intent: affirm
   examples: |
