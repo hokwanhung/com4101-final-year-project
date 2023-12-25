@@ -436,7 +436,7 @@ class ActionFood(Action):
                     search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
-                    search_box.send_keys(result)
+                    search_box.send_keys(f"{result} openrice")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
@@ -506,7 +506,7 @@ class ActionVisit(Action):
                     search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
-                    search_box.send_keys(result)
+                    search_box.send_keys(f"{result} hk")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
@@ -576,7 +576,7 @@ class ActionBuy(Action):
                     search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
-                    search_box.send_keys(result)
+                    search_box.send_keys(f"{result} hk")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
