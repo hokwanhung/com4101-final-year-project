@@ -15,20 +15,20 @@ responses:
   - text: "嘿，你今天過得怎麽樣？"
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
+  - text: "這裡有一些讓你振作起來的事情："
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+  - text: "有幫到你的忙嗎？"
 
   utter_happy:
-  - text: "Great, carry on!"
+  - text: "太好了，繼續！"
 
   utter_goodbye:
   - text: "祝你旅途愉快，再見！"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "我是一個機器人，由 Rasa 提供支持。"
 
   utter_ask_place:
   - text: "您可以試下去ODD ONE OUT"
