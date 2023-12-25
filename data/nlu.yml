@@ -24,6 +24,7 @@ nlu:
       - sure
       - okay
       - 哈哈哈好
+      - 哈哈哈哈好
       - hhh麻煩你了
 
   - intent: deny
@@ -179,7 +180,7 @@ nlu:
   #
   - intent: ask_registration
     examples: |
-      - 你好，我想訂酒店。
+      - 我想訂酒店。
       - 係咪可以book酒店？
       - 想做booking
       - 有咩酒店我可以訂？
