@@ -102,17 +102,14 @@ stories:
       - action: action_append_sentiment_list
       - action: utter_ask_actions
 
+  #
+  # User story: Register hotel rooms for reservation
+  #
   - story: hotel booking path # User story: Book hotel rooms
     steps:
       - intent: ask_registration
+      - action: utter_introduce_registration
       - action: action_connect_database
-
-#  - story: indirect information path  # User story: Ask relevant nearby information (indirect)
-#    steps:
-#      - intent: greet
-#      - action: action_how_to_greet
-#      - intent: inform_name
-#      - action: utter_greet_with_name
 
 #
 # User story: Ask relevant nearby information (directly)

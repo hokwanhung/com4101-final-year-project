@@ -230,13 +230,23 @@ nlu:
       - 有無得book房
       - 我想去開房
 
-  - intent: ask_registration_with_people
+  - intent: registration_with_details
     examples: |
-      - 我想訂[兩個](people_num)人的酒店房。
-      - [十個](people_num)
-      - [6個](people_num)
-      - [5](people_num)人
-      - [一](people_num)人
+      - 我要訂一間[兩晚](in_out_time)的[套房](room_type)，可以看到[海景](special_view)嗎？
+      - 我需要訂一間大床房，入住日期是[明天](in_out_time)，退房日期是[後天]((in_out_time))。
+      - 我們一行[五人](room_capacity)需要訂兩間[標準房](room_type)，入住日期是[下周五](in_out_time)。
+      - 我需要訂一間[家庭房](room_type)，可以加床嗎？
+      - 我想訂一間[高級客房](room_type)，可以給我一個特殊的[視野](special_view)嗎？
+      - 請問[四人](room_capacity)房的價格是多少？
+      - 我想訂一間[特殊房間](room_type)，能不能給我附近的觀光景點介紹呢？
+      - 我要訂兩間[標準房](room_type)，入住日期是[下個月初](in_out_time)，能不能給我打包行程優惠？
+      - 請問[家庭房](room_type)可以住幾個人呢？
+      - 請問[套房](room_type)的價格是多少？可以幫我提供附近的餐廳推薦嗎？
+      - 我要訂一間[海景](special_view)房，入住日期是[明天晚上](in_out_time)，價格範圍在[2000](price)元以內。
+      - 我要預訂一間[山景](special_view)房，日期是[大後天中午](in_out_time)，價格希望在[800](price)元以內。
+      - 能幫我訂一間[下星期二早晨](in_out_time)入住的[海景](special_view)房嗎？價格最好控制在[1500](price)元以內。
+      - 請問有沒有[星期五晚上](in_out_time)可以入住的、有特殊[景色](special_view)房呢？價格最好不要超過[4000](price)元。
+
 
   #- intent: ask_registration_with_location
   #  examples: |
