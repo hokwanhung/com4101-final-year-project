@@ -28,7 +28,7 @@ intents:
   - ask_food_kr
   - ask_food_jp
   - ask_food_sea
-  - nlu_fallback
+  - out_of_scope # FallbackClassifier
 #  - ask_visit_sceneries
 
 entities:
@@ -220,8 +220,8 @@ responses:
   utter_ask_buy:
     - text: "請問您希望做什麼活動, 比如說買日用品, 買衣服"
 
-  utter_ask_rephrase:
-    - text: "I'm sorry, I didn't quite understand that. Could you rephrase?"
+  utter_out_of_scope:
+    - text: "不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。"
 
 actions:
 #  - feedback_form # Sentiment nlu

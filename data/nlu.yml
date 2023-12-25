@@ -923,9 +923,13 @@ nlu:
       - [泰式芒果糯米飯](food_sea)
       - [印尼炸雞](food_sea)
 
-  - intent: nlu_fallback
+  #
+  # FallbackClassifier nlu
+  #
+  - intent: out_of_scope
     examples: |
-      -
+      - 
+
   - regex: user_name
     examples: |
       - .
