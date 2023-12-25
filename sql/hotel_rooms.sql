@@ -1,3 +1,8 @@
+-- BINARY(16) refers to the use of uuid for id.
+-- BOOLEAN is an alias for TINYINT(1), which allows TRUE or FALSE, represented by 1 and 0.
+-- TIMESTAMP is used to record any changes for the record.
+-- ON UPDATE CURRENT_TIMESTAMP means the column value will be updated automatically when a record is updated.
+
 CREATE TABLE hotel_rooms (
   id BINARY(16) NOT NULL PRIMARY KEY,
   room_number INT(11) AUTO_INCREMENT NOT NULL,
