@@ -14,15 +14,10 @@ stories:
   #
   # Sentiment nlu - Workable Below Code
   #
-  - story: end conversation path
+  - story: end conversation accept path
     steps:
       - intent: goodbye  #      - action: utter_goodbye
       - action: utter_ask_comments
-      - checkpoint: response_await # Proved to be a correct way in using checkpoints
-
-  - story: accept comment path
-    steps:
-      - checkpoint: response_await
       - intent: affirm
       - action: utter_await_comments
       - intent: feedback_examples
@@ -31,20 +26,45 @@ stories:
       - action: action_validate_feedback
       - action: action_end_conversation
 
-#      Before [action:action_end_conversation]
-#      - action: feedback_form
-#      - active_loop: feedback_form # Indicates that the form should be activated after the previous action was run.
-#      - slot_was_set:
-#        - requested_slot: feedback
-#      - slot_was_set:
-#          - feedback: "評論與意見"
-#      - action: action_submit_feedback
 
-  - story: deny comment path
+  - story: end conversation deny path
     steps:
-      - checkpoint: response_await
+      - intent: goodbye
+      - action: utter_ask_comments
       - intent: deny
       - action: action_end_conversation
+
+#  - story: end conversation path
+#    steps:
+#      - intent: goodbye  #      - action: utter_goodbye
+#      - action: utter_ask_comments
+#      - checkpoint: response_await # Proved to be a correct way in using checkpoints
+#
+#  - story: accept comment path
+#    steps:
+#      - checkpoint: response_await
+#      - intent: affirm
+#      - action: utter_await_comments
+#      - intent: feedback_examples
+#        entities:
+#          - feedback: "評論與意見"
+#      - action: action_validate_feedback
+#      - action: action_end_conversation
+#
+##      Before [action:action_end_conversation]
+##      - action: feedback_form
+##      - active_loop: feedback_form # Indicates that the form should be activated after the previous action was run.
+##      - slot_was_set:
+##        - requested_slot: feedback
+##      - slot_was_set:
+##          - feedback: "評論與意見"
+##      - action: action_submit_feedback
+#
+#  - story: deny comment path
+#    steps:
+#      - checkpoint: response_await
+#      - intent: deny
+#      - action: action_end_conversation
 
   #
   # General nlu
@@ -70,15 +90,15 @@ stories:
       - action: utter_introduce
       - action: action_append_sentiment_list
 
-  - story: affirm user path # To handle generic path to users' affirm
+  - story: compliment user path # To handle generic path to users' affirm
     steps:
-      - intent: affirm
+      - intent: compliment
       - action: utter_react_to_compliment
       - action: action_append_sentiment_list
 
-  - story: deny user path  # To handle generic path to users' deny
+  - story: criticise user path  # To handle generic path to users' deny
     steps:
-      - intent: deny
+      - intent: criticise
       - action: utter_react_to_criticise
       - action: action_append_sentiment_list
 
