@@ -5,6 +5,7 @@ language: zh
 pipeline:
   - name: JiebaTokenizer # Tokenizer specialized for Chinese texts.
     dictionary_path: "jieba_userdict.txt" # Use the library to split texts into words.
+  - name: "sentiment.SentimentAnalyzer" # Used for sentiment analysis
   - name: CountVectorsFeaturizer # Converts text input into a sparse vector of word counts.
     analyzer: "char_wb" # Tokenize into character n-grams instead of word n-grams.
     min_ngram: 1
