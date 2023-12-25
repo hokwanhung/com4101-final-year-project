@@ -30,6 +30,8 @@ intents:
 #  - ask_visit_sceneries
 
 entities:
+  - feedback # Sentiment nlu
+  - conversation_id
   - username # general nlu
   - is_not_initial
   - hotel_location # hotel registration
@@ -49,6 +51,10 @@ entities:
 # Slot name can match the names of the entities.
 slots:
   # Sentiment nlu
+  conversation_id:
+    type: text
+    auto_fill: true
+
   feedback:
     type: text
     auto_fill: true
