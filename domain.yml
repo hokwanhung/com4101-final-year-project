@@ -3,12 +3,16 @@
 version: "2.0"
 
 intents:
-  - greet
+  - affirm # Sentiment nlu
+  - deny
+  - compliment
+  - criticise
+  - curse_words
+  - greet # General nlu
   - greet_with_name
   - goodbye
-  - affirm
-  - deny
   - alternative
+  - identify_bot
   - ask_registration # Hotel Registration
   - ask_visit # Relevant Nearby Information
   - ask_visit_shopping
@@ -139,7 +143,15 @@ responses:
     - text: "謝謝你的付出和努力，下次見。"
 
   utter_iamabot:
-    - text: "我是一個機器人，由 Rasa 提供支持。"
+    - text: "您好，感謝您的問題😄🙌🏻；我是由香港恒生大學四位BA-AHCC Year4的同學開發出來的聊天機器人，旨在提供簡單方便的酒店客戶服務🏨🏨。
+
+您可以在我這裡使用以下但不限於下列的服務：
+
+1️⃣ 酒店預約功能 - 有需要預約酒店房間？我可以幫您於最短時間預約所需房間及對應服務～
+
+2️⃣ 酒店附近查詢 - 想知道酒店附近有什麼好吃、好看、好玩？我可以最短時間搜尋數據庫上百條資料，向您提供最好的選擇～
+
+3️⃣ 情感功能 - 有意見或想法想反饋給酒店，但又不想面對面提供？您可以留下您寶貴的意見給我，我會幫你轉達給相應方～
 
   utter_ask_place:
     - text: "您可以試下去ODD ONE OUT"
