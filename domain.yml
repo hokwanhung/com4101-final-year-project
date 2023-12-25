@@ -26,8 +26,6 @@ intents:
   - ask_food_kr
   - ask_food_jp
   - ask_food_sea
-  - greet_negative
-  - greet_neutral
 
 entities:
   - username
@@ -140,6 +138,7 @@ responses:
 
   utter_ask_visit:
     - text: "請問您希望尋找什麼遊玩的地方"
+
   utter_ask_food:
     - text: "請問您希望尋找什麼種類的食物"
 

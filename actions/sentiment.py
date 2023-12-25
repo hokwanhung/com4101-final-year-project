@@ -19,8 +19,8 @@ SENTIMENT_MODEL_FILE_NAME = "sentiment_classifier.pkl"
 class SentimentAnalyzer(Component):
     """A custom sentiment analysis component"""
     name = "sentiment"
-    provides = ["entities"]
-    requires = ["tokens"]
+    provides = ["entities"] # Define what the pipeline will provide.
+    requires = ["tokens"] # Define what the pipeline needs.
     defaults = {}
     language_list = ["zh"]
     print('initialised the class')
