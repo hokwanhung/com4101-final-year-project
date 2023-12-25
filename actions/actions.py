@@ -37,7 +37,7 @@ class ActionHowToGreet(Action):
             dispatcher.utter_message(text="先生/女士你好，請問我應該怎麽稱呼你？")
             is_not_initial = True
         else:
-            user_name = tracker.get_slot("username")
+            username = tracker.get_slot("username")
             dispatcher.utter_message(text="%s先生/女士，你好，很榮幸為你提供服務。".format(username))
 
         return [SlotSet("is_not_initial", is_not_initial)]
