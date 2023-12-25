@@ -18,6 +18,7 @@ stories:
         entities:
           - username: "陳"
       - action: utter_greet_with_name
+      - action: utter_introduce
 
   - story: greet user with name path # User story: Greet chatbot with name to start a conversation
     steps:
@@ -25,25 +26,23 @@ stories:
         entities:
           - username: 陳
       - action: utter_greet_with_name
-
-
-  #- story: indirect information path  # User story: Ask relevant nearby information (indirect)
-  #  steps:
-  #    - intent: greet
-  #    - action: action_how_to_greet
-  #    - intent: inform_name
-  #    - action: utter_greet_with_name
-
-  # - story: direct information path # User story: Ask relevant nearby information (direct)
-  #   steps:
+      - action: utter_introduce
 
   - story: hotel booking path # User story: Book hotel rooms
     steps:
       - intent: ask_registration
       - action: action_connect_database
 
+#  - story: indirect information path  # User story: Ask relevant nearby information (indirect)
+#    steps:
+#      - intent: greet
+#      - action: action_how_to_greet
+#      - intent: inform_name
+#      - action: utter_greet_with_name
 
-# User story: Ask nearby information
+#
+# User story: Ask relevant nearby information (directly)
+#
   - story: ask food path
     steps:
       - intent: ask_food
