@@ -3,17 +3,17 @@
 language: zh
 
 pipeline:
-  - name: JiebaTokenizer
-    dictionary_path: "jieba_userdict.txt"
-  - name: CountVectorsFeaturizer
-    analyzer: "char_wb"
+  - name: JiebaTokenizer # Tokenizer specialized for Chinese texts.
+    dictionary_path: "jieba_userdict.txt" # Use the library to split texts into words.
+  - name: CountVectorsFeaturizer # Converts text input into a sparse vector of word counts.
+    analyzer: "char_wb" # Tokenize into character n-grams instead of word n-grams.
     min_ngram: 1
     max_ngram: 4
-  - name: RegexEntityExtractor
+  - name: RegexEntityExtractor # Extract entities using regular expression.
     case_sensitive: false
     use_lookup_tables: true
     use_regexes: true
-  - name: DIETClassifier
+  - name: DIETClassifier # Classify intents and extract entities from user messages.
     epochs: 300
     batch_size: 64
     learning_rate: 0.001
@@ -22,29 +22,15 @@ pipeline:
     evaluate_on_number_of_examples: 20
     evaluate_every_number_of_epochs: 10
     constrain_similarities: True
-  - name: EntitySynonymMapper
-  - name: ResponseSelector
+  - name: EntitySynonymMapper # Map different synonyms of entities to a single canonical value.
+  - name: ResponseSelector # Handle frequently asked questions.
     epochs: 100
-    retrieval_intent: faq # only activate when detects intent with the prefix of "faq"
-# # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
-# # If you'd like to customize it, uncomment and adjust the pipeline.
-# # See https://rasa.com/docs/rasa/tuning-your-model for more information.
-#   - name: WhitespaceTokenizer
-#   - name: RegexFeaturizer
-#   - name: LexicalSyntacticFeaturizer
-#   - name: CountVectorsFeaturizer
-#   - name: CountVectorsFeaturizer
-#     analyzer: char_wb
-#     min_ngram: 1
-#     max_ngram: 4
-#   - name: DIETClassifier
-#     epochs: 100
-#   - name: EntitySynonymMapper
-#   - name: ResponseSelector
-#     epochs: 100
-#   - name: FallbackClassifier
-#     threshold: 0.3
-#     ambiguity_threshold: 0.1
+    retrieval_intent: faq # only activate when detects intent with the prefix of "faq".
+
+
+
+
+
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
