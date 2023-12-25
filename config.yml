@@ -21,7 +21,7 @@ pipeline:
     entity_recognition: true
     intent_classification: true
     # evaluate_on_number_of_examples: 20 # Test set seems to be too small.
-    evaluate_every_number_of_epochs: 10
+    evaluate_every_number_of_epochs: 5 # 10 - 5 for testing purpose only.
     constrain_similarities: True
   - name: EntitySynonymMapper # Map different synonyms of entities to a single canonical value.
   - name: ResponseSelector # Handle frequently asked questions.
