@@ -174,6 +174,9 @@ nlu:
       - 有啲咩酒店我可以揀?
       - 我正在尋找一家好的酒店，你有任何建議嗎？
       - 能否推薦一家低價位但品質不錯的酒店？
+      - 有無得book酒店
+      - 有無得book房
+      - 我想去開房
 
   #- intent: ask_registration_with_location
   #  examples: |
@@ -252,6 +255,14 @@ nlu:
     examples: |
       - 我想行商場
       - 想落街行下
+      - 有邊啲著名嘅購物區域
+      - 有咩推薦嘅購物中心
+      - 香港有咩商場有名牌店或奢侈品店
+      - 邊度有shopping centre
+      - 邊度有shopping mall
+      - 我想去shopping
+      - 我要去掃貨
+      - 有無化妝品專櫃
 
   - intent: ask_buy_special
     examples: |
