@@ -75,7 +75,6 @@ stories:
       - intent: deny
       - action: utter_react_to_deny
 
-
   - story: hotel booking path # User story: Book hotel rooms
     steps:
       - intent: ask_registration
