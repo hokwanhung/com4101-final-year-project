@@ -1,0 +1,1 @@
+CREATE SCHEMA fyp_project_default;
