@@ -52,10 +52,10 @@ class SentimentAnalyzer(Component):
     def convert_to_rasa(self, value, confidence):
         """Convert model output into the Rasa NLU compatible output format."""
 
-        entity = {"value": value,
-                  "confidence": confidence,
-                  "entity": "sentiment",
-                  "extractor": "sentiment_extractor"}
+        entity = {"entity": "sentiment",
+                  "confidence_entity": confidence,
+                  "value": value,
+                  "extractor": "sentiment_extractor (sentiment)"}
 
         return entity
 
