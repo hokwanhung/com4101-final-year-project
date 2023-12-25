@@ -1,4 +1,4 @@
-# set this before running function (CMD only)
+# set this before running function (CMD only; and only to the folder level)
 # set PYTHONPATH=E:\GitHub\FYPProjectDefault\actions;%PYTHONPATH%
 # replace "E:\GitHub\FYPProjectDefault\actions" with your project directory to actions folder
 # echo %PYTHONPATH%
