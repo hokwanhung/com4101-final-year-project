@@ -180,6 +180,15 @@ neg
 neg
 pos
 pos
+pos # feedback_examples
+pos
+pos
+pos
+neu
+neg
+neg
+neg
+neg
 neu # Other intents
 neu
 neu

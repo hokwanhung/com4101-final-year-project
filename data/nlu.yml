@@ -149,6 +149,18 @@ nlu:
       - 你係吾係一個真實既人？
       - 你知道自己係機械人嗎？
 
+  - intent: feedback_examples
+    examples: |
+      - 總體而言，我認爲這個chatbot的功能完善，方便簡單快捷。
+      - 其實都算好用。
+      - 這個chatbot唔錯。
+      - 幾好。
+      - 正正常常。
+      - 我覺得功能可以多d
+      - 有時候有d死板。
+      - 好似無想象中咁好用。
+      - 我試過俾佢卡bug。
+
   #
   # User Identification
   #
@@ -818,6 +830,7 @@ nlu:
       - [印尼咖哩魚丸湯](food_sea)
       - [泰式芒果糯米飯](food_sea)
       - [印尼炸雞](food_sea)
+
   - regex: user_name
     examples: |
       - .

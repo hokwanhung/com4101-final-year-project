@@ -13,6 +13,8 @@ intents:
   - goodbye
   - alternative
   - identify_bot
+  - feedback_examples
+  - anonymous # User Identification
   - ask_registration # Hotel Registration
   - ask_visit # Relevant Nearby Information
   - ask_visit_shopping
@@ -132,7 +134,13 @@ slots:
 forms:
   feedback_form: # Can use ignore_intent to ignore unwanted intents to be filled as forms.
     required_slots:
-      - feedback
+      feedback:
+        - type: from_text
+          intent: feedback_examples
+        - type: from_text
+          intent: affrim
+        - type: from_text
+          intent: deny
 
 
 responses:
