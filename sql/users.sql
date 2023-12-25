@@ -1,3 +1,10 @@
+-- BINARY(16) refers to the use of uuid for id.
+-- BOOLEAN is an alias for TINYINT(1), which allows TRUE or FALSE, represented by 1 and 0.
+-- TIMESTAMP is used to record any changes for the record.
+-- ON UPDATE CURRENT_TIMESTAMP means the column value will be updated automatically when a record is updated.
+
+-- loyalty points refer to the measurement of their membership level, if yes.
+
 CREATE TABLE users (
   id BINARY(16) NOT NULL PRIMARY KEY,
   first_name VARCHAR(50) NOT NULL,
