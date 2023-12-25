@@ -13,29 +13,35 @@ stories:
   - story: greet user path # User story: Greet chatbot to start a conversation
     steps:
       - intent: greet
-      - action: utter_greet
+      - action: utter_ask_name
+      - intent: greet_with_name
+        entities:
+          - username: "陳"
+      - action: utter_greet_with_name
 
   - story: greet user with name path # User story: Greet chatbot with name to start a conversation
     steps:
       - intent: greet_with_name
         entities:
-
-
-  - story: indirect information path  # User story: Ask relevant nearby information (indirect)
-    steps:
-      - intent: greet
-      - action: action_how_to_greet
-      - intent: inform_name
+          - username: 陳
+      - slot_was_set: # Seems to be unnecessary
+          - username: 陳
       - action: utter_greet_with_name
+
+  #- story: indirect information path  # User story: Ask relevant nearby information (indirect)
+  #  steps:
+  #    - intent: greet
+  #    - action: action_how_to_greet
+  #    - intent: inform_name
+  #    - action: utter_greet_with_name
 
   # - story: direct information path # User story: Ask relevant nearby information (direct)
   #   steps:
 
   - story: hotel booking path # User story: Book hotel rooms
     steps:
-      - intent: greet
-      - action: action_how_to_greet
-      - intent: ask_registration{}
+      - intent: ask_registration
+      - action: action_connect_database
 
   # - story: feeling extraction path # User story: Express user feelings
   #   steps:

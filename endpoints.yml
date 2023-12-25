@@ -17,10 +17,10 @@ action_endpoint:
 # https://rasa.com/docs/rasa/tracker-stores
 tracker_store:
   type: SQL
-  dialect: "mysql"
+  dialect: "mysql+pymysql"
   url: "localhost"
   port: "3306"
-  db: "FYPProjectDefault"
+  db: "fyp_project_default"
   username: "root"
   password: "root"
 
