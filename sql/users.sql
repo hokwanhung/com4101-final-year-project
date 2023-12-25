@@ -5,6 +5,8 @@
 
 -- loyalty points refer to the measurement of their membership level, if yes.
 
+USE fyp_project_default;
+
 CREATE TABLE users (
   id BINARY(16) NOT NULL PRIMARY KEY,
   first_name VARCHAR(50) NOT NULL,
