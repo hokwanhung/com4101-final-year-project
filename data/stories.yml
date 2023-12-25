@@ -12,7 +12,7 @@ stories:
   # Or if neither one is possible, Rasa will use a fallback action.
 
   #
-  # Sentiment nlu
+  # Sentiment nlu - Workable Below Code
   #
   - story: end conversation path
     steps:
@@ -65,6 +65,17 @@ stories:
       - action: utter_greet_with_name
       - action: utter_introduce
       - action: action_append_sentiment_list
+
+  - story: affirm user path # To handle generic path to users' affirm
+    steps:
+      - intent: affirm
+      - action: utter_react_to_affirm
+
+  - story: deny user path  # To handle generic path to users' deny
+    steps:
+      - intent: deny
+      - action: utter_react_to_deny
+
 
   - story: hotel booking path # User story: Book hotel rooms
     steps:

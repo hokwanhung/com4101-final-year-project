@@ -23,6 +23,8 @@ nlu:
       - yes
       - sure
       - okay
+      - 哈哈哈好
+      - hhh麻煩你了
 
   - intent: deny
     examples: |
