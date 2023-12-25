@@ -10,6 +10,15 @@ stories:
   # Rasa will use the story that best matches the conversation so fat and continues.
   # Or if neither one is possible, Rasa will use a fallback action.
 
+  #
+  # Sentiment nlu
+  #
+  - story:
+
+
+  #
+  # General nlu
+  #
   - story: greet user path # User story: Greet chatbot to start a conversation
     steps:
       - intent: greet
