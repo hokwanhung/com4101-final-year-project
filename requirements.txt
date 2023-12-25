@@ -6,6 +6,8 @@ echo %PYTHONPATH%
 # "COPY requirements.txt ./"
 # "RUN pip install --no-cache-dir -r requirements.txt"
 
+# Use "pip install rasa-x==1.0.1 -i https://pypi.rasa.com/simple" to install rasa-x.
+
 # python==3.7.9
 APScheduler==3.7.0
 CacheControl==0.12.11
@@ -125,7 +127,7 @@ pytz==2021.3
 questionary==1.5.2
 rasa==2.8.25 # 2.8.34
 rasa-sdk==2.8.6 # 2.8.11
-rasa-x==1.0.1 # 1.0.4
+# rasa-x==1.0.1 # 1.0.4
 redis==3.5.3 # 4.1.4
 regex==2021.7.6 #2020.9.27
 requests==2.28.2
