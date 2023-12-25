@@ -19,14 +19,14 @@ nlu:
       - 早晨
       - 哈佬哈
 
-  - intent: inform_name # We might be able to detect their gender.
+  - intent: greet_with_name # We might be able to detect their gender.
     examples: |
-      - 你好，我姓[陳](user_name)
-      - 你好，我姓[ ](user_name)
-      - 我叫[Brain](user_name)
-      - 小姓[梁](user_name)
-      - 叫我[何]先生(user_name)
-      - 叫我[Germaine](user_name)
+      - 你好，我姓[陳](username)
+      - 你好，我姓[ ](username)
+      - 我叫[Brain](username)
+      - 小姓[梁](username)
+      - 叫我[何]先生(username)
+      - 叫我[Germaine](username)
 
   - intent: goodbye
     examples: |
@@ -87,6 +87,7 @@ nlu:
       - 係咪可以book酒店？
       - 想做booking
       - 我想訂[尖沙咀](hotel_location)既酒店。
+      - 我想係[荃灣](hotel_location)住一晚。
       - 有咩酒店我可以訂？
 
   #
