@@ -16,7 +16,7 @@ action_endpoint:
 # By-default the conversations are stored in memory.
 # https://rasa.com/docs/rasa/tracker-stores
 tracker_store:
-  type: SQL
+  type: SQL # Might not be necessary, could use InMemoryTrackerStore I think.
   dialect: "mysql+pymysql"
   url: "localhost"
   port: "3306"
