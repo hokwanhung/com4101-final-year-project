@@ -29,8 +29,8 @@ intents:
 #  - ask_visit_sceneries
 
 entities:
-  - feedback # Sentiment nlu
-  - conversation_id
+  - conversation_id # Sentiment nlu
+  - sentiment
   - username # general nlu
   - is_not_initial
   - hotel_location # hotel registration
@@ -58,6 +58,10 @@ slots:
   feedback:
     type: text
     auto_fill: true
+#    mappings: (Not for our version)
+#      - type: from_text
+#        conditions:
+#          - active_loop: feedback_form
 
   sentiment:
     type: text
@@ -126,8 +130,7 @@ slots:
     auto_fill: true
     
 forms:
-  # Can use ignore_intent to ignore unwanted intents to be filled as forms.
-  feedback_form:
+  feedback_form: # Can use ignore_intent to ignore unwanted intents to be filled as forms.
     required_slots:
       - feedback
 
