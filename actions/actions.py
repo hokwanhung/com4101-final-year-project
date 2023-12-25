@@ -147,8 +147,8 @@ class ActionEndConversation(Action):
         # Calculate weights using exponential decay function
         weights = np.exp((np.array(timestamps) - max(timestamps)) / -10)
 
-        # Calculate weighted sum of data
-        weighted_sum = sum([sentiment_list[i] * weights[i] for i in range(len(sentiment_list))])
+        # Calculate weighted sum of data if the value is not -999
+        weighted_sum = sum([sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
 
         # Calculate total weight
         total_weight = sum(weights)
@@ -196,11 +196,19 @@ class ActionAppendSentimentList(Action):
         # Get the current value of the "sentiment_list" slot
         sentiment_list = tracker.slots.get("sentiment_list", [])
 
+        # Initialize the sentiment_list if there is not a sentiment_list beforehand.
+        if sentiment_list is None:
+            sentiment_list = []
+
         # Get the latest user message
         latest_message = tracker.latest_message
 
         # Get the "sentiment" entity
         sentiment_entity = next((e for e in latest_message['entities'] if e['entity'] == 'sentiment'), None)
+        # It seems the value can be gotten:
+        # e.g. {'entity': 'sentiment', 'confidence_entity': 0.53994163996895, 'value': 'neg',
+        # 'extractor': 'sentiment_extractor (sentiment)'}
+        print(sentiment_entity)
 
         if sentiment_entity:
             # If the "sentiment" entity exists, get its value and confidence
@@ -214,8 +222,8 @@ class ActionAppendSentimentList(Action):
                 sentiment_value = 0
             elif sentiment_value == "neg":
                 sentiment_value = -1
-            else:
-                sentiment_value = None
+            else: # if the value is None
+                sentiment_value = -999
 
             # Append sentiment_value into the sentiment_list
             sentiment_list.append(sentiment_value)
@@ -223,7 +231,7 @@ class ActionAppendSentimentList(Action):
             # For example, send a message to the user with the detected sentiment
             print(f"The sentiment of your message is {sentiment_value} with a confidence of {sentiment_confidence}.")
         else:
-            sentiment_list.append(None)
+            sentiment_list.append(-999)
 
             # If the "sentiment" entity does not exist, send a default message
             print("Sorry, I could not detect the sentiment of your message.")
@@ -234,31 +242,31 @@ class ActionAppendSentimentList(Action):
 #
 # Hotel Registration
 #
-class HotelInfoForm(FormAction):
-
-    def name(self) -> Text:
-        return "Hotel_Info_form"
-
-    def required_slots(tracker: "Tracker") -> List[Text]:
-        return ["room_type, special_view, room_capacity, price"]
-
-    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
-        return {
-            "room_type": self.from_text(),
-            "special_view": self.from_text(),
-            "room_capacity": self.from_text(),
-            "price": self.from_text()
-        }
-
-    def submit(
-        self,
-        dispatcher: "CollectingDispatcher",
-        tracker: "Tracker",
-        domain: "DomainDict",
-    ) -> List[EventType]:
-        # Submit the form
-        dispatcher.utter_message()
-        return[]
+# class HotelInfoForm(FormAction):
+#
+#     def name(self) -> Text:
+#         return "Hotel_Info_form"
+#
+#     def required_slots(tracker: "Tracker") -> List[Text]:
+#         return ["room_type, special_view, room_capacity, price"]
+#
+#     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
+#         return {
+#             "room_type": self.from_text(),
+#             "special_view": self.from_text(),
+#             "room_capacity": self.from_text(),
+#             "price": self.from_text()
+#         }
+#
+#     def submit(
+#         self,
+#         dispatcher: "CollectingDispatcher",
+#         tracker: "Tracker",
+#         domain: "DomainDict",
+#     ) -> List[EventType]:
+#         # Submit the form
+#         dispatcher.utter_message()
+#         return[]
 
 class ActionConnectDatabase(Action):
 
@@ -274,6 +282,7 @@ class ActionConnectDatabase(Action):
         engine = create_engine("mysql+pymysql://root:root@localhost:3306/fyp_project_default")
 
         try:
+            connection = engine.connect()
             connection = engine.connect()
             print("已成功連接數據庫")
             connection.close()
