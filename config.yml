@@ -9,17 +9,17 @@ pipeline:
     analyzer: "char_wb" # Tokenize into character n-grams instead of word n-grams.
     min_ngram: 1
     max_ngram: 4
-  - name: RegexEntityExtractor # Extract entities using regular expression.
-    case_sensitive: false
-    use_lookup_tables: true
-    use_regexes: true
+  #- name: RegexEntityExtractor # Extract entities using regular expression.
+  #  case_sensitive: false
+  #  use_lookup_tables: true
+  #  use_regexes: true
   - name: DIETClassifier # Classify intents and extract entities from user messages. (Crucial for extracting entities)
     epochs: 300
     batch_size: 64
     learning_rate: 0.001
     entity_recognition: true
     intent_classification: true
-    evaluate_on_number_of_examples: 20
+    # evaluate_on_number_of_examples: 20 # Test set seems to be too small.
     evaluate_every_number_of_epochs: 10
     constrain_similarities: True
   - name: EntitySynonymMapper # Map different synonyms of entities to a single canonical value.
