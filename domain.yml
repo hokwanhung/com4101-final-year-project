@@ -9,6 +9,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - ask_place
+
 responses:
   utter_greet:
   - text: "嘿，你今天過得怎麽樣？"
