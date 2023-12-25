@@ -13,6 +13,7 @@ rules:
     steps:
       - intent: ask_food_kr
       - action: action_ask_food
+
 #  - rule: Say 'I am a bot' anytime the user challenges
 #    steps:
 #      - intent: bot_challenge
