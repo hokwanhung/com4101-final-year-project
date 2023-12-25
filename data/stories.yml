@@ -1,37 +1,24 @@
 version: "3.1"
 
 stories:
-# Something used for longer conversation.
-# Flows that the bot CAN follow.
+  # Something used for longer conversation.
+  # Flows that the bot CAN follow.
+  # It is actually the dialogue training data that allows Rasa to predict the next best action to take.
+  # Story paths are also useful to define which entities are extracted from the same intent.
 
-- story: happy path # name of the story
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - story: indirect information path  # User story: Ask relevant nearby information (indirect)
+    steps:
+      - intent: greet
+      - action: action_how_to_greet
+      - intent: inform_name
+      - action: utter_greet_with_name
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+  # - story: direct information path # User story: Ask relevant nearby information (direct)
+  #   steps:
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  # - story: hotel booking path # User story: Book hotel rooms
+  #   steps:
 
-- story: ask_place
-  steps:
-  - intent: ask_place
-  - action: utter_ask_place
+  # - story: feeling extraction path # User story: Express user feelings
+  #   steps:
+
