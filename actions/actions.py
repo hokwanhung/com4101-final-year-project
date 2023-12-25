@@ -59,6 +59,7 @@ class FeedbackForm(FormAction):
     ) -> Dict[Text, Any]:
         print("復核信息中")
         feedback = str(tracker.get_slot("feedback"))
+        print(feedback)
 
         if feedback is None:
             dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
@@ -78,7 +79,6 @@ class FeedbackForm(FormAction):
 
         # Store the conversation in uuid and its relative byte form.
         conversation_id = uuid.uuid4()
-        conversation_byte = bytes.fromhex(conversation_id.hex.replace('-', ''))
 
         # Send back the uuid to users.
         dispatcher.utter_message("再次感謝您使用我們的聊天機器人客戶服務~期待您的再次光臨~")
@@ -94,7 +94,7 @@ class FeedbackForm(FormAction):
         # Get a database reference to the "users" node
         ref = db.reference("users")
 
-        key = str(conversation_byte)
+        key = str(conversation_id)
         data = {
             "feedback": tracker.get_slot("feedback"),
             "overall_sentiment": ""
@@ -104,7 +104,7 @@ class FeedbackForm(FormAction):
         ref.child(key).set(data)
 
         # Set the uuid to slot.
-        return [SlotSet("conversation_id", str(conversation_byte))]
+        return [SlotSet("conversation_id", str(conversation_id))]
 
 
 class ActionSubmitFeedback(Action):
@@ -151,11 +151,10 @@ class ActionEndConversation(Action):
         ref = db.reference("users")
 
         # Get the slot of conversation_byte
-        conversation_byte = tracker.get_slot("conversation_id")
-        if conversation_byte is None:
+        conversation_id = tracker.get_slot("conversation_id")
+        if conversation_id is None:
             # Store the conversation in uuid and its relative byte form.
             conversation_id = uuid.uuid4()
-            conversation_byte = bytes.fromhex(conversation_id.hex.replace('-', ''))
 
             # Send back the uuid to users.
             dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
@@ -197,7 +196,7 @@ class ActionEndConversation(Action):
         ref = db.reference("users")
 
         # Add the new key-value pair to Firebase
-        ref.child(str(conversation_byte)).update({
+        ref.child(str(conversation_id)).update({
             "overall_sentiment": weighted_average
         })
 
@@ -221,7 +220,7 @@ class ActionAppendSentimentList(Action):
             domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
         # Get the current value of the "sentiment_list" slot
-        sentiment_list = tracker.slots.get("sentiment_list", [])
+        sentiment_list = tracker.get_slot("sentiment_list")
         print(sentiment_list)
 
         # Initialize the sentiment_list if there is not a sentiment_list beforehand.
