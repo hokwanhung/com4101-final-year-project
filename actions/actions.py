@@ -55,16 +55,18 @@ class FeedbackForm(FormAction):
             self,
             dispatcher: "CollectingDispatcher",
             tracker: "Tracker",
-            domain: "DomainDict",
-    ) -> List[EventType]:
+            domain: Dict[Text, Any],
+    ) -> Dict[Text, Any]:
         print("復核信息中")
         feedback = tracker.get_slot("feedback")
+
         if feedback is not None:
             dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
             return {"feedback": None}
         else:
             dispatcher.utter_message(f"我們已收到您的反饋：\n{feedback}")
-            return {"feedback": feedback}
+
+        return {"feedback": feedback}
 
     def submit(
             self,
