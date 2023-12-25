@@ -49,7 +49,22 @@ nlu:
       - 我需要真人幫忙
       - 蠢AI
       - 垃圾chatbot
-      - 
+      - 僵硬無用
+      - 這根本解決不了我的問題
+      - 你説你有什麽用？？
+      - 我不會再用這個chatbot
+
+  - intent: curse_words
+    examples: |
+      - 屌
+      - 滾蛋吧
+      - 頂你個肺
+      - 垃圾！
+      - 快d完啦！扑街！
+      - 你到底撚吾撚揾到野？
+      - on9 ai
+      - 弱智chatbot
+      - 咁撚無用？要你黎做咩？？
 
   #
   # General nlu
