@@ -1,3 +1,4 @@
+# Remember to add the "action_append_sentiment_list" after every regular actions.
 version: "2.0"
 
 stories:
@@ -47,11 +48,13 @@ stories:
     steps:
       - intent: greet
       - action: utter_ask_name
+      - action: action_append_sentiment_list
       - intent: greet_with_name
         entities:
           - username: "陳"
       - action: utter_greet_with_name
       - action: utter_introduce
+      - action: action_append_sentiment_list
 
   - story: greet user with name path # User story: Greet chatbot with name to start a conversation
     steps:
@@ -60,6 +63,7 @@ stories:
           - username: 陳
       - action: utter_greet_with_name
       - action: utter_introduce
+      - action: action_append_sentiment_list
 
   - story: hotel booking path # User story: Book hotel rooms
     steps:
@@ -80,28 +84,34 @@ stories:
     steps:
       - intent: ask_food
       - action: utter_ask_food
+      - action: action_append_sentiment_list
       - or:
         - intent: ask_food_jp
         - intent: ask_food_kr
         - intent: ask_food_cn
         - intent: ask_food_sea
       - action: action_ask_food
+      - action: action_append_sentiment_list
 
   - story: ask visit path
     steps:
       - intent: ask_visit
       - action: utter_ask_visit
+      - action: action_append_sentiment_list
       - or:
           - intent: ask_visit_shopping
           - intent: ask_visit_museums
           - intent: ask_visit_outskirts
       - action: action_ask_visit
+      - action: action_append_sentiment_list
 
   - story: ask buy path
     steps:
       - intent: ask_buy
       - action: utter_ask_buy
+      - action: action_append_sentiment_list
       - or:
           - intent: ask_buy_groceries
           - intent: ask_buy_clothing
       - action: action_ask_buy
+      - action: action_append_sentiment_list
