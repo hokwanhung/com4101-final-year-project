@@ -22,7 +22,7 @@ CREATE TABLE hotel_rooms (
 );
 
 -- Insert 100 Standard rooms.
-INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, updated_at)
+INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, created_at, updated_at)
 VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 1, 'Standard', NULL, 2, 650.00, 1, "", NOW(), NOW()),
 (UNHEX(REPLACE(UUID(),'-','')), 2, 'Standard', NULL, 2, 650.00, 1, "", NOW(), NOW()),
