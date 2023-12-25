@@ -4,7 +4,7 @@ stories:
 # Something used for longer conversation.
 # Flows that the bot CAN follow.
 
-- story: happy path # name of the story - for indication only.
+- story: happy path # name of the story
   steps:
   - intent: greet
   - action: utter_greet
