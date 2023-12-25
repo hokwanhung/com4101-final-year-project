@@ -93,12 +93,14 @@ stories:
       - intent: compliment
       - action: utter_react_to_compliment
       - action: action_append_sentiment_list
+      - action: utter_ask_actions
 
   - story: criticise user path  # To handle generic path to users' deny
     steps:
       - intent: criticise
       - action: utter_react_to_criticise
       - action: action_append_sentiment_list
+      - action: utter_ask_actions
 
   - story: hotel booking path # User story: Book hotel rooms
     steps:
@@ -127,6 +129,7 @@ stories:
         - intent: ask_food_sea
       - action: action_ask_food
       - action: action_append_sentiment_list
+      - action: utter_ask_actions
 
   - story: ask visit path
     steps:
@@ -139,6 +142,7 @@ stories:
           - intent: ask_visit_outskirts
       - action: action_ask_visit
       - action: action_append_sentiment_list
+      - action: utter_ask_actions
 
   - story: ask buy path
     steps:
@@ -150,4 +154,5 @@ stories:
           - intent: ask_buy_clothing
       - action: action_ask_buy
       - action: action_append_sentiment_list
+      - action: utter_ask_actions
 
