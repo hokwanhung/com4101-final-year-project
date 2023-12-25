@@ -13,7 +13,7 @@ pipeline:
     case_sensitive: false
     use_lookup_tables: true
     use_regexes: true
-  - name: DIETClassifier # Classify intents and extract entities from user messages.
+  - name: DIETClassifier # Classify intents and extract entities from user messages. (Crucial for extracting entities)
     epochs: 300
     batch_size: 64
     learning_rate: 0.001
