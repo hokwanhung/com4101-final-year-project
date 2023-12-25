@@ -17,7 +17,9 @@ stories:
 
   - story: greet user with name path # User story: Greet chatbot with name to start a conversation
     steps:
-      - intent: inform_name
+      - intent: greet_with_name
+        entities:
+
 
   - story: indirect information path  # User story: Ask relevant nearby information (indirect)
     steps:
