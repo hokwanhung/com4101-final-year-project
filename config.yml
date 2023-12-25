@@ -15,7 +15,7 @@ pipeline:
   #  use_lookup_tables: true
   #  use_regexes: true
   - name: DIETClassifier # Classify intents and extract entities from user messages. (Crucial for extracting entities)
-    epochs: 100 # 300 - 100 for testing purpose only.
+    epochs: 150 # 300 - 100 for testing purpose only.
     batch_size: 64
     learning_rate: 0.001
     entity_recognition: true
@@ -36,7 +36,7 @@ pipeline:
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
-  - name: "RulePolicy"
+#  - name: "RulePolicy"
 #    core_fallback_threshold: 0.3
 #    core_fallback_action_name: action_default_fallback
 #    enable_fallback_prediction: true
