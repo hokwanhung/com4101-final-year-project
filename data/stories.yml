@@ -1,8 +1,10 @@
 version: "3.1"
 
 stories:
+# Something used for longer conversation.
+# Flows that the bot CAN follow.
 
-- story: happy path
+- story: happy path # name of the story - for indication only.
   steps:
   - intent: greet
   - action: utter_greet
@@ -31,5 +33,5 @@ stories:
 
 - story: ask_place
   steps:
-    - intent: ask_place
-      -action: utter_ask_place
+  - intent: ask_place
+  - action: utter_ask_place
