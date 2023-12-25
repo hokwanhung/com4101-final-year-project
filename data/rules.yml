@@ -9,8 +9,8 @@ rules:
       - action: utter_iamabot
 
 
-  - rule: Two Stage Fallback (out-of-scope)
-    steps:
-    - intent: out_of_scope
-    - action: action_out_of_scope
+#  - rule: Two Stage Fallback (out-of-scope)
+#    steps:
+#    - intent: out_of_scope
+#    - action: action_out_of_scope
 #    - active_loop: action_two_stage_fallback
