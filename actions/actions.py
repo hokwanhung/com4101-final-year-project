@@ -46,10 +46,25 @@ class FeedbackForm(FormAction):
         return ["feedback"]
 
     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
-        # Maps the slot names to their values using a disctionary.
+        # Maps the slot names to their values using a dictionary.
         return {
             "feedback": self.from_text()
         }
+
+    def validate(
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: "Tracker",
+            domain: "DomainDict",
+    ) -> List[EventType]:
+        print("復核信息中")
+        feedback = tracker.get_slot("feedback")
+        if feedback is not None:
+            dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
+            return {"feedback": None}
+        else:
+            dispatcher.utter_message(f"我們已收到您的反饋：\n{feedback}")
+            return {"feedback": feedback}
 
     def submit(
             self,
@@ -148,7 +163,8 @@ class ActionEndConversation(Action):
         weights = np.exp((np.array(timestamps) - max(timestamps)) / -10)
 
         # Calculate weighted sum of data if the value is not -999
-        weighted_sum = sum([sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
+        weighted_sum = sum(
+            [sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
 
         # Calculate total weight
         total_weight = sum(weights)
@@ -222,14 +238,15 @@ class ActionAppendSentimentList(Action):
                 sentiment_value = 0
             elif sentiment_value == "neg":
                 sentiment_value = -1
-            else: # if the value is None
+            else:  # if the value is None
                 sentiment_value = -999
 
             # Append sentiment_value into the sentiment_list
             sentiment_list.append(sentiment_value)
 
             # For example, send a message to the user with the detected sentiment
-            print(f"The sentiment of your message is {sentiment_value} with a confidence of {sentiment_confidence}.")
+            print(
+                f"The sentiment of your message is {sentiment_value} ({sentiment_value}) with a confidence of {sentiment_confidence}.")
         else:
             sentiment_list.append(-999)
 
