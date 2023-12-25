@@ -126,7 +126,7 @@ VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 100, 'Standard', 'Mountain', 2, 750.00, 1, "", NOW(), NOW());
 
 -- Insert 80 Standard rooms.
-INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, created_at, updated_at)
+INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, created_at, updated_at)
 VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 101, 'Standard', NULL, 2, 650.00, 1, "", NOW(), NOW()),
 (UNHEX(REPLACE(UUID(),'-','')), 102, 'Standard', 'Mountain', 2, 750.00, 1, "", NOW(), NOW()),
@@ -210,7 +210,7 @@ VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 180, 'Standard', NULL, 2, 650.00, 1, "", NOW(), NOW());
 
 -- Insert 80 Deluxe rooms.
-INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, created_at, updated_at)
+INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, created_at, updated_at)
 VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 181, 'Deluxe', 'Harbour', 2, 1250.00, 1, "", NOW(), NOW()),
 (UNHEX(REPLACE(UUID(),'-','')), 182, 'Deluxe', NULL, 2, 1000.00, 1, "", NOW(), NOW()),
@@ -294,7 +294,7 @@ VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 260, 'Deluxe', 'Harbour', 2, 1250.00, 1, "", NOW(), NOW());
 
 -- Insert 40 Grand Deluxe rooms.
-INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, created_at, updated_at)
+INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, created_at, updated_at)
 VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 261, 'Grand Deluxe', NULL, 2, 1350.00, 1, "", NOW(), NOW()),
 (UNHEX(REPLACE(UUID(),'-','')), 262, 'Grand Deluxe', NULL, 2, 1350.00, 1, "", NOW(), NOW()),
@@ -338,7 +338,7 @@ VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 300, 'Grand Deluxe', 'Mountain', 2, 1450.00, 1, "", NOW(), NOW());
 
 -- Insert 25 Junior Suite rooms.
-INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, created_at, updated_at)
+INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, created_at, updated_at)
 VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 301, 'Junior Suite', 'Harbour', 3, 2600.00, 1, "", NOW(), NOW()),
 (UNHEX(REPLACE(UUID(),'-','')), 302, 'Junior Suite', NULL, 3, 2250.00, 1, "", NOW(), NOW()),
@@ -367,7 +367,7 @@ VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 325, 'Junior Suite', 'Harbour', 3, 2600.00, 1, "", NOW(), NOW());
 
 -- Insert 10 Junior Suite rooms.
-INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, created_at, updated_at)
+INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, created_at, updated_at)
 VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 326, 'Executive Suite', 'Harbour', 4, 3950.00, 1, "", NOW(), NOW()),
 (UNHEX(REPLACE(UUID(),'-','')), 327, 'Executive Suite', 'Harbour', 4, 3950.00, 1, "", NOW(), NOW()),
@@ -381,7 +381,7 @@ VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 335, 'Executive Suite', 'Harbour', 4, 3950.00, 1, "", NOW(), NOW());
 
 -- Insert 2 Presidential Suite rooms.
-INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, created_at, updated_at)
+INSERT INTO hotel_rooms (id, room_number, room_type, special_view, room_capacity, price, availability, remark, created_at, updated_at)
 VALUES
 (UNHEX(REPLACE(UUID(),'-','')), 336, 'Presidential Suite', 'Harbour', 5, 9250.00, 1, "", NOW(), NOW()),
 (UNHEX(REPLACE(UUID(),'-','')), 337, 'Presidential Suite', 'Harbour', 5, 9250.00, 1, "", NOW(), NOW());
