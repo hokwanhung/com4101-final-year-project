@@ -95,10 +95,10 @@ class ActionSubmitFeedback(Action):
         return "action_submit_feedback"
 
     def run(
-        self,
-        dispatcher: "CollectingDispatcher",
-        tracker: Tracker,
-        domain: "DomainDict",
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: Tracker,
+            domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
         feedback = tracker.get_slot("feedback")
         if feedback is not None:
@@ -107,6 +107,7 @@ class ActionSubmitFeedback(Action):
             dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
 
         return []
+
 
 class ActionEndConversation(Action):
     # To simulate how the conversation would end (rasa does not have relevant functionalities).
@@ -229,10 +230,35 @@ class ActionAppendSentimentList(Action):
 
         return [SlotSet("sentiment_list", sentiment_list)]
 
+
 #
 # Hotel Registration
 #
+class HotelInfoForm(FormAction):
 
+    def name(self) -> Text:
+        return "Hotel_Info_form"
+
+    def required_slots(tracker: "Tracker") -> List[Text]:
+        return ["room_type, special_view, room_capacity, price"]
+
+    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
+        return {
+            "room_type": self.from_text(),
+            "special_view": self.from_text(),
+            "room_capacity": self.from_text(),
+            "price": self.from_text()
+        }
+
+    def submit(
+        self,
+        dispatcher: "CollectingDispatcher",
+        tracker: "Tracker",
+        domain: "DomainDict",
+    ) -> List[EventType]:
+        # Submit the form
+        dispatcher.utter_message()
+        return[]
 
 class ActionConnectDatabase(Action):
 
