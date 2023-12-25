@@ -1,95 +1,201 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - 嘿 
-    - 嘿伙計 
-    - 開始
-    - 我們走吧 
-    - 你好 
-    - 早上好 
-    - 中午好
-    - 下午好
-    - 晚上好 
-    - 早晨
-    - 午安
-    - 晚安
-    - 哈佬
-    - 哈佬哈
-    - 早晨
-    - 你好，chatbot
+  #
+  # General nlu
+  #
+  - intent: greet
+    examples: |
+      - 嘿伙計 
+      - 開始
+      - 我們走吧 
+      - 你好
+      - 早上好
+      - 中午好
+      - 下午好
+      - 晚上好
+      - 早晨
+      - 午安
+      - 晚安
+      - 哈佬哈
 
-- intent: goodbye
-  examples: |
-    - 再見
-    - 稍後見
-    - 稍後再見
-    - 結束
-    - 晚安
-    - 再見
-    - 祝你今天過得愉快
-    - 回頭見
+  - intent: goodbye
+    examples: |
+      - 稍後再見
+      - 結束
+      - 晚安
+      - 祝你今天過得愉快
+      - 回頭見
+      - 完成
+      - 取消
 
-- intent: affirm
-  examples: |
-    - 是的
-    - 的確
-    - 當然
-    - 聽起來很好
-    - 正確的
+  - intent: affirm
+    examples: |
+      - 是的
+      - 確實
+      - 的確
+      - 當然
+      - 聽起來很好
+      - 正確
+      - 無錯
+      - 繼續
+      - 下一步
 
-- intent: deny
-  examples: |
-    - 不
-    - 絕不
-    - 我不這麼認為
-    - 不喜歡那樣
-    - 沒門
+  - intent: deny
+    examples: |
+      - 不是
+      - 絕不
+      - 反對
+      - 否
+      - 沒門
+      - 上一步
 
-- intent: mood_great
-  examples: |
-    - 完美的
-    - 偉大的
-    - 驚人
-    - 精彩的
-    - 我感覺很好
-    - 我很好
-    - 我很棒
-    - 超級興奮
-    - 極好的
-    - 超好的
-    - 很完美
+  - intent: mood_great # (Not checked)
+    examples: |
+      - 完美的
+      - 偉大的
+      - 驚人
+      - 精彩的
+      - 我感覺很好
+      - 我很好
+      - 我很棒
+      - 超級興奮
+      - 極好的
+      - 超好的
+      - 很完美
 
-- intent: mood_unhappy
-  examples: |
-    - 我的日子很糟糕
-    - 我很傷心
-    - 我感覺不太好
-    - 我很失望
-    - 超級傷心
-    - 我很難過
-    - 傷心
-    - 很傷心
-    - 不開心
-    - 不好
-    - 不是很好
-    - 極度悲傷
-    - 好傷心
-    - 好難過
+  - intent: mood_unhappy # (Not checked)
+    examples: |
+      - 我的日子很糟糕
+      - 我很傷心
+      - 我感覺不太好
+      - 我很失望
+      - 超級傷心
+      - 我很難過
+      - 傷心
+      - 很傷心
+      - 不開心
+      - 不好
+      - 不是很好
+      - 極度悲傷
+      - 好傷心
+      - 好難過
 
-- intent: bot_challenge
-  examples: |
-    - 你是機器人嗎？
-    - 你是人嗎？
-    - 我在和機器人說話嗎？
-    - 我在和人說話嗎？
+  #
+  # Based on 'Visit and Join'
+  #
+  - intent: ask_visit # Maybe we can set if confidence of below is lower than 50%, then we use this to search again?
+    examples: |
+      - 香港有咩好去處
+      - 我可以去邊度好
+      - 我好悶呀，附近有咩好做
+      - 我想周圍行下
+      - 有無咩地方好推薦
+      - 有無咩地方好玩
 
-- intent: ask_place
-  examples: |
-    - 香港有咩好去處
-    - 香港好去處
-    - 我可以去邊
-    - 去邊好
-    - 有咩好做
-    - 我好悶呀，附近有咩好做
+  - intent: ask_visit_sceneries # Maybe we can first do lookup table, then use nlu to search
+    examples: | # Extract specific locations as intents, and directly provide relevant resources.
+      - 我想睇景
+      - 我想揾影相
+      - 有無啲咩打卡位
+      - 夜景邊到最靚
+      - 香港影相邊度最好
+
+  - intent: ask_visit_parks
+    examples: |
+      - 香港有咩主題公園
+      - 想玩機動游戲
+      - 有無咩水族舘或者海洋館
+      - 邊度係香港迪士尼公園
+      - 想睇巡游或者烟花，有無推薦
+
+  - intent: ask_visit_museums
+    examples: |
+      - 香港有咩博物館
+      - 有無邊度有化石睇
+      - 附近有無藝術館
+      - 有無咩可以學習既地方
+      - 有無咩地方可以揾到香港歷史
+      - 香港有咩好睇既名勝古跡
+
+  - intent: ask_visit_outskirts
+    examples: |
+      - 香港有無咩好靚既郊外風光
+      - 我想係香港行山登高
+      - 如果我想露營，有無咩推薦到俾我
+      - 我想揾d少人而且室外的好地方
+      - 香港有無話邊度可以賞花
+      - 想係香港拍大自然
+
+  - intent: ask_visit_events
+    examples: |
+      - 最近有無咩活動
+      - 香港有咩限時展覽
+      - 我想揾一d大型展覽
+      - 目前有邊d演唱會係香港搞
+      - 邊度有d定期活動可以玩下
+      - 香港最近有咩有趣d既事
+  #
+  # Based on 'Buy' (Not checked)
+  #
+  - intent: ask_buy_centres
+    examples: |
+      - 我想行商場
+      - 想落街行下
+
+  - intent: ask_buy_special
+    examples: |
+      - 我想去買手信俾同事
+      - 我想去買禮物俾朋友
+
+  - intent: ask_buy_clothing
+    examples: |
+      - 想買衫
+      - 日式潮流
+      - 時尚服裝
+      - 韓式潮流
+
+  - intent: ask_buy_groceries
+    examples: |
+      - 我想買零食
+      - 我想買嘢飲
+      - 好口渴
+      - 想買啲日用品
+      - 紙巾
+      - 濕紙巾
+
+  #
+  # Based on 'Eat' (Not checked)
+  #
+  - intent: ask_food_cn
+    examples: |
+      - 附近有啲咩中餐好食
+      - 我想食中餐
+      - 我想飲茶
+      - 附近有冇茶樓
+      - 我想食點心
+
+  - intent: ask_food_kr
+    examples: |
+      - 我想食韓燒
+      - 我想食韓國嘢
+      - 韓式拌飯
+      - 附近有冇韓式炒年糕
+      - 炸醬麵
+
+  - intent: ask_food_jp
+    examples: |
+      - 我想食日本嘢
+      - 附近有啲咩壽司店
+      - 我想食拉麵
+      - 想食刺身
+      - 附近有冇壽喜燒食
+      - 我鍾意食蕎麥麵
+      - 烏龍麵
+      - 唐揚炸雞
+      - 天婦羅
+      - 日式放題
+
+  - intent: ask_food_sea
+    examples: |
+
