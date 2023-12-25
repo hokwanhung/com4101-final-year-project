@@ -1,6 +1,6 @@
-# set this before running function
+# set this before running function (CMD only)
 # set PYTHONPATH=E:\GitHub\FYPProjectDefault\actions;%PYTHONPATH%
-# replace E:\GitHub\FYPProjectDefault\actions; with your project directory
+# replace "E:\GitHub\FYPProjectDefault\actions" with your project directory to actions folder
 # echo %PYTHONPATH%
 
 from rasa.nlu.components import Component
