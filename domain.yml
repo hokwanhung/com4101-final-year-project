@@ -128,8 +128,8 @@ slots:
 forms:
   # Can use ignore_intent to ignore unwanted intents to be filled as forms.
   feedback_form:
-    feedback:
-      - type: from_Text
+    required_slots:
+      - feedback
 
 
 responses:
