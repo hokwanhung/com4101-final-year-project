@@ -4,7 +4,9 @@ version: "2.0"
 
 intents:
   - affirm # Sentiment nlu
+  - affirm_feedback
   - deny
+  - deny_feedback
   - compliment
   - criticise
   - curse_words
@@ -34,6 +36,7 @@ intents:
 entities:
   - conversation_id # Sentiment nlu
   - sentiment
+  - feedback
   - username # general nlu
   - is_not_initial
   - hotel_location # hotel registration
@@ -198,10 +201,10 @@ responses:
 
 3️⃣ 情感功能 - 有意見或想法想反饋給酒店，但又不想面對面提供？您可以留下您寶貴的意見給我，我會幫你轉達給相應方～"
 
-  utter_react_to_affirm:
+  utter_react_to_compliment:
     - text: "太好了，很高興能看到貴客您的認可。讓我們繼續這趟旅程。"
 
-  utter_react_to_deny:
+  utter_react_to_criticise:
     - text: "很遺憾得知貴客您的不認可。請問我有什麽可以幫到您的忙嗎？"
 
   utter_ask_comments:
@@ -220,8 +223,8 @@ responses:
   utter_ask_buy:
     - text: "請問您希望做什麼活動, 比如說買日用品, 買衣服"
 
-  utter_out_of_scope:
-    - text: "不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。"
+#  utter_out_of_scope:
+#    - text: "不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。"
 
 actions:
 #  - feedback_form # Sentiment nlu
@@ -232,7 +235,7 @@ actions:
   - action_ask_food # Hotel Relevant Information
   - action_ask_visit
   - action_ask_buy
-  - action_default_fallback
+#  - action_out_of_scope
 
 session_config:
   session_expiration_time: 60 # Value in minutes

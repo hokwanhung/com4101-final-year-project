@@ -291,6 +291,7 @@ class ActionAppendSentimentList(Action):
             # For example, send a message to the user with the detected sentiment
             print(
                 f"The sentiment of your message is {sentiment_value} ({sentiment_value}) with a confidence of {sentiment_confidence}.")
+            print(sentiment_list)
         else:
             sentiment_list.append(-999)
 
@@ -440,22 +441,22 @@ class ActionBuy(Action):
         return []
 
 
-class ActionOutOfScope(Action):
-    def name(self) -> Text:
-        return "action_out_of_scope"
-
-    def run(
-            self,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any],
-    ) -> List[Dict[Text, Any]]:
-        # tell the user they are being passed to a customer service agent
-        dispatcher.utter_message(text="不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。")
-
-        # assume there's a function to call customer service
-        # pass the tracker so that the agent has a record of the conversation between the user
-        # and the bot for context
-
-        # pause the tracker so that the bot stops responding to user input
-        return [ConversationPaused(), UserUtteranceReverted()]
+# class ActionOutOfScope(Action):
+#     def name(self) -> Text:
+#         return "action_out_of_scope"
+#
+#     def run(
+#             self,
+#             dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any],
+#     ) -> List[Dict[Text, Any]]:
+#         # tell the user they are being passed to a customer service agent
+#         dispatcher.utter_message(text="不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。")
+#
+#         # assume there's a function to call customer service
+#         # pass the tracker so that the agent has a record of the conversation between the user
+#         # and the bot for context
+#
+#         # pause the tracker so that the bot stops responding to user input
+#         return [ConversationPaused(), UserUtteranceReverted()]

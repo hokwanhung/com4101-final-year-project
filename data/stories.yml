@@ -16,8 +16,7 @@ stories:
   #
   - story: end conversation path
     steps:
-      - intent: goodbye
-#      - action: utter_goodbye
+      - intent: goodbye  #      - action: utter_goodbye
       - action: utter_ask_comments
       - checkpoint: response_await # Proved to be a correct way in using checkpoints
 
@@ -28,8 +27,11 @@ stories:
       - action: utter_await_comments
       - intent: feedback_examples
         entities:
-          feedback: "評論與意見"
+          - feedback: "評論與意見"
       - action: action_validate_feedback
+      - action: action_end_conversation
+
+#      Before [action:action_end_conversation]
 #      - action: feedback_form
 #      - active_loop: feedback_form # Indicates that the form should be activated after the previous action was run.
 #      - slot_was_set:
@@ -37,7 +39,6 @@ stories:
 #      - slot_was_set:
 #          - feedback: "評論與意見"
 #      - action: action_submit_feedback
-      - action: action_end_conversation
 
   - story: deny comment path
     steps:
@@ -69,17 +70,17 @@ stories:
       - action: utter_introduce
       - action: action_append_sentiment_list
 
-#  - story: affirm user path # To handle generic path to users' affirm
-#    steps:
-#      - intent: affirm
-#      - action: utter_react_to_affirm
-#      - action: action_append_sentiment_list
-#
-#  - story: deny user path  # To handle generic path to users' deny
-#    steps:
-#      - intent: deny
-#      - action: utter_react_to_deny
-#      - action: action_append_sentiment_list
+  - story: affirm user path # To handle generic path to users' affirm
+    steps:
+      - intent: affirm
+      - action: utter_react_to_compliment
+      - action: action_append_sentiment_list
+
+  - story: deny user path  # To handle generic path to users' deny
+    steps:
+      - intent: deny
+      - action: utter_react_to_criticise
+      - action: action_append_sentiment_list
 
   - story: hotel booking path # User story: Book hotel rooms
     steps:
