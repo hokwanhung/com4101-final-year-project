@@ -58,7 +58,7 @@ class FeedbackForm(FormAction):
             domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
         print("復核信息中")
-        feedback = str(tracker.get_slot("feedback"))
+        feedback = tracker.get_slot("feedback")
         print(feedback)
 
         if feedback is None:

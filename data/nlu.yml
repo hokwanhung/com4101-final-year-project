@@ -106,7 +106,7 @@ nlu:
       - 叫我[Germaine](username)
       - My name is [Andy](username)
       - 我是[姓名](username)
-      - 本人[姓名](username)
+      - 本人[張](username)
       - 我叫做[姓名](username)
       - 我自稱[名字]((username)
       - 本大爺的名字叫[Ben](username)
