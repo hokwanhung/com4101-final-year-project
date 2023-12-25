@@ -142,9 +142,9 @@ forms:
           intent: affrim
         - type: from_text
           intent: deny
-    validation:
-      feedback:
-        - action: validate_feedback_form
+#    validation:
+#      feedback:
+#        - action: validate_feedback_form
 
 
 responses:
