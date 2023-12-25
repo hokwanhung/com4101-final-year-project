@@ -79,6 +79,17 @@ nlu:
       - 你知道自己係機械人嗎？
 
   #
+  # Hotel Registration
+  #
+  - intent: ask_registration
+    examples: |
+      - 你好，我想訂酒店。
+      - 係咪可以book酒店？
+      - 想做booking
+      - 我想訂[尖沙咀](hotel_location)既酒店。
+      - 有咩酒店我可以訂？
+
+  #
   # Based on 'Visit and Join'
   #
   - intent: ask_visit # Maybe we can set if confidence of below is lower than 50%, then we use this to search again?
