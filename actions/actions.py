@@ -7,7 +7,7 @@
 #
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
-#E:\GitHub\FYPProjectDefault
+# E:\GitHub\FYPProjectDefault
 
 # This is a simple example for a custom action which utters "Hello World!"
 
@@ -19,6 +19,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
 import random
+
 
 class ActionHowToGreet(Action):
 
@@ -36,8 +37,8 @@ class ActionHowToGreet(Action):
             dispatcher.utter_message(text="先生/女士你好，請問我應該怎麽稱呼你？")
             is_not_initial = True
         else:
-            user_name = tracker.get_slot("user_name")
-            dispatcher.utter_message(text="%s先生/女士，你好，很榮幸為你提供服務。".format(user_name))
+            user_name = tracker.get_slot("username")
+            dispatcher.utter_message(text="%s先生/女士，你好，很榮幸為你提供服務。".format(username))
 
         return [SlotSet("is_not_initial", is_not_initial)]
 
@@ -80,17 +81,18 @@ class ActionFood(Action):
         last = tracker.get_intent_of_latest_message()
         if last == "ask_food_cn" or last == "ask_food_jp" or last == "ask_food_kr" or last == "ask_food_sea":
 
-            with open(os.getcwd()+"\\csv\\"+last + ".csv", "r") as f:
+            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore') as f:
                 lines = f.readlines()
                 if len(lines) > 3:
                     random.shuffle(lines)
-                    result = [lines[0].replace("\n",""), lines[1].replace("\n",""), lines[2].replace("\n","")]
+                    result = [lines[0].replace("\n", ""), lines[1].replace("\n", ""), lines[2].replace("\n", "")]
                 f.close()
             dispatcher.utter_message(text="我推薦您去{}, {}或者{}".format(result[0], result[1], result[2]))
         else:
             dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
             return
         return []
+
 
 class ActionVisit(Action):
 
@@ -104,11 +106,12 @@ class ActionVisit(Action):
         last = tracker.get_intent_of_latest_message()
         if last == "ask_visit_museums" or last == "ask_visit_outskirts" or last == "ask_visit_shopping":
 
-            with open(os.getcwd()+"\\csv\\"+last + ".csv", "r") as f: ##example the same name as intent+ csv, like ask_visit_parks.csv
+            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r",
+                      errors='ignore') as f:  ##example the same name as intent+ csv, like ask_visit_parks.csv
                 lines = f.readlines()
-                if len(lines)> 3:
+                if len(lines) > 3:
                     random.shuffle(lines)
-                    result = [lines[0].replace("\n",""), lines[1].replace("\n",""), lines[2].replace("\n","")]
+                    result = [lines[0].replace("\n", ""), lines[1].replace("\n", ""), lines[2].replace("\n", "")]
                 f.close()
             dispatcher.utter_message(text="您可以嘗試去{}, {}或者{}".format(result[0], result[1], result[2]))
 

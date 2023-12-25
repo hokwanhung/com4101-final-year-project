@@ -134,7 +134,7 @@ nlu:
       - 比啲第二啲選擇我
       - 我想要其他
 
-  - intent: alternative
+  - intent: identify_bot
     examples: |
       - 你到底是什麽？
       - 你的主人是？
