@@ -416,6 +416,7 @@ class ActionFood(Action):
 
             # New Flow
             options = webdriver.ChromeOptions()
+            options.add_experimental_option('detach', True)
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
             try:
                 for result in results:
@@ -476,6 +477,7 @@ class ActionVisit(Action):
 
             # New Flow
             options = webdriver.ChromeOptions()
+            options.add_experimental_option('detach', True)
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
             try:
                 for result in results:
@@ -534,6 +536,7 @@ class ActionBuy(Action):
 
             # New Flow
             options = webdriver.ChromeOptions()
+            options.add_experimental_option('detach', True)
             options.add_experimental_option('excludeSwitches', ['enable-logging'])
             try:
                 for result in results:
