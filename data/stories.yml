@@ -65,15 +65,17 @@ stories:
       - action: utter_introduce
       - action: action_append_sentiment_list
 
-  - story: affirm user path # To handle generic path to users' affirm
-    steps:
-      - intent: affirm
-      - action: utter_react_to_affirm
-
-  - story: deny user path  # To handle generic path to users' deny
-    steps:
-      - intent: deny
-      - action: utter_react_to_deny
+#  - story: affirm user path # To handle generic path to users' affirm
+#    steps:
+#      - intent: affirm
+#      - action: utter_react_to_affirm
+#      - action: action_append_sentiment_list
+#
+#  - story: deny user path  # To handle generic path to users' deny
+#    steps:
+#      - intent: deny
+#      - action: utter_react_to_deny
+#      - action: action_append_sentiment_list
 
   - story: hotel booking path # User story: Book hotel rooms
     steps:
