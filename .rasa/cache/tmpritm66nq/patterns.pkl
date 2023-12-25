@@ -1,6 +1,0 @@
-[
-  {
-    "name": "user_name",
-    "pattern": "re.findall(u'[^\\u4E00-\\u9FA5]', string)"
-  }
-]
