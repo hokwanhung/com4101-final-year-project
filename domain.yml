@@ -18,6 +18,7 @@ intents:
   - feedback_examples
   - anonymous # User Identification
   - ask_registration # Hotel Registration
+  - registration_with_details
   - ask_visit # Relevant Nearby Information
   - ask_visit_shopping
   - ask_visit_museums
@@ -40,6 +41,11 @@ entities:
   - username # general nlu
   - is_not_initial
   - hotel_location # hotel registration
+  - in_out_time
+  - room_type
+  - price
+  - special_view
+  - room_capacity
   - visit_sceneries # relevant information
   - visit_parks
   - visit_museums
@@ -88,6 +94,26 @@ slots:
 
   # Hotel Registration
   hotel_location:
+    type: text
+    auto_fill: true
+
+  in_out_time:
+    type: text
+    auto_fill: true
+
+  room_type:
+    type: list
+    auto_fill: true
+
+  price:
+    type: text
+    auto_fill: true
+
+  special_view:
+    type: text
+    auto_fill: true
+
+  room_capacity:
     type: text
     auto_fill: true
 
@@ -212,6 +238,15 @@ responses:
 
   utter_await_comments:
     - text: "機器人已經開始記錄您的想法，請於一個訊息内留下您的意見或感想😄："
+
+  # Hotel Registration
+  utter_introduce_registration:
+    - text: "歡迎使用這個Chatbot的酒店預約服務，貴客您可以提供以下訊息以讓我們更好地配合您🥰🥰：
+
+1️⃣ 價格 (如 $500-700, $600)
+2️⃣ 人數 (如 2人)
+3️⃣ 房間類別 (如 標準房、豪華房、大豪華房、套房、行政套房、總統套房)
+4️⃣ 是否需要海景 (如 是的, 不要)"
 
   # Hotel Relevant Information
   utter_ask_visit:

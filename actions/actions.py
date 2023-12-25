@@ -18,7 +18,7 @@ from rasa_sdk.events import SlotSet, EventType
 from rasa_sdk.events import ConversationPaused, SessionStarted, UserUtteranceReverted
 from rasa_sdk.forms import FormAction, FormValidationAction
 import os
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.exc import OperationalError
 from datetime import datetime, timedelta
 import random
@@ -374,17 +374,32 @@ class ActionConnectDatabase(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # Create
         engine = create_engine("mysql+pymysql://root:root@localhost:3306/fyp_project_default")
+        connection = engine.connect()
 
         try:
-            connection = engine.connect()
-            connection = engine.connect()
-            print("已成功連接數據庫")
+
+            query = text("SELECT * FROM hotel_rooms WHERE availability = 1")
+            result = connection.execute(query)
+
+            rows = result.fetchall()
+            random.shuffle(rows)
+
+            # (b'\x9f\xc7\x1fr\xee\xc3\x11\xed\x93\xc1\xe0p\xea\xa7l\xb2', 60, 'Standard', None, 2, Decimal('650.00'),
+            # 1, '', datetime.datetime(2023, 5, 10, 7, 45, 48), datetime.datetime(2023, 5, 10, 7, 45, 48))
+
+            dispatcher.utter_message(text=f"""已為您搜尋房間🥳🥳：
+
+            房間號碼 - {rows[0][1]}
+            房間種類 - {rows[0][2]}
+            特別景觀 - {rows[0][3]}
+            價錢 - {rows[0][4]}
+                        """)
+
             connection.close()
-            dispatcher.utter_message(text="已成功連接數據庫")
         except OperationalError as e:
             print("連接數據庫失敗，請重試")
             print(e)
-            dispatcher.utter_message(text="連接數據庫失敗，請重試")
+            dispatcher.utter_message(text="很抱歉，連接數據庫失敗，請到信號强勁的地方再試。")
 
         return []
 
@@ -394,7 +409,6 @@ class ActionConnectDatabase(Action):
 # Go to the directory: venv/Lib/site-packages/rasa/core/channels/console.py
 # Change the default value of DEFAULT_STREAM_READING_TIMEOUT_IN_SECONDS to more than 10, in my case I changed it to 30 it worked.
 #
-
 class ActionFood(Action):
 
     def name(self) -> Text:
@@ -460,7 +474,7 @@ class ActionFood(Action):
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
             dispatcher.utter_message(
-                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺🥺🥺。")
+                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。")
 
         return []
 
@@ -506,7 +520,7 @@ class ActionVisit(Action):
                     search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
-                    search_box.send_keys(f"{result} hk")
+                    search_box.send_keys(f"{result} Hong Kong")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
@@ -529,7 +543,7 @@ class ActionVisit(Action):
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
             dispatcher.utter_message(
-                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺🥺🥺。")
+                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。")
 
         return []
 
@@ -553,7 +567,8 @@ class ActionBuy(Action):
                     random.shuffle(lines)
                     results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                     dispatcher.utter_message(
-                        text="您可以嘗試去這些地方購物, 比如說,{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
+                        text="您可以嘗試去這些地方購物, 比如說,{}或者{}，貴客您可以參考下面兩個網址：".format(results[0],
+                                                                                                            results[1]))
                 f.close()
                 print(results)
 
@@ -576,7 +591,7 @@ class ActionBuy(Action):
                     search_box = WebDriverWait(driver, 5).until(
                         EC.visibility_of_element_located((By.ID, "APjFqb"))
                     )
-                    search_box.send_keys(f"{result} hk")
+                    search_box.send_keys(f"{result} Hong Kong")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
                     search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
                     search_button.click()
@@ -598,7 +613,7 @@ class ActionBuy(Action):
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
             dispatcher.utter_message(
-                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺🥺🥺。")
+                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。")
 
         return []
 
