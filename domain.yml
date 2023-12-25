@@ -2,7 +2,7 @@ version: "2.0"
 
 intents:
   - greet
-  - inform_name
+  - greet_with_name
   - goodbye
   - affirm
   - deny
@@ -23,8 +23,9 @@ intents:
   - ask_food_sea
 
 entities:
-  - user_name
+  - username
   - is_not_initial
+  - hotel_location
 
 # Serves as the chatbot's memory.
 # The data can then be used throughout the conversation.
