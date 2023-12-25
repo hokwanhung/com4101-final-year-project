@@ -59,6 +59,14 @@ slots:
     type: text
     auto_fill: true
 
+  sentiment:
+    type: text
+    auto_fill: true
+
+  sentiment_list:
+    type: list
+    auto_fill: false
+
   # General nlu
   username:
     type: text
@@ -198,11 +206,13 @@ responses:
     - text: "請問您希望做什麼活動, 比如說買日用品, 逛商場"
 
 actions:
-  - feedback_form
+  - feedback_form # Sentiment nlu
+  - action_submit_feedback
   - action_end_conversation
-  - action_how_to_greet
-  - action_connect_database
-  - action_ask_food
+  - action_append_sentiment_list
+  - action_how_to_greet # General nlu
+  - action_connect_database # Hotel Registration
+  - action_ask_food # Hotel Relevant Information
   - action_ask_visit
   - action_ask_buy
 
