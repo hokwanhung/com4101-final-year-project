@@ -5,46 +5,57 @@ intents:
   - goodbye
   - affirm
   - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - ask_place
+  - alternative
+  - ask_visit
+  - ask_visit_sceneries
+  - ask_visit_parks
+  - ask_visit_museums
+  - ask_visit_outskirts
+  - ask_visit_events
+  - ask_buy_centres
+  - ask_buy_special
+  - ask_buy_clothing
+  - ask_buy_groceries
+  - ask_food_cn
+  - ask_food_kr
+  - ask_food_jp
+  - ask_food_sea
 
 responses:
   utter_greet:
-  - text: "嘿，你今天過得怎麽樣？"
+    - text: "嘿，你今天過得怎麽樣？"
 
   utter_cheer_up:
-  - text: "這裡有一些讓你振作起來的事情："
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "這裡有一些讓你振作起來的事情："
+      image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "有幫到你的忙嗎？"
+    - text: "有幫到你的忙嗎？"
 
   utter_happy:
-  - text: "太好了，繼續！"
+    - text: "太好了，繼續！"
 
   utter_goodbye:
-  - text: "祝你旅途愉快，再見！"
+    - text: "祝你旅途愉快，再見！"
 
   utter_iamabot:
-  - text: "我是一個機器人，由 Rasa 提供支持。"
+    - text: "我是一個機器人，由 Rasa 提供支持。"
 
   utter_ask_place:
-  - text: "您可以試下去ODD ONE OUT"
-  - text: "您可以試下去金紫荊廣場"
-  - text: "您可以試下去太原街市集"
-  - text: "您可以試下去HarbourChill海濱休閒站"
-  - text: "您可以試下去水上運動及康樂主題區"
-  - text: "您可以試下去藍屋建築群"
-  - text: "您可以試下去和昌大押"
-  - text: "您可以試下去春園街"
-  - text: "您可以試下去舊灣仔郵政局"
-  - text: "您可以試下去添馬公園"
-  - text: "您可以試下去駱克道"
-  - text: "您可以試下去姻緣石"
-  - text: "您可以試下去香港藝術中心"
-  - text: "您可以試下去北帝廟"
+    - text: "您可以試下去ODD ONE OUT"
+    - text: "您可以試下去金紫荊廣場"
+    - text: "您可以試下去太原街市集"
+    - text: "您可以試下去HarbourChill海濱休閒站"
+    - text: "您可以試下去水上運動及康樂主題區"
+    - text: "您可以試下去藍屋建築群"
+    - text: "您可以試下去和昌大押"
+    - text: "您可以試下去春園街"
+    - text: "您可以試下去舊灣仔郵政局"
+    - text: "您可以試下去添馬公園"
+    - text: "您可以試下去駱克道"
+    - text: "您可以試下去姻緣石"
+    - text: "您可以試下去香港藝術中心"
+    - text: "您可以試下去北帝廟"
 
 session_config:
   session_expiration_time: 60
