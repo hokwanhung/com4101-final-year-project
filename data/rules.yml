@@ -9,12 +9,7 @@ rules:
       - intent: goodbye
       - action: utter_goodbye
 
-  - rule: ok
+  - rule: Tell users what this chatbot is whenever asked
     steps:
-      - intent: ask_food_kr
-      - action: action_ask_food
-
-#  - rule: Say 'I am a bot' anytime the user challenges
-#    steps:
-#      - intent: bot_challenge
-#      - action: utter_iamabot
+      - intent: identify_bot
+      - action: utter_iamabot
