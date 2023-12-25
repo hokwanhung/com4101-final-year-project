@@ -34,82 +34,82 @@ import numpy as np
 # Sentiment nlu
 #
 
-class FeedbackForm(FormAction):
-
+# class FeedbackForm(FormAction):
+#
+#     def name(self) -> Text:
+#         # Returns the name of the form.
+#         return "feedback_form"
+#
+#     @staticmethod
+#     def required_slots(tracker: "Tracker") -> List[Text]:
+#         # Returns the list of slots that are required to be filled.
+#         return ["feedback"]
+#
+#     def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
+#         # Maps the slot names to their values using a dictionary.
+#         return {
+#             "feedback": self.from_text()
+#         }
+#
+#     def validate(
+#             self,
+#             dispatcher: "CollectingDispatcher",
+#             tracker: "Tracker",
+#             domain: Dict[Text, Any],
+#     ) -> Dict[Text, Any]:
+#         print("復核信息中")
+#         feedback = tracker.get_slot("feedback")
+#         print(feedback)
+#
+#         if feedback is None:
+#             dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
+#             return {"feedback": None}
+#         else:
+#             dispatcher.utter_message(f"我們已收到您的反饋：\n{feedback}")
+#
+#         return {"feedback": feedback}
+#
+#     def submit(
+#             self,
+#             dispatcher: "CollectingDispatcher",
+#             tracker: "Tracker",
+#             domain: "DomainDict",
+#     ) -> List[EventType]:
+#         # Call when the form is submitted.
+#
+#         # Store the conversation in uuid and its relative byte form.
+#         conversation_id = uuid.uuid4()
+#
+#         # Send back the uuid to users.
+#         dispatcher.utter_message("再次感謝您使用我們的聊天機器人客戶服務~期待您的再次光臨~")
+#         dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
+#
+#         # Initialize to Firebase
+#         json_path = os.path.join(os.path.dirname(__file__), "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+#         cred = credentials.Certificate(json_path)
+#         firebase_admin.initialize_app(cred,
+#                                       {
+#                                           'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+#
+#         # Get a database reference to the "users" node
+#         ref = db.reference("users")
+#
+#         key = str(conversation_id)
+#         data = {
+#             "feedback": tracker.get_slot("feedback"),
+#             "overall_sentiment": ""
+#         }
+#
+#         # Add the new key-value pair to Firebase
+#         ref.child(key).set(data)
+#
+#         # Set the uuid to slot.
+#         return [SlotSet("conversation_id", str(conversation_id))]
+#
+#
+class ActionValidateFeedback(Action):
     def name(self) -> Text:
-        # Returns the name of the form.
-        return "feedback_form"
-
-    @staticmethod
-    def required_slots(tracker: "Tracker") -> List[Text]:
-        # Returns the list of slots that are required to be filled.
-        return ["feedback"]
-
-    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict[Text, Any]]]]:
-        # Maps the slot names to their values using a dictionary.
-        return {
-            "feedback": self.from_text()
-        }
-
-    def validate(
-            self,
-            dispatcher: "CollectingDispatcher",
-            tracker: "Tracker",
-            domain: Dict[Text, Any],
-    ) -> Dict[Text, Any]:
-        print("復核信息中")
-        feedback = tracker.get_slot("feedback")
-        print(feedback)
-
-        if feedback is None:
-            dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
-            return {"feedback": None}
-        else:
-            dispatcher.utter_message(f"我們已收到您的反饋：\n{feedback}")
-
-        return {"feedback": feedback}
-
-    def submit(
-            self,
-            dispatcher: "CollectingDispatcher",
-            tracker: "Tracker",
-            domain: "DomainDict",
-    ) -> List[EventType]:
-        # Call when the form is submitted.
-
-        # Store the conversation in uuid and its relative byte form.
-        conversation_id = uuid.uuid4()
-
-        # Send back the uuid to users.
-        dispatcher.utter_message("再次感謝您使用我們的聊天機器人客戶服務~期待您的再次光臨~")
-        dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
-
-        # Initialize to Firebase
-        json_path = os.path.join(os.path.dirname(__file__), "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
-        cred = credentials.Certificate(json_path)
-        firebase_admin.initialize_app(cred,
-                                      {
-                                          'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
-
-        # Get a database reference to the "users" node
-        ref = db.reference("users")
-
-        key = str(conversation_id)
-        data = {
-            "feedback": tracker.get_slot("feedback"),
-            "overall_sentiment": ""
-        }
-
-        # Add the new key-value pair to Firebase
-        ref.child(key).set(data)
-
-        # Set the uuid to slot.
-        return [SlotSet("conversation_id", str(conversation_id))]
-
-
-class ActionSubmitFeedback(Action):
-    def name(self) -> Text:
-        return "action_submit_feedback"
+        return "action_validate_feedback"
 
     def run(
             self,
@@ -118,95 +118,126 @@ class ActionSubmitFeedback(Action):
             domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
         feedback = tracker.get_slot("feedback")
+
         if feedback is not None:
             dispatcher.utter_message(f"我們已收到您的反饋：\n{feedback}")
         else:
             dispatcher.utter_message("抱歉，系統似乎出了點故障。感謝您的反饋。")
 
-        return []
+        # Store the conversation in uuid and its relative byte form.
+        conversation_id = uuid.uuid4()
+
+        # Send back the uuid to users.
+        dispatcher.utter_message("再次感謝您使用我們的聊天機器人客戶服務~期待您的再次光臨~")
+        dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
+
+        # Get a Firebase Instance (if not exist, then create one)
+        try:
+            firebase_admin.get_app()
+        except ValueError:
+            json_path = os.path.join(os.path.dirname(__file__),
+                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+            cred = credentials.Certificate(json_path)
+            firebase_admin.initialize_app(cred,
+                                          {
+                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+
+        # Get a database reference to the "users" node
+        ref = db.reference("users")
+
+        key = str(conversation_id)
+        data = {
+            "feedback": feedback,
+            "overall_sentiment": ""
+        }
+
+        # Add the new key-value pair to Firebase
+        ref.child(key).set(data)
+
+        return [SlotSet("conversation_id", str(conversation_id))]
 
 
-# class ActionEndConversation(Action):
-#     # To simulate how the conversation would end (rasa does not have relevant functionalities).
-#     def name(self) -> Text:
-#         return "action_end_conversation"
-#
-#     def run(
-#             self,
-#             dispatcher: "CollectingDispatcher",
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#         # Get a Firebase Instance (if not exist, then create one)
-#         try:
-#             firebase_admin.get_app()
-#         except ValueError:
-#             json_path = os.path.join(os.path.dirname(__file__),
-#                                      "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
-#             cred = credentials.Certificate(json_path)
-#             firebase_admin.initialize_app(cred,
-#                                           {
-#                                               'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
-#
-#         # Get a database reference to the "users" node
-#         ref = db.reference("users")
-#
-#         # Get the slot of conversation_byte
-#         conversation_id = tracker.get_slot("conversation_id")
-#         if conversation_id is None:
-#             # Store the conversation in uuid and its relative byte form.
-#             conversation_id = uuid.uuid4()
-#
-#             # Send back the uuid to users.
-#             dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
-#
-#         #
-#         # Continue its original flow
-#         #
-#         sentiment_list = tracker.get_slot("sentiment_list")
-#         timestamps = list(range(1, len(sentiment_list) + 1))
-#
-#         # Calculate weights using exponential decay function
-#         weights = np.exp((np.array(timestamps) - max(timestamps)) / -10)
-#
-#         # Calculate weighted sum of data if the value is not -999
-#         weighted_sum = sum(
-#             [sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
-#
-#         # Calculate total weight
-#         total_weight = sum(weights)
-#
-#         # Calculate weighted average
-#         weighted_average = weighted_sum / total_weight
-#
-#         #
-#         # Save the record to Firebase
-#         #
-#         # Get a Firebase Instance (if not exist, then create one)
-#         try:
-#             firebase_admin.get_app()
-#         except ValueError:
-#             json_path = os.path.join(os.path.dirname(__file__),
-#                                      "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
-#             cred = credentials.Certificate(json_path)
-#             firebase_admin.initialize_app(cred,
-#                                           {
-#                                               'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
-#
-#         # Get a database reference to the "users" node
-#         ref = db.reference("users")
-#
-#         # Add the new key-value pair to Firebase
-#         ref.child(str(conversation_id)).update({
-#             "overall_sentiment": weighted_average
-#         })
-#
-#         # Send goodbye messages to user.
-#         dispatcher.utter_message(
-#             text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
-#         dispatcher.utter_message(text="期待您下一次再度光臨。")
-#
-#         # No need to store uuid in slot as it starts a new conversation afterwards.
-#         return [ConversationPaused(), SessionStarted(datetime.now() + timedelta(seconds=30))]
+class ActionEndConversation(Action):
+    # To simulate how the conversation would end (rasa does not have relevant functionalities).
+    def name(self) -> Text:
+        return "action_end_conversation"
+
+    def run(
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Get a Firebase Instance (if not exist, then create one)
+        try:
+            firebase_admin.get_app()
+        except ValueError:
+            json_path = os.path.join(os.path.dirname(__file__),
+                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+            cred = credentials.Certificate(json_path)
+            firebase_admin.initialize_app(cred,
+                                          {
+                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+
+        # Get a database reference to the "users" node
+        ref = db.reference("users")
+
+        # Get the slot of conversation_byte
+        conversation_id = tracker.get_slot("conversation_id")
+        if conversation_id is None:
+            # Store the conversation in uuid and its relative byte form.
+            conversation_id = uuid.uuid4()
+
+            # Send back the uuid to users.
+            dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
+
+        #
+        # Continue its original flow
+        #
+        sentiment_list = tracker.get_slot("sentiment_list")
+        timestamps = list(range(1, len(sentiment_list) + 1))
+
+        # Calculate weights using exponential decay function
+        weights = np.exp((np.array(timestamps) - max(timestamps)) / -10)
+
+        # Calculate weighted sum of data if the value is not -999
+        weighted_sum = sum(
+            [sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
+
+        # Calculate total weight
+        total_weight = sum(weights)
+
+        # Calculate weighted average
+        weighted_average = weighted_sum / total_weight
+
+        #
+        # Save the record to Firebase
+        #
+        # Get a Firebase Instance (if not exist, then create one)
+        try:
+            firebase_admin.get_app()
+        except ValueError:
+            json_path = os.path.join(os.path.dirname(__file__),
+                                     "fypprojectdefault-firebase-adminsdk-em0ra-cc7419a6b6.json")
+            cred = credentials.Certificate(json_path)
+            firebase_admin.initialize_app(cred,
+                                          {
+                                              'databaseURL': "https://fypprojectdefault-default-rtdb.asia-southeast1.firebasedatabase.app"})
+
+        # Get a database reference to the "users" node
+        ref = db.reference("users")
+
+        # Add the new key-value pair to Firebase
+        ref.child(str(conversation_id)).update({
+            "overall_sentiment": weighted_average
+        })
+
+        # Send goodbye messages to user.
+        dispatcher.utter_message(
+            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
+        dispatcher.utter_message(text="期待您下一次再度光臨。")
+
+        # No need to store uuid in slot as it starts a new conversation afterwards.
+        return [ConversationPaused(), SessionStarted(datetime.now() + timedelta(seconds=30))]
 
 
 class ActionAppendSentimentList(Action):
@@ -425,7 +456,6 @@ class ActionDefaultFallback(Action):
         # assume there's a function to call customer service
         # pass the tracker so that the agent has a record of the conversation between the user
         # and the bot for context
-
 
         # pause the tracker so that the bot stops responding to user input
         return [ConversationPaused(), UserUtteranceReverted()]
