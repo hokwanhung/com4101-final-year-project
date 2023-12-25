@@ -16,13 +16,17 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 
+from sqlalchemy import create_engine
+from sqlalchemy.exc import OperationalError
+
 
 class ActionHowToGreet(Action):
 
     def name(self) -> Text:
         return "action_how_to_greet"
 
-    def run(self, dispatcher: CollectingDispatcher,
+    def run(self,
+            dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         is_not_initial = tracker.get_slot("is_not_initial")  # default value: false
@@ -36,3 +40,29 @@ class ActionHowToGreet(Action):
             dispatcher.utter_message(text="%s先生/女士，你好，很榮幸為你提供服務。".format(user_name))
 
         return [SlotSet("is_not_initial", is_not_initial)]
+
+
+class ActionConnectDatabase(Action):
+
+    def name(self) -> Text:
+        return "action_connect_database"
+
+    def run(
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Create
+        engine = create_engine("mysql+pymysql://root:root@localhost:3306/fyp_project_default")
+
+        try:
+            connection = engine.connect()
+            print("已成功連接數據庫")
+            connection.close()
+            dispatcher.utter_message(text="已成功連接數據庫")
+        except OperationalError as e:
+            print("連接數據庫失敗，請重試")
+            print(e)
+            dispatcher.utter_message(text="連接數據庫失敗，請重試")
+
+        return []

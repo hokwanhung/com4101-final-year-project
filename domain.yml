@@ -7,7 +7,8 @@ intents:
   - affirm
   - deny
   - alternative
-  - ask_visit
+  - ask_registration # Hotel Registration
+  - ask_visit # Relevant Nearby Information
   - ask_visit_sceneries
   - ask_visit_parks
   - ask_visit_museums
@@ -31,22 +32,23 @@ entities:
 # The data can then be used throughout the conversation.
 # Acts as a key-value pair to store information.
 # Slot name can match the names of the entities.
-slot:
-  user_name:
+slots:
+  username:
     type: text
+    auto_fill: true # To ensure that user's input would be filled into the slot.
   is_not_initial:
     type: bool
-    initial_value: False
+    initial_value: false # Unsure if it is default_value or initial_value
+  hotel_location:
+    type: text
+    auto_fill: true
 
 responses:
   utter_ask_name:
     - text: "先生/女士你好，請問我應該怎麽稱呼你？"
 
-  utter_greet:
-    - text: "先生/女士，你好，很榮幸爲你提供服務。"
-
   utter_greet_with_name:
-    - text: "{user_name}先生/女士，你好。"
+    - text: "{username}先生/女士，你好，很榮幸爲你提供服務。"
 
   utter_did_that_help:
     - text: "有幫到你的忙嗎？"
@@ -78,6 +80,7 @@ responses:
 
 actions:
   - action_how_to_greet
+  - action_connect_database
 
 session_config:
   session_expiration_time: 60 # Value in minutes
