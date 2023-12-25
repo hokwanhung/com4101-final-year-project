@@ -31,8 +31,14 @@ stories:
         - requested_slot: feedback
       - slot_was_set:
           - feedback: "評論與意見"
-      - action: feedback_form
+      - action: action_submit_feedback
+      - action: action_end_conversation
 
+  - story: deny comment path
+    steps:
+      - checkpoint: response_await
+      - intent: deny
+      - action: action_end_conversation
 
   #
   # General nlu
