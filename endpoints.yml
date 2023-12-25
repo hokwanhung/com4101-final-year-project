@@ -13,6 +13,14 @@
 #action_endpoint:
 #  url: "http://localhost:5055/webhook"
 
+db:
+  type: "mysql"
+  url: "localhost"
+  port: "3306"
+  username: "root"
+  password: "root"
+  db: "FYPProjectDefault"
+
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.
 # https://rasa.com/docs/rasa/tracker-stores

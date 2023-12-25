@@ -3,6 +3,8 @@
 -- TIMESTAMP is used to record any changes for the record.
 -- ON UPDATE CURRENT_TIMESTAMP means the column value will be updated automatically when a record is updated.
 
+USE fyp_project_default;
+
 CREATE TABLE bookings (
   id BINARY(16) NOT NULL PRIMARY KEY,
   user_id BINARY(16) NOT NULL,
