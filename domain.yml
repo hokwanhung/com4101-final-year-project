@@ -48,7 +48,12 @@ entities:
 # Acts as a key-value pair to store information.
 # Slot name can match the names of the entities.
 slots:
- # General nlu
+  # Sentiment nlu
+  feedback:
+    type: text
+    auto_fill: true
+
+  # General nlu
   username:
     type: text
     auto_fill: true # To ensure that user's input would be filled into the slot.
@@ -98,6 +103,13 @@ slots:
   food_sea:
     type: text
     auto_fill: true
+
+forms:
+  # Can use ignore_intent to ignore unwanted intents to be filled as forms.
+  feedback_form:
+    required_slots:
+      - feedback
+
 
 responses:
   # General nlu
@@ -157,7 +169,10 @@ responses:
     - text: "太好了，繼續！"
 
   utter_ask_comments:
-    - text: "很感謝您使用這個聊天機器人的服務，請問您要留下您使用後的意見或感想嗎？這些回應將會被儲存於數據庫中，讓我們可以於未來改善我們的服務。"
+    - text: "很感謝您使用這個聊天機器人的服務，請問您願意花1-2分鐘留下您寶貴的意見或感想嗎🙌🏻🙌🏻？這些回應將會儲存於數據庫內，並供開發者未來改善客戶服務。您可以以匿名的方式留下您的想法。"
+
+  utter_await_comments:
+    - text: "機器人已經開始記錄您的想法，請於一個訊息内留下您的意見或感想😄："
 
   # Hotel Relevant Information
   utter_ask_visit:
@@ -167,6 +182,8 @@ responses:
     - text: "請問您希望尋找什麼種類的食物,香港比較出名為日式, 韓式, 中式, 東南亞食物"
 
 actions:
+  - feedback_form
+  - action_end_conversation
   - action_how_to_greet
   - action_connect_database
   - action_ask_food

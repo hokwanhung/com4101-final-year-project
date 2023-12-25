@@ -13,7 +13,23 @@ stories:
   #
   # Sentiment nlu
   #
-  - story:
+  - story: end conversation path
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+      - action: utter_ask_comments
+      - checkpoint: response_await
+
+  - story: accept comment path
+    steps:
+      - checkpoint: response_await
+      - intent: affirm
+      - action: utter_await_comments
+      - action: feedback_form
+      - active_loop: feedback_form # Indicates that the form should be activated after the previous action was run.
+      - slot_was_set:
+          feedback: "評論與意見"
+      - action: feedback_form
 
 
   #
