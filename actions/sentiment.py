@@ -33,8 +33,18 @@ class SentimentAnalyzer(Component):
            file, retrieve training tokens and after formatting
            data train the classifier."""
 
+        confirmed_labels = [] # Self-defined components
+
         with open(os.getcwd() + '\\actions\\labels.txt', 'r') as f:
             labels = f.read().splitlines()
+
+            for label in labels: # Self-defined components
+                if "pos" in label:
+                    confirmed_labels.append("pos")
+                if "neu" in label:
+                    confirmed_labels.append("neu")
+                if "neg" in label:
+                    confirmed_labels.append("neg")
 
         training_data = training_data.training_examples  # list of Message objects
         tokens = []
@@ -46,7 +56,7 @@ class SentimentAnalyzer(Component):
             except TypeError:
                 continue
         processed_tokens = [self.preprocessing(t) for t in tokens]
-        labeled_data = [(t, x) for t, x in zip(processed_tokens, labels)]
+        labeled_data = [(t, x) for t, x in zip(processed_tokens, confirmed_labels)]
         self.clf = NaiveBayesClassifier.train(labeled_data)
 
     def convert_to_rasa(self, value, confidence):
