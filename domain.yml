@@ -48,7 +48,7 @@ entities:
 # Acts as a key-value pair to store information.
 # Slot name can match the names of the entities.
 slots:
-
+ # General nlu
   username:
     type: text
     auto_fill: true # To ensure that user's input would be filled into the slot.
@@ -57,10 +57,12 @@ slots:
     type: bool
     initial_value: false # Unsure if it is default_value or initial_value
 
+  # Hotel Registration
   hotel_location:
     type: text
     auto_fill: true
 
+  # Relevant Information
   view:
     type: text
     auto_fill: true
@@ -98,6 +100,7 @@ slots:
     auto_fill: true
 
 responses:
+  # General nlu
   utter_ask_name:
     - text: "先生/女士你好，請問我應該怎麽稱呼你？"
 
@@ -151,29 +154,13 @@ responses:
 
 2️⃣ 酒店附近查詢 - 想知道酒店附近有什麼好吃、好看、好玩？我可以最短時間搜尋數據庫上百條資料，向您提供最好的選擇～
 
-3️⃣ 情感功能 - 有意見或想法想反饋給酒店，但又不想面對面提供？您可以留下您寶貴的意見給我，我會幫你轉達給相應方～
-
-  utter_ask_place:
-    - text: "您可以試下去ODD ONE OUT"
-    - text: "您可以試下去金紫荊廣場"
-    - text: "您可以試下去太原街市集"
-    - text: "您可以試下去HarbourChill海濱休閒站"
-    - text: "您可以試下去水上運動及康樂主題區"
-    - text: "您可以試下去藍屋建築群"
-    - text: "您可以試下去和昌大押"
-    - text: "您可以試下去春園街"
-    - text: "您可以試下去舊灣仔郵政局"
-    - text: "您可以試下去添馬公園"
-    - text: "您可以試下去駱克道"
-    - text: "您可以試下去姻緣石"
-    - text: "您可以試下去香港藝術中心"
-    - text: "您可以試下去北帝廟"
+3️⃣ 情感功能 - 有意見或想法想反饋給酒店，但又不想面對面提供？您可以留下您寶貴的意見給我，我會幫你轉達給相應方～"
 
   utter_ask_visit:
-    - text: "請問您希望尋找什麼遊玩的地方"
+    - text: "請問您希望尋找什麼遊玩的地方?"
 
   utter_ask_food:
-    - text: "請問您希望尋找什麼種類的食物"
+    - text: "請問您希望尋找什麼種類的食物?"
 
 actions:
   - action_how_to_greet
