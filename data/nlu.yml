@@ -19,6 +19,14 @@ nlu:
       - 晚安
       - 哈佬哈
 
+  - intent: inform_name # We might be able to detect their gender.
+    examples: |
+      - 你好，我姓[陳](user_name)
+      - 我叫[Brain](user_name)
+      - 小姓[梁](user_name)
+      - 叫我[何]先生(user_name)
+      - 叫我[Germaine](user_name)
+
   - intent: goodbye
     examples: |
       - 稍後再見
@@ -60,6 +68,14 @@ nlu:
       - 有無新選項？
       - 有無新推薦？
       - 有d咩其他可以揀？
+
+  - intent: alternative
+    examples: |
+      - 你到底是什麽？
+      - 你的主人是？
+      - 請問你是一個真人嗎？
+      - 你係吾係一個真實既人？
+      - 你知道自己係機械人嗎？
 
   #
   # Based on 'Visit and Join'
@@ -183,7 +199,7 @@ nlu:
       - 我想飲[人蔘雞湯](food_kr)
 
   - intent: ask_food_jp
-    examples: | 
+    examples: |
       - 附近有啲咩[壽司](food_jp)好食
       - 附近有冇[壽喜燒](food_jp)
       - 有冇[Omakase](food_jp)
