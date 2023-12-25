@@ -4,14 +4,14 @@ recipe: default.v1
 
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
-language: zh
+language: "zh"
 
 pipeline:
 # # A sequence of steps that train a model using NLU data.
 # # See https://rasa.com/docs/rasa/tuning-your-model for more information.
   - name: SpacyNLP
     model: zh_core_web_md
-  - name: SpacyTokenizer # WhiteSpaceTokenizer
+  - name: SpacyTokenizer # WhiteSpaceTokenizer - not applied, Chinese often has no whitespace. // Maybe later Jieba?
   - name: SpacyFeaturizer
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
