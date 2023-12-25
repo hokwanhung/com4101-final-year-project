@@ -11,10 +11,10 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
-from typing import Any, Text, Dict, List
+from typing import Any, Text, Dict, List, Union
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, EventType
 from rasa_sdk.events import ConversationPaused, SessionStarted
 from rasa_sdk.forms import FormAction
 import os
@@ -22,12 +22,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
 from datetime import datetime, timedelta
 import random
-
+import uuid
 
 #
 # Sentiment nlu
 #
 class FeedbackForm(FormAction):
+
     def name(self) -> Text:
         return "Feedback_form"
 
@@ -46,8 +47,12 @@ class FeedbackForm(FormAction):
         tracker: "Tracker",
         domain: "DomainDict",
     ) -> List[EventType]:
-        dispatcher.utter_message()
-        return []
+        conversation_id = uuid.uuid4()
+        conversation_byte = bytes.fromhex(conversation_id.hex.replace('-', ''))
+
+        dispatcher.utter_message("再次感謝您使用我們的聊天機器人客戶服務~期待您的再次光臨~")
+        dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
+        return [SlotSet("conversation_id", conversation_byte)]
 
 
 class ActionEndConversation(Action):
