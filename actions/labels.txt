@@ -1,4 +1,4 @@
-pos #
+pos # affirm
 pos
 pos
 pos
@@ -12,6 +12,7 @@ pos
 pos
 pos
 pos
+neg # deny
 neg
 neg
 neg
@@ -21,14 +22,14 @@ neg
 neg
 neg
 neg
-neg
+pos # compliment
 pos
 pos
 pos
 pos
 pos
 pos
-pos
+neg # criticise
 neg
 neg
 neg
@@ -36,10 +37,15 @@ neg
 neg
 neg
 neg
+neg # curse_words
 neg
-
-
-
+neg
+neg
+neg
+neg
+neg
+neg
+neu # greet
 neu
 neu
 neg
