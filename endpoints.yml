@@ -9,21 +9,20 @@
 
 # Server which runs your custom actions.
 # https://rasa.com/docs/rasa/custom-actions
-
-#action_endpoint:
-#  url: "http://localhost:5055/webhook"
-
-db:
-  type: "mysql"
-  url: "localhost"
-  port: "3306"
-  username: "root"
-  password: "root"
-  db: "FYPProjectDefault"
+action_endpoint:
+  url: "http://localhost:5055/webhook"
 
 # Tracker store which is used to store the conversations.
-# By default the conversations are stored in memory.
+# By-default the conversations are stored in memory.
 # https://rasa.com/docs/rasa/tracker-stores
+tracker_store:
+  type: sql
+  dialect: "mysql"
+  url: "localhost"
+  port: "3306"
+  db: "FYPProjectDefault"
+  username: "root"
+  password: "root"
 
 #tracker_store:
 #    type: redis
