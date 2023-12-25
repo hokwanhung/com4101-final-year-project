@@ -26,10 +26,10 @@ intents:
 #  - ask_visit_sceneries
 
 entities:
-  - username
+  - username # general nlu
   - is_not_initial
-  - hotel_location
-  - visit_sceneries
+  - hotel_location # hotel registration
+  - visit_sceneries # relevant information
   - visit_parks
   - visit_museums
   - visit_outskirts
@@ -44,39 +44,51 @@ entities:
 # Acts as a key-value pair to store information.
 # Slot name can match the names of the entities.
 slots:
+
   username:
     type: text
     auto_fill: true # To ensure that user's input would be filled into the slot.
+
   is_not_initial:
     type: bool
     initial_value: false # Unsure if it is default_value or initial_value
+
   hotel_location:
     type: text
     auto_fill: true
+
   view:
     type: text
     auto_fill: true
+
   theme_park:
     type: text
     auto_fill: true
+
   museums:
     type: text
     auto_fill: true
+
   outskirts_visit:
     type: text
     auto_fill: true
+
   visit_events:
     type: text
     auto_fill: true
+
   food_cn:
     type: text
     auto_fill: true
+
   food_kr:
     type: text
     auto_fill: true
+
   food_jp:
     type: text
     auto_fill: true
+
   food_sea:
     type: text
     auto_fill: true
