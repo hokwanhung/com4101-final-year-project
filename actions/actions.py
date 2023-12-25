@@ -401,11 +401,15 @@ class ActionFood(Action):
 
             with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore') as f:
                 lines = f.readlines()
-                if len(lines) > 3:
+                if len(lines) > 2:
                     random.shuffle(lines)
-                    result = [lines[0].replace("\n", ""), lines[1].replace("\n", ""), lines[2].replace("\n", "")]
+                result = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                 f.close()
-            dispatcher.utter_message(text="我推薦您去{}, {}或者{}".format(result[0], result[1], result[2]))
+            dispatcher.utter_message(text="我推薦您去{}或者{}，您可以參考下面兩個網址：".format(result[0], result[1]))
+
+            # New Flow
+
+
         else:
             dispatcher.utter_message(text="我認為你的輸入為{}, 但我想不到回答給你".format(last))
 
