@@ -24,8 +24,6 @@ stories:
         entities:
           - feedback: "評論與意見"
       - action: action_validate_feedback
-      - action: action_end_conversation
-
 
   - story: end conversation deny path
     steps:

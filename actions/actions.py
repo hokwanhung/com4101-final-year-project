@@ -117,7 +117,8 @@ class ActionValidateFeedback(Action):
             tracker: Tracker,
             domain: "DomainDict",
     ) -> List[Dict[Text, Any]]:
-        feedback = tracker.get_slot("feedback")
+        feedback = tracker.latest_message["text"]
+        print(f"feedback: {tracker.latest_message}")
 
         if feedback is not None:
             dispatcher.utter_message(f"我們已收到您的反饋：\n{feedback}")
@@ -130,6 +131,25 @@ class ActionValidateFeedback(Action):
         # Send back the uuid to users.
         dispatcher.utter_message("再次感謝您使用我們的聊天機器人客戶服務~期待您的再次光臨~")
         dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
+
+        #
+        # Continue its original flow
+        #
+        sentiment_list = tracker.get_slot("sentiment_list")
+        timestamps = list(range(1, len(sentiment_list) + 1))
+
+        # Calculate weights using exponential decay function
+        weights = np.exp((np.array(timestamps) - max(timestamps)) / -10)
+
+        # Calculate weighted sum of data if the value is not -999
+        weighted_sum = sum(
+            [sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
+
+        # Calculate total weight
+        total_weight = sum(weights)
+
+        # Calculate weighted average
+        weighted_average = weighted_sum / total_weight
 
         # Get a Firebase Instance (if not exist, then create one)
         try:
@@ -148,13 +168,19 @@ class ActionValidateFeedback(Action):
         key = str(conversation_id)
         data = {
             "feedback": feedback,
-            "overall_sentiment": ""
+            "overall_sentiment": weighted_average
         }
 
         # Add the new key-value pair to Firebase
         ref.child(key).set(data)
 
-        return [SlotSet("conversation_id", str(conversation_id))]
+        # Send goodbye messages to user.
+        dispatcher.utter_message(
+            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
+        dispatcher.utter_message(text="期待您下一次再度光臨。")
+
+        # No need to store uuid in slot as it starts a new conversation afterwards.
+        return [ConversationPaused(), SessionStarted(datetime.now() + timedelta(seconds=30))]
 
 
 class ActionEndConversation(Action):
@@ -182,13 +208,13 @@ class ActionEndConversation(Action):
         ref = db.reference("users")
 
         # Get the slot of conversation_byte
-        conversation_id = tracker.get_slot("conversation_id")
-        if conversation_id is None:
-            # Store the conversation in uuid and its relative byte form.
-            conversation_id = uuid.uuid4()
+        # conversation_id = tracker.get_slot("conversation_id")
+        # if conversation_id is None:
+        # Store the conversation in uuid and its relative byte form.
+        conversation_id = uuid.uuid4()
 
-            # Send back the uuid to users.
-            dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
+        # Send back the uuid to users.
+        dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
 
         #
         # Continue its original flow
