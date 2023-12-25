@@ -229,6 +229,12 @@ nlu:
       - 有無得book房
       - 我想去開房
 
+  - intent: ask_registration_with_people
+    examples: |
+      - 我想訂[兩個](people_num)人的酒店房。
+      - [十個](people_num)
+      - []
+
   #- intent: ask_registration_with_location
   #  examples: |
   #    - 我想訂[尖沙咀](hotel_location)既酒店。
