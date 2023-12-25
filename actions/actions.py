@@ -15,12 +15,17 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
+from rasa_sdk.events import ConversationPaused, SessionStarted
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
+from datetime import datetime, timedelta
 import random
 
 
+#
+# General nlu
+#
 class ActionHowToGreet(Action):
 
     def name(self) -> Text:
@@ -43,6 +48,25 @@ class ActionHowToGreet(Action):
         return [SlotSet("is_not_initial", is_not_initial)]
 
 
+class ActionPauseConversation(Action):
+    # To simulate how the conversation would end (rasa does not have relevant functionalities).
+    def name(self) -> Text:
+        return "action_pause"
+
+    def run(
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Pause conversation for 30 seconds
+        dispatcher.utter_message(
+            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
+        dispatcher.utter_message(text="期待您下一次再度光臨。")
+        return [ConversationPaused(), SessionStarted(datetime.now() + timedelta(seconds=30))]
+
+#
+# Hotel Registration
+#
 class ActionConnectDatabase(Action):
 
     def name(self) -> Text:
@@ -68,6 +92,10 @@ class ActionConnectDatabase(Action):
 
         return []
 
+
+#
+# Ask Hotel Relevant Information
+#
 
 class ActionFood(Action):
 
