@@ -232,7 +232,6 @@ class ActionAppendSentimentList(Action):
 #
 # Hotel Registration
 #
-class HotelInfo
 
 
 class ActionConnectDatabase(Action):
