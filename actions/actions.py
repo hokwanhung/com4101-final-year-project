@@ -77,7 +77,7 @@ class FeedbackForm(FormAction):
         # Get a database reference to the "users" node
         ref = db.reference("users")
 
-        key = conversation_byte
+        key = str(conversation_byte)
         data = {
             "feedback": tracker.get_slot("feedback"),
             "overall_sentiment": ""
@@ -87,7 +87,7 @@ class FeedbackForm(FormAction):
         ref.child(key).set(data)
 
         # Set the uuid to slot.
-        return [SlotSet("conversation_id", conversation_byte)]
+        return [SlotSet("conversation_id", str(conversation_byte))]
 
 
 class ActionSubmitFeedback(Action):
