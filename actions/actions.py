@@ -412,6 +412,7 @@ class ActionFood(Action):
                     results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                     dispatcher.utter_message(
                         text="我推薦您去{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
+                    print(results)
                 f.close()
 
             # New Flow
@@ -473,6 +474,7 @@ class ActionVisit(Action):
                     results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                     dispatcher.utter_message(
                         text="您可以嘗試去{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
+                    print(results)
                 f.close()
 
             # New Flow
@@ -533,6 +535,7 @@ class ActionBuy(Action):
                     dispatcher.utter_message(
                         text="您可以嘗試去這些地方購物, 比如說,{}或者{}，貴客您".format(results[0], results[1]))
                 f.close()
+                print(results)
 
             # New Flow
             options = webdriver.ChromeOptions()
