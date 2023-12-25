@@ -26,13 +26,17 @@ stories:
       - checkpoint: response_await
       - intent: affirm
       - action: utter_await_comments
-      - action: feedback_form
-      - active_loop: feedback_form # Indicates that the form should be activated after the previous action was run.
-      - slot_was_set:
-        - requested_slot: feedback
-      - slot_was_set:
-          - feedback: "評論與意見"
-      - action: action_submit_feedback
+      - intent: feedback_examples
+        entities:
+          feedback: "評論與意見"
+      - action: action_validate_feedback
+#      - action: feedback_form
+#      - active_loop: feedback_form # Indicates that the form should be activated after the previous action was run.
+#      - slot_was_set:
+#        - requested_slot: feedback
+#      - slot_was_set:
+#          - feedback: "評論與意見"
+#      - action: action_submit_feedback
       - action: action_end_conversation
 
   - story: deny comment path
