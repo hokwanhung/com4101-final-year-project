@@ -8,3 +8,7 @@ actions/__pycache__
 
 # Models
 models/*.gz
+
+# Temporary ignored rasa files (until understanding how to use env)
+endpoints.yml
+credentials.yml
