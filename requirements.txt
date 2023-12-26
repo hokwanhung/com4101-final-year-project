@@ -24,7 +24,7 @@ PySocks==1.7.1
 SQLAlchemy==1.4.47
 Sanic-Cors==0.10.0.post3
 Sanic-Plugins-Framework==0.9.5
-Werkzeug==2.2.3
+Werkzeug==2.3.8
 absl-py==0.12.0
 aio-pika==6.8.2
 aiofiles==23.1.0
