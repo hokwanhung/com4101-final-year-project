@@ -23,7 +23,7 @@ PyMySQL==1.0.3
 PySocks==1.7.1
 SQLAlchemy==1.4.47
 Werkzeug==2.3.8
-absl-py~=0.13.0
+absl-py~=2.0.0
 aio-pika==6.8.2
 aiofiles==23.1.0
 aiohttp<=3.7.4
