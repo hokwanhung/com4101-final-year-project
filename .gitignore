@@ -5,3 +5,6 @@ models/
 # Firebase-related
 actions/*.json
 actions/__pycache__
+
+# Models
+models/*.gz
