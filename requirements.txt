@@ -93,7 +93,7 @@ jsonschema==3.2.0
 kafka-python==2.0.2
 kiwisolver==1.4.4
 lxml==4.9.2
-matplotlib==3.3.4
+matplotlib==3.8.2
 mattermostwrapper==2.2
 msgpack==1.0.5
 mysql-connector-python==8.0.33
