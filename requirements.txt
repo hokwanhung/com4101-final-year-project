@@ -128,7 +128,7 @@ questionary==1.5.2
 rasa~=2.8.34
 rasa-sdk~=2.8.11
 # rasa-x==1.0.1 # 1.0.4
-regex==2021.7.6 #2020.9.27
+regex==2023.12.25 #2020.9.27
 requests==2.31.0
 rfc3986==1.5.0
 rocketchat-API==1.15.0
