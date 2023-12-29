@@ -21,7 +21,7 @@ Pillow==10.0.1
 PyJWT>=2.0.0
 PyMySQL==1.0.3
 PySocks==1.7.1
-SQLAlchemy==1.4.47
+SQLAlchemy==2.0.24
 Werkzeug==2.3.8
 absl-py~=0.13.0
 aio-pika==6.8.2
