@@ -130,7 +130,7 @@ rasa-sdk~=2.8.11
 # rasa-x==1.0.1 # 1.0.4
 regex==2021.7.6 #2020.9.27
 requests==2.31.0
-rfc3986==1.5.0
+rfc3986==2.0.0
 rocketchat-API==1.15.0
 rsa==4.9
 ruamel.yaml==0.16.13
