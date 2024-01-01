@@ -133,7 +133,7 @@ requests==2.31.0
 rfc3986==1.5.0
 rocketchat-API==1.15.0
 rsa==4.9
-ruamel.yaml==0.16.13
+ruamel.yaml==0.18.5
 ruamel.yaml.clib==0.2.7
 s3transfer==0.6.0
 sanic~=21.12.2
