@@ -137,7 +137,7 @@ ruamel.yaml==0.16.13
 ruamel.yaml.clib==0.2.7
 s3transfer==0.6.0
 sanic~=21.12.2
-scikit-learn==0.24.2
+scikit-learn==1.4.1.post1
 scipy==1.10.0
 selenium==4.7.2
 setuptools==65.5.1
