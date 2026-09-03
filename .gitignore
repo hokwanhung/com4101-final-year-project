@@ -3,6 +3,13 @@
 models/
 models/*.gz
 
+# Python
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+venv/
+.venv/
+
 # Secrets and local config — never commit real tokens or keys
 .env
 .env.*
@@ -10,4 +17,3 @@ credentials.yml
 actions/firebase-adminsdk.json
 actions/*.json
 !actions/*.example.json
-actions/__pycache__

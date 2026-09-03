@@ -11,29 +11,25 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
-from typing import Any, Text, Dict, List, Union
-from rasa_sdk import Action, Tracker
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet, EventType
-from rasa_sdk.events import ConversationPaused, SessionStarted, UserUtteranceReverted
-from rasa_sdk.forms import FormAction, FormValidationAction
 import os
-from sqlalchemy import create_engine, text
-from sqlalchemy.exc import OperationalError
-from datetime import datetime, timedelta
 import random
 import uuid
+from datetime import datetime, timedelta
+from typing import Any, Dict, List
+
 import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import auth
-from firebase_admin import db
 import numpy as np
+from firebase_admin import credentials, db
+from rasa_sdk import Action, Tracker
+from rasa_sdk.events import ConversationPaused, SessionStarted, SlotSet
+from rasa_sdk.executor import CollectingDispatcher
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import WebDriverException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from sqlalchemy import create_engine, text
+from sqlalchemy.exc import OperationalError
 
 
 def _ensure_firebase_app() -> None:
@@ -61,6 +57,7 @@ def _ensure_firebase_app() -> None:
 #
 # Sentiment nlu
 #
+
 
 # class FeedbackForm(FormAction):
 #
@@ -101,7 +98,7 @@ def _ensure_firebase_app() -> None:
 #             self,
 #             dispatcher: "CollectingDispatcher",
 #             tracker: "Tracker",
-#             domain: "DomainDict",
+#             domain: Dict[str, Any],
 #     ) -> List[EventType]:
 #         # Call when the form is submitted.
 #
@@ -132,15 +129,15 @@ def _ensure_firebase_app() -> None:
 #
 #
 class ActionValidateFeedback(Action):
-    def name(self) -> Text:
+    def name(self) -> str:
         return "action_validate_feedback"
 
     def run(
-            self,
-            dispatcher: "CollectingDispatcher",
-            tracker: Tracker,
-            domain: "DomainDict",
-    ) -> List[Dict[Text, Any]]:
+        self,
+        dispatcher: "CollectingDispatcher",
+        tracker: Tracker,
+        domain: Dict[str, Any],
+    ) -> List[Dict[str, Any]]:
         feedback = tracker.latest_message["text"]
         print(f"feedback: {tracker.latest_message}")
 
@@ -167,7 +164,12 @@ class ActionValidateFeedback(Action):
 
         # Calculate weighted sum of data if the value is not -999
         weighted_sum = sum(
-            [sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
+            [
+                sentiment_list[i] * weights[i]
+                for i in range(len(sentiment_list))
+                if sentiment_list[i] != -999
+            ]
+        )
 
         # Calculate total weight
         total_weight = sum(weights)
@@ -181,17 +183,15 @@ class ActionValidateFeedback(Action):
         ref = db.reference("users")
 
         key = str(conversation_id)
-        data = {
-            "feedback": feedback,
-            "overall_sentiment": weighted_average
-        }
+        data = {"feedback": feedback, "overall_sentiment": weighted_average}
 
         # Add the new key-value pair to Firebase
         ref.child(key).set(data)
 
         # Send goodbye messages to user.
         dispatcher.utter_message(
-            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
+            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。"
+        )
         dispatcher.utter_message(text="期待您下一次再度光臨。")
 
         # No need to store uuid in slot as it starts a new conversation afterwards.
@@ -200,14 +200,12 @@ class ActionValidateFeedback(Action):
 
 class ActionEndConversation(Action):
     # To simulate how the conversation would end (rasa does not have relevant functionalities).
-    def name(self) -> Text:
+    def name(self) -> str:
         return "action_end_conversation"
 
     def run(
-            self,
-            dispatcher: "CollectingDispatcher",
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        self, dispatcher: "CollectingDispatcher", tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         _ensure_firebase_app()
 
         # Get a database reference to the "users" node
@@ -233,7 +231,12 @@ class ActionEndConversation(Action):
 
         # Calculate weighted sum of data if the value is not -999
         weighted_sum = sum(
-            [sentiment_list[i] * weights[i] for i in range(len(sentiment_list)) if sentiment_list[i] != -999])
+            [
+                sentiment_list[i] * weights[i]
+                for i in range(len(sentiment_list))
+                if sentiment_list[i] != -999
+            ]
+        )
 
         # Calculate total weight
         total_weight = sum(weights)
@@ -250,13 +253,12 @@ class ActionEndConversation(Action):
         ref = db.reference("users")
 
         # Add the new key-value pair to Firebase
-        ref.child(str(conversation_id)).update({
-            "overall_sentiment": weighted_average
-        })
+        ref.child(str(conversation_id)).update({"overall_sentiment": weighted_average})
 
         # Send goodbye messages to user.
         dispatcher.utter_message(
-            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。")
+            text="很感謝您使用這次的客戶服務，本次客戶服務將會於現在結束😄😄。如果需要再次使用這個服務，請等候30秒后重新刷新。"
+        )
         dispatcher.utter_message(text="期待您下一次再度光臨。")
 
         # No need to store uuid in slot as it starts a new conversation afterwards.
@@ -264,15 +266,15 @@ class ActionEndConversation(Action):
 
 
 class ActionAppendSentimentList(Action):
-    def name(self) -> Text:
+    def name(self) -> str:
         return "action_append_sentiment_list"
 
     def run(
-            self,
-            dispatcher: "CollectingDispatcher",
-            tracker: Tracker,
-            domain: "DomainDict",
-    ) -> List[Dict[Text, Any]]:
+        self,
+        dispatcher: "CollectingDispatcher",
+        tracker: Tracker,
+        domain: Dict[str, Any],
+    ) -> List[Dict[str, Any]]:
         # Get the current value of the "sentiment_list" slot
         sentiment_list = tracker.get_slot("sentiment_list")
         print(sentiment_list)
@@ -286,7 +288,9 @@ class ActionAppendSentimentList(Action):
 
         # Get the "sentiment" entity
 
-        sentiment_entity = next((e for e in latest_message['entities'] if e['entity'] == 'sentiment'), None)
+        sentiment_entity = next(
+            (e for e in latest_message["entities"] if e["entity"] == "sentiment"), None
+        )
 
         # print(sentiment_entity)
         # It seems the value can be gotten:
@@ -295,8 +299,8 @@ class ActionAppendSentimentList(Action):
 
         if sentiment_entity:
             # If the "sentiment" entity exists, get its value and confidence
-            sentiment_value = sentiment_entity['value']
-            sentiment_confidence = sentiment_entity['confidence_entity']
+            sentiment_value = sentiment_entity["value"]
+            sentiment_confidence = sentiment_entity["confidence_entity"]
 
             # Do something with the "sentiment" value and confidence
             if sentiment_value == "pos":
@@ -313,7 +317,10 @@ class ActionAppendSentimentList(Action):
 
             # For example, send a message to the user with the detected sentiment
             print(
-                f"The sentiment of your message is {sentiment_value} ({sentiment_value}) with a confidence of {sentiment_confidence}.")
+                "The sentiment of your message is "
+                f"{sentiment_value} ({sentiment_value}) "
+                f"with a confidence of {sentiment_confidence}."
+            )
             print(sentiment_list)
         else:
             sentiment_list.append(-999)
@@ -347,44 +354,42 @@ class ActionAppendSentimentList(Action):
 #         self,
 #         dispatcher: "CollectingDispatcher",
 #         tracker: "Tracker",
-#         domain: "DomainDict",
+#         domain: Dict[str, Any],
 #     ) -> List[EventType]:
 #         # Submit the form
 #         dispatcher.utter_message()
 #         return[]
 
-class ActionConnectDatabase(Action):
 
-    def name(self) -> Text:
+class ActionConnectDatabase(Action):
+    def name(self) -> str:
         return "action_connect_database"
 
     def run(
-            self,
-            dispatcher: "CollectingDispatcher",
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        self, dispatcher: "CollectingDispatcher", tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         # Create
         engine = create_engine("mysql+pymysql://root:root@localhost:3306/fyp_project_default")
         connection = engine.connect()
 
         try:
-
             query = text("SELECT * FROM hotel_rooms WHERE availability = 1")
             result = connection.execute(query)
 
             rows = result.fetchall()
             random.shuffle(rows)
 
-            # (b'\x9f\xc7\x1fr\xee\xc3\x11\xed\x93\xc1\xe0p\xea\xa7l\xb2', 60, 'Standard', None, 2, Decimal('650.00'),
-            # 1, '', datetime.datetime(2023, 5, 10, 7, 45, 48), datetime.datetime(2023, 5, 10, 7, 45, 48))
+            # Example row: id bytes, room 60, Standard, no view, capacity 2, $650.
 
-            dispatcher.utter_message(text=f"""已為您搜尋房間🥳🥳：
+            dispatcher.utter_message(
+                text=f"""已為您搜尋房間🥳🥳：
 
             房間號碼 - {rows[0][1]}
             房間種類 - {rows[0][2]}
             特別景觀 - {rows[0][3]}
             價錢 - {rows[0][4]}
-                        """)
+                        """
+            )
 
             connection.close()
         except OperationalError as e:
@@ -398,35 +403,40 @@ class ActionConnectDatabase(Action):
 #
 # Ask Hotel Relevant Information
 # Go to the directory: venv/Lib/site-packages/rasa/core/channels/console.py
-# Change the default value of DEFAULT_STREAM_READING_TIMEOUT_IN_SECONDS to more than 10, in my case I changed it to 30 it worked.
+# Raise DEFAULT_STREAM_READING_TIMEOUT_IN_SECONDS above 10 (30 worked here).
 #
 class ActionFood(Action):
-
-    def name(self) -> Text:
+    def name(self) -> str:
         return "action_ask_food"
 
-    def run(self,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         last = tracker.get_intent_of_latest_message()
         print(last)
-        if last == "ask_food_cn" or last == "ask_food_jp" or last == "ask_food_kr" or last == "ask_food_sea":
-
-            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore', encoding='utf-8') as f:
+        if (
+            last == "ask_food_cn"
+            or last == "ask_food_jp"
+            or last == "ask_food_kr"
+            or last == "ask_food_sea"
+        ):
+            with open(
+                os.getcwd() + "\\csv\\" + last + ".csv", errors="ignore", encoding="utf-8"
+            ) as f:
                 lines = f.readlines()
                 if len(lines) >= 2:
                     random.shuffle(lines)
                     results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                     dispatcher.utter_message(
-                        text="我推薦您去{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
+                        text=f"我推薦您去{results[0]}或者{results[1]}，貴客您可以參考下面兩個網址："
+                    )
                     print(results)
                 f.close()
 
             # New Flow
             options = webdriver.ChromeOptions()
-            options.add_experimental_option('detach', True)
-            options.add_experimental_option('excludeSwitches', ['enable-logging'])
+            options.add_experimental_option("detach", True)
+            options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
             urls = []
 
@@ -443,7 +453,9 @@ class ActionFood(Action):
                     )
                     search_box.send_keys(f"{result} openrice")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
-                    search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
+                    search_button = search_panel.find_element(
+                        By.XPATH, ".//center//input[@name='btnK']"
+                    )
                     search_button.click()
 
                     WebDriverWait(driver, 5).until(
@@ -465,39 +477,47 @@ class ActionFood(Action):
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
             dispatcher.utter_message(
-                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。")
+                text=(
+                    f"很抱歉，貴客您的輸入為{last}, "
+                    "但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。"
+                )
+            )
 
         return []
 
 
 class ActionVisit(Action):
-
-    def name(self) -> Text:
+    def name(self) -> str:
         return "action_ask_visit"
 
-    def run(self,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         last = tracker.get_intent_of_latest_message()
         print(last)
-        if last == "ask_visit_museums" or last == "ask_visit_outskirts" or last == "ask_visit_shopping":
-
+        if (
+            last == "ask_visit_museums"
+            or last == "ask_visit_outskirts"
+            or last == "ask_visit_shopping"
+        ):
             # example the same name as intent+ csv, like ask_visit_parks.csv
-            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore', encoding='utf-8') as f:
+            with open(
+                os.getcwd() + "\\csv\\" + last + ".csv", errors="ignore", encoding="utf-8"
+            ) as f:
                 lines = f.readlines()
                 if len(lines) >= 2:
                     random.shuffle(lines)
                     results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                     dispatcher.utter_message(
-                        text="您可以嘗試去{}或者{}，貴客您可以參考下面兩個網址：".format(results[0], results[1]))
+                        text=f"您可以嘗試去{results[0]}或者{results[1]}，貴客您可以參考下面兩個網址："
+                    )
                     print(results)
                 f.close()
 
             # New Flow
             options = webdriver.ChromeOptions()
-            options.add_experimental_option('detach', True)
-            options.add_experimental_option('excludeSwitches', ['enable-logging'])
+            options.add_experimental_option("detach", True)
+            options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
             urls = []
             try:
@@ -513,7 +533,9 @@ class ActionVisit(Action):
                     )
                     search_box.send_keys(f"{result} Hong Kong")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
-                    search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
+                    search_button = search_panel.find_element(
+                        By.XPATH, ".//center//input[@name='btnK']"
+                    )
                     search_button.click()
 
                     WebDriverWait(driver, 5).until(
@@ -534,39 +556,45 @@ class ActionVisit(Action):
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
             dispatcher.utter_message(
-                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。")
+                text=(
+                    f"很抱歉，貴客您的輸入為{last}, "
+                    "但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。"
+                )
+            )
 
         return []
 
 
 class ActionBuy(Action):
-
-    def name(self) -> Text:
+    def name(self) -> str:
         return "action_ask_buy"
 
-    def run(self,
-            dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         last = tracker.get_intent_of_latest_message()
         print(last)
         if last == "ask_buy_groceries" or last == "ask_buy_clothing":
-
-            with open(os.getcwd() + "\\csv\\" + last + ".csv", "r", errors='ignore', encoding='utf-8') as f:
+            with open(
+                os.getcwd() + "\\csv\\" + last + ".csv", errors="ignore", encoding="utf-8"
+            ) as f:
                 lines = f.readlines()
                 if len(lines) >= 2:
                     random.shuffle(lines)
                     results = [lines[0].replace("\n", ""), lines[1].replace("\n", "")]
                     dispatcher.utter_message(
-                        text="您可以嘗試去這些地方購物, 比如說,{}或者{}，貴客您可以參考下面兩個網址：".format(results[0],
-                                                                                                            results[1]))
+                        text=(
+                            f"您可以嘗試去這些地方購物, 比如說,{results[0]}或者"
+                            f"{results[1]}，貴客您可以參考下面兩個網址："
+                        )
+                    )
                 f.close()
                 print(results)
 
             # New Flow
             options = webdriver.ChromeOptions()
-            options.add_experimental_option('detach', True)
-            options.add_experimental_option('excludeSwitches', ['enable-logging'])
+            options.add_experimental_option("detach", True)
+            options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
             urls = []
 
@@ -584,7 +612,9 @@ class ActionBuy(Action):
                     )
                     search_box.send_keys(f"{result} Hong Kong")
                     search_panel = driver.find_element(By.XPATH, "//div[@class='FPdoLc lJ9FBc']")
-                    search_button = search_panel.find_element(By.XPATH, ".//center//input[@name='btnK']")
+                    search_button = search_panel.find_element(
+                        By.XPATH, ".//center//input[@name='btnK']"
+                    )
                     search_button.click()
 
                     WebDriverWait(driver, 5).until(
@@ -604,9 +634,14 @@ class ActionBuy(Action):
                 dispatcher.utter_message("很抱歉，網址未能正確顯示，請貴客您稍後再試🥺🥺。")
         else:
             dispatcher.utter_message(
-                text=f"很抱歉，貴客您的輸入為{last}, 但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。")
+                text=(
+                    f"很抱歉，貴客您的輸入為{last}, "
+                    "但是基於未知原因，未能正確反饋信息給您。請見諒🥺🥺。"
+                )
+            )
 
         return []
+
 
 # class ActionOutOfScope(Action):
 #     def name(self) -> Text:
@@ -619,7 +654,9 @@ class ActionBuy(Action):
 #             domain: Dict[Text, Any],
 #     ) -> List[Dict[Text, Any]]:
 #         # tell the user they are being passed to a customer service agent
-#         dispatcher.utter_message(text="不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。")
+#         dispatcher.utter_message(
+#             text="不好意思，我不太明白您的意思。麻煩貴客您重組後跟我説一下🥺🥺。"
+#         )
 #
 #         # assume there's a function to call customer service
 #         # pass the tracker so that the agent has a record of the conversation between the user

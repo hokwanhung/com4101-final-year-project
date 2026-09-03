@@ -61,13 +61,15 @@ Guest (chat)  →  Rasa NLU (Chinese)  →  Dialogue stories / rules
 │   ├── nlu.yml              Training examples (intents & entities)
 │   ├── stories.yml          Conversation flows
 │   └── rules.yml            Must-follow mappings
+├── scripts/                 Commit-message checker used by git hooks
 ├── sql/                     MySQL schema and sample room data
-├── tests/                   Rasa story tests
+├── tests/                   Rasa story tests and pytest for the checker
 ├── config.yml               NLU pipeline and policies
 ├── domain.yml               Intents, slots, responses, actions
 ├── credentials.example.yml  Copy to credentials.yml (gitignored)
 ├── endpoints.example.yml    Copy to endpoints.yml
-└── requirements.txt
+├── requirements.txt         Runtime packages (Rasa and the action server)
+└── requirements-dev.txt     Ruff, pre-commit, and pytest
 ```
 
 Secrets such as `credentials.yml` and Firebase admin keys are **not** in this repo. Copy the example files and keep real tokens on your machine only.
@@ -98,6 +100,8 @@ venv\Scripts\activate
 # source venv/bin/activate
 
 pip install --no-cache-dir -r requirements.txt
+pip install --no-cache-dir -r requirements-dev.txt
+python -m pre_commit install --hook-type pre-commit --hook-type commit-msg
 ```
 
 Point `PYTHONPATH` at the `actions` folder so the custom sentiment component can be imported:
@@ -172,6 +176,33 @@ The action server must already be running on `http://localhost:5055/webhook` (se
 
 ---
 
+## Checks
+
+Format and lint with Ruff (line length 100). Commits fail if either check is dirty:
+
+```powershell
+python -m ruff format
+python -m ruff check
+python -m ruff format --check
+```
+
+Install the git hooks once (already shown in setup). After that, `git commit` runs Ruff on staged Python and rejects a commit whose **first line** is not formatted as required. If a commit is blocked, run `python -m ruff format` (and `python -m ruff check --fix` when the fix is safe), then commit again.
+
+The first line of a commit message must be at most 100 characters and match
+`feature|bugfix|docs|refactor: ` followed by a lowercase summary, for example
+`feature: add hotel room search by occupancy`. A body after a blank line is allowed.
+
+```text
+feature: add harbour-view filter to room search
+bugfix: skip firebase write when feedback is empty
+docs: describe ruff format checks
+refactor: extract sentiment weighting helper
+```
+
+Invalid: missing prefix, `Feature:`, `feature:Add`, no space after `:`, or a first line longer than 100 characters.
+
+---
+
 ## Talking to the bot
 
 The assistant expects **Traditional Chinese**. Example turns:
@@ -202,11 +233,19 @@ The assistant expects **Traditional Chinese**. Example turns:
 
 ## Tests
 
+Dialogue tests:
+
 ```bash
 rasa test
 ```
 
 Story tests live in `tests/test_stories.yml`. Update them if you change greet / goodbye flows in `domain.yml`.
+
+Commit-message checker:
+
+```bash
+python -m pytest tests/test_check_commit_msg.py
+```
 
 ---
 

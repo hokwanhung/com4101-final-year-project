@@ -3,42 +3,40 @@
 # replace "E:\GitHub\FYPProjectDefault\actions" with your project directory to actions folder
 # echo %PYTHONPATH%
 
-from rasa.nlu.components import Component
-from rasa.nlu import utils
-from rasa.nlu.model import Metadata
-from rasa_sdk import Action, Tracker
-
-from nltk.classify import NaiveBayesClassifier
 import os
 import pickle
-from typing import Any, Optional, Text, Dict
+from typing import Any, Dict
+
+from nltk.classify import NaiveBayesClassifier
+from rasa.nlu.components import Component
 
 SENTIMENT_MODEL_FILE_NAME = "sentiment_classifier.pkl"
 
 
 class SentimentAnalyzer(Component):
     """A custom sentiment analysis component"""
+
     name = "sentiment"
-    provides = ["entities"] # Define what the pipeline will provide.
-    requires = ["tokens"] # Define what the pipeline needs.
+    provides = ["entities"]  # Define what the pipeline will provide.
+    requires = ["tokens"]  # Define what the pipeline needs.
     defaults = {}
     language_list = ["zh"]
-    print('initialised the class')
+    print("initialised the class")
 
     def __init__(self, component_config=None):
-        super(SentimentAnalyzer, self).__init__(component_config)
+        super().__init__(component_config)
 
     def train(self, training_data, cfg, **kwargs):
         """Load the sentiment polarity labels from the text
-           file, retrieve training tokens and after formatting
-           data train the classifier."""
+        file, retrieve training tokens and after formatting
+        data train the classifier."""
 
-        confirmed_labels = [] # Self-defined components
+        confirmed_labels = []  # Self-defined components
 
-        with open(os.getcwd() + '\\actions\\labels.txt', 'r') as f:
+        with open(os.getcwd() + "\\actions\\labels.txt") as f:
             labels = f.read().splitlines()
 
-            for label in labels: # Self-defined components
+            for label in labels:  # Self-defined components
                 if "pos" in label:
                     confirmed_labels.append("pos")
                 if "neu" in label:
@@ -49,10 +47,10 @@ class SentimentAnalyzer(Component):
         training_data = training_data.training_examples  # list of Message objects
         tokens = []
         for t in training_data:
-            if not "text" in t.data:
+            if "text" not in t.data:
                 continue
             try:
-                tokens.append(list(map(lambda x: x, t.data['text'])))
+                tokens.append(list(map(lambda x: x, t.data["text"])))
             except TypeError:
                 continue
         processed_tokens = [self.preprocessing(t) for t in tokens]
@@ -62,21 +60,23 @@ class SentimentAnalyzer(Component):
     def convert_to_rasa(self, value, confidence):
         """Convert model output into the Rasa NLU compatible output format."""
 
-        entity = {"entity": "sentiment",
-                  "confidence_entity": confidence,
-                  "value": value,
-                  "extractor": "sentiment_extractor (sentiment)"}
+        entity = {
+            "entity": "sentiment",
+            "confidence_entity": confidence,
+            "value": value,
+            "extractor": "sentiment_extractor (sentiment)",
+        }
 
         return entity
 
     def preprocessing(self, tokens):
         """Create bag-of-words representation of the training examples."""
 
-        return ({word: True for word in tokens})
+        return {word: True for word in tokens}
 
     def process(self, message, **kwargs):
         """Retrieve the tokens of the new message, pass it to the classifier
-            and append prediction results to the message class."""
+        and append prediction results to the message class."""
 
         if not self.clf:
             # component is either not trained or didn't
@@ -84,11 +84,11 @@ class SentimentAnalyzer(Component):
             entity = None
         else:
             if "action_name" in message.data:
-                tokens = message.data['action_name']
+                tokens = message.data["action_name"]
             elif "text" in message.data:
-                tokens = message.data['text']
+                tokens = message.data["text"]
             elif "intent" in message.data:
-                tokens = message.data['intent']
+                tokens = message.data["intent"]
 
             tb = self.preprocessing(tokens)
             pred = self.clf.prob_classify(tb)
@@ -103,18 +103,20 @@ class SentimentAnalyzer(Component):
         """Persist this model into the passed directory."""
         classifier_file = os.path.join(model_dir, SENTIMENT_MODEL_FILE_NAME)
 
-        with open(classifier_file, 'wb') as f:
+        with open(classifier_file, "wb") as f:
             pickle.dump(self, f, protocol=pickle.HIGHEST_PROTOCOL)
         return {"classifier_file": SENTIMENT_MODEL_FILE_NAME}
 
     @classmethod
-    def load(cls,
-             meta: Dict[Text, Any],
-             model_dir=None,
-             model_metadata=None,
-             cached_component=None,
-             **kwargs):
+    def load(
+        cls,
+        meta: Dict[str, Any],
+        model_dir=None,
+        model_metadata=None,
+        cached_component=None,
+        **kwargs,
+    ):
         file_name = meta.get("classifier_file")
         classifier_file = os.path.join(model_dir, file_name)
-        with open(classifier_file, 'rb') as f:
+        with open(classifier_file, "rb") as f:
             return pickle.load(f)

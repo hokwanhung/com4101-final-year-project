@@ -1,0 +1,5 @@
+# Dev tools for format, lint, and git hooks. Not required to run the chatbot.
+# On Python 3.8 (Rasa), pip will pick pre-commit 3.5.x; 3.9+ gets 4.x.
+pre-commit>=3.5.0
+ruff>=0.12
+pytest>=7.4
