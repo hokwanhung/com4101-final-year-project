@@ -9,7 +9,7 @@
 # Use "pip install rasa-x==1.0.1 -i https://pypi.rasa.com/simple" to install rasa-x.
 
 # python==3.8.10
-APScheduler==3.7.0
+APScheduler==3.11.3
 CacheControl==0.12.11
 Deprecated==1.2.13
 GitPython==3.1.42
