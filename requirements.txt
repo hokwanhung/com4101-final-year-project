@@ -156,7 +156,7 @@ threadpoolctl==3.1.0
 tqdm==4.70.0
 trio==0.22.0
 trio-websocket==0.12.2
-twilio==6.50.1
+twilio==6.63.2
 typeguard==2.13.3
 typing-extensions==3.10.0.2
 tzlocal==2.1
