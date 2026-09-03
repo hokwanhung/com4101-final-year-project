@@ -1,0 +1,5 @@
+# Copy this file to endpoints.yml if you keep a private local copy.
+# The default endpoints.yml in git has no secrets.
+
+action_endpoint:
+  url: "http://localhost:5055/webhook"
