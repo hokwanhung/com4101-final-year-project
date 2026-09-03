@@ -36,6 +36,28 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import WebDriverException
 
 
+def _ensure_firebase_app() -> None:
+    """Initialize Firebase from env vars or a local gitignored credentials file."""
+    try:
+        firebase_admin.get_app()
+        return
+    except ValueError:
+        pass
+
+    json_path = os.environ.get(
+        "FIREBASE_CREDENTIALS_PATH",
+        os.path.join(os.path.dirname(__file__), "firebase-adminsdk.json"),
+    )
+    database_url = os.environ.get("FIREBASE_DATABASE_URL")
+    if not database_url:
+        raise RuntimeError(
+            "FIREBASE_DATABASE_URL is not set. Copy actions/firebase-adminsdk.example.json "
+            "to a gitignored firebase-adminsdk.json and set FIREBASE_DATABASE_URL."
+        )
+    cred = credentials.Certificate(json_path)
+    firebase_admin.initialize_app(cred, {"databaseURL": database_url})
+
+
 #
 # Sentiment nlu
 #
@@ -90,12 +112,8 @@ from selenium.common import WebDriverException
 #         dispatcher.utter_message("再次感謝您使用我們的聊天機器人客戶服務~期待您的再次光臨~")
 #         dispatcher.utter_message(f"聊天記錄號碼：{conversation_id}")
 #
-#         # Initialize to Firebase
-#         json_path = os.path.join(os.path.dirname(__file__), "Own_Json.json") # Replace with own json file
-#         cred = credentials.Certificate(json_path)
-#         firebase_admin.initialize_app(cred,
-#                                       {
-#                                           'databaseURL': 'databaseURL': "Own_https.app"}) # Replace with own databaseURL.
+#         # Initialize to Firebase via FIREBASE_CREDENTIALS_PATH / FIREBASE_DATABASE_URL
+#         _ensure_firebase_app()
 #
 #         # Get a database reference to the "users" node
 #         ref = db.reference("users")
@@ -157,16 +175,7 @@ class ActionValidateFeedback(Action):
         # Calculate weighted average
         weighted_average = weighted_sum / total_weight
 
-        # Get a Firebase Instance (if not exist, then create one)
-        try:
-            firebase_admin.get_app()
-        except ValueError:
-            json_path = os.path.join(os.path.dirname(__file__),
-                                     "Own_Json.json") # Replace with own json file
-            cred = credentials.Certificate(json_path)
-            firebase_admin.initialize_app(cred,
-                                          {
-                                              'databaseURL': "Own_https.app"}) # Replace with own databaseURL.
+        _ensure_firebase_app()
 
         # Get a database reference to the "users" node
         ref = db.reference("users")
@@ -199,16 +208,7 @@ class ActionEndConversation(Action):
             dispatcher: "CollectingDispatcher",
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # Get a Firebase Instance (if not exist, then create one)
-        try:
-            firebase_admin.get_app()
-        except ValueError:
-            json_path = os.path.join(os.path.dirname(__file__),
-                                     "Own_Json.json") # Replace with own json file
-            cred = credentials.Certificate(json_path)
-            firebase_admin.initialize_app(cred,
-                                          {
-                                              'databaseURL': "Own_https.app"})  # Replace with own databaseURL.
+        _ensure_firebase_app()
 
         # Get a database reference to the "users" node
         ref = db.reference("users")
@@ -244,16 +244,7 @@ class ActionEndConversation(Action):
         #
         # Save the record to Firebase
         #
-        # Get a Firebase Instance (if not exist, then create one)
-        try:
-            firebase_admin.get_app()
-        except ValueError:
-            json_path = os.path.join(os.path.dirname(__file__),
-                                     "Own_Json.json") # Replace with own json file
-            cred = credentials.Certificate(json_path)
-            firebase_admin.initialize_app(cred,
-                                          {
-                                              'databaseURL': "Own_https.app"})  # Replace with own databaseURL.
+        _ensure_firebase_app()
 
         # Get a database reference to the "users" node
         ref = db.reference("users")

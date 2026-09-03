@@ -1,14 +1,13 @@
 # Rasa-related
 .rasa
 models/
-
-# Firebase-related
-actions/*.json
-actions/__pycache__
-
-# Models
 models/*.gz
 
-# Temporary ignored rasa files (until understanding how to use env)
-endpoints.yml
+# Secrets and local config — never commit real tokens or keys
+.env
+.env.*
 credentials.yml
+actions/firebase-adminsdk.json
+actions/*.json
+!actions/*.example.json
+actions/__pycache__
