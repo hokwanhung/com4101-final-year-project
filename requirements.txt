@@ -165,7 +165,7 @@ uritemplate==4.1.1
 urllib3==1.26.18
 urllib3==1.26.18
 wcwidth==0.2.6
-webexteamssdk==1.6.1
+webexteamssdk==1.7
 wheel==0.40.0
 wrapt==1.12.1
 wsproto==1.2.0
