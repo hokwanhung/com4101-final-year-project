@@ -53,7 +53,7 @@ croniter==1.3.14
 cycler==0.11.0
 decorator==4.4.2
 dm-tree==0.1.8
-dnspython==1.16.0
+dnspython==2.9.0
 docopt==0.6.2
 exceptiongroup==1.3.1
 fbmessenger==6.0.0
