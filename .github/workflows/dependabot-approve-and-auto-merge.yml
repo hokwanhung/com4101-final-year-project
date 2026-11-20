@@ -2,6 +2,7 @@ name: Dependabot auto-approve and auto-merge
 on: pull_request
 
 permissions:
+  contents: read
   pull-requests: write
 
 jobs:
@@ -14,14 +15,53 @@ jobs:
         uses: dependabot/fetch-metadata@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Base requirements
+        run: |
+          git fetch --depth=1 origin ${{ github.event.pull_request.base.sha }}
+          git show FETCH_HEAD:requirements.txt > "$RUNNER_TEMP/base-requirements.txt"
+
+      - name: Python for the range check
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install packaging
+        run: python -m pip install packaging
+
+      - name: Check pins against Rasa
+        id: rasa-range
+        run: |
+          python scripts/check_rasa_dep_range.py \
+            --base "$RUNNER_TEMP/base-requirements.txt" \
+            --head requirements.txt \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Rasa train is required before merge
+        if: steps.rasa-range.outputs.needs_train == 'true'
+        run: |
+          echo "rasa or rasa-sdk moved by a patch or minor release."
+          echo "Do not merge until local 'rasa train' and 'rasa test' pass."
+          echo "Story tests stay in tests/test_stories.yml."
+          echo "Do not add story tests unless that run fails."
+
       - name: Approve a PR
+        if: steps.rasa-range.outputs.needs_train != 'true'
         run: gh pr review --approve "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable auto-merge for Dependabot PRs
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        if: >-
+          steps.rasa-range.outputs.needs_train != 'true' &&
+          steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
