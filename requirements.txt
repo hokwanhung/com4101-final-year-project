@@ -115,7 +115,7 @@ protobuf==3.19.6
 psycopg2-binary==2.9.9
 pyTelegramBotAPI==3.8.3
 pyasn1==0.5.0
-pyasn1-modules==0.3.0
+pyasn1-modules==0.4.2
 pycparser==2.21
 pydot==1.4.2
 pykwalify==1.8.0
