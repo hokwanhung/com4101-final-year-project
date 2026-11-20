@@ -1,91 +1,130 @@
-#### This file contains tests to evaluate that your bot behaves as expected.
-#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+#### Dialogue tests for the hotel bot.
+#### Paths match data/stories.yml and the identify_bot rule in data/rules.yml.
+#### One branch of each or-group is enough: the other branches predict the same action.
+
+version: "2.0"
 
 stories:
-- story: happy path 1
+- story: greet then give name
   steps:
   - user: |
-      hello there!
+      你好
     intent: greet
-  - action: utter_greet
+  - action: utter_ask_name
+  - action: action_append_sentiment_list
   - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
+      我姓[陳](username)
+    intent: greet_with_name
+  - action: utter_greet_with_name
+  - action: utter_introduce
+  - action: action_append_sentiment_list
 
-- story: happy path 2
+- story: greet with name already given
   steps:
   - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
+      你好，我姓[陳](username)
+    intent: greet_with_name
+  - action: utter_greet_with_name
+  - action: utter_introduce
+  - action: action_append_sentiment_list
+
+- story: compliment
+  steps:
   - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
+      你很好
+    intent: compliment
+  - action: utter_react_to_compliment
+  - action: action_append_sentiment_list
+  - action: utter_ask_actions
+
+- story: criticise
+  steps:
   - user: |
-      bye-bye!
+      你很沒用
+    intent: criticise
+  - action: utter_react_to_criticise
+  - action: action_append_sentiment_list
+  - action: utter_ask_actions
+
+- story: book a room
+  steps:
+  - user: |
+      我想訂酒店。
+    intent: ask_registration
+  - action: utter_introduce_registration
+  - action: action_connect_database
+
+- story: ask for food
+  steps:
+  - user: |
+      我想食嘢
+    intent: ask_food
+  - action: utter_ask_food
+  - action: action_append_sentiment_list
+  - user: |
+      我想去食[中菜](food_cn)
+    intent: ask_food_cn
+  - action: action_ask_food
+  - action: action_append_sentiment_list
+  - action: utter_ask_actions
+
+- story: ask for a place to visit
+  steps:
+  - user: |
+      附近有咩好做
+    intent: ask_visit
+  - action: utter_ask_visit
+  - action: action_append_sentiment_list
+  - user: |
+      我想去參觀[科學館](visit_museums)
+    intent: ask_visit_museums
+  - action: action_ask_visit
+  - action: action_append_sentiment_list
+  - action: utter_ask_actions
+
+- story: ask where to shop
+  steps:
+  - user: |
+      我想買嘢
+    intent: ask_buy
+  - action: utter_ask_buy
+  - action: action_append_sentiment_list
+  - user: |
+      想買衫
+    intent: ask_buy_clothing
+  - action: action_ask_buy
+  - action: action_append_sentiment_list
+  - action: utter_ask_actions
+
+- story: goodbye and leave feedback
+  steps:
+  - user: |
+      再見
     intent: goodbye
-  - action: utter_goodbye
-
-- story: sad path 1
-  steps:
+  - action: utter_ask_comments
   - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      yes
+      好的
     intent: affirm
-  - action: utter_happy
+  - action: utter_await_comments
+  - user: |
+      [總體而言，我認爲這個chatbot的功能完善，方便簡單快捷。](feedback)
+    intent: feedback_examples
+  - action: action_validate_feedback
 
-- story: sad path 2
+- story: goodbye and decline feedback
   steps:
   - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
-
-- story: sad path 3
-  steps:
-  - user: |
-      hi
-    intent: greet
-  - action: utter_greet
-  - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      no
-    intent: deny
-  - action: utter_goodbye
-
-- story: say goodbye
-  steps:
-  - user: |
-      bye-bye!
+      再見
     intent: goodbye
-  - action: utter_goodbye
+  - action: utter_ask_comments
+  - user: |
+      不要
+    intent: deny
+  - action: action_end_conversation
 
-- story: bot challenge
+- story: identify the bot
   steps:
   - user: |
-      are you a bot?
-    intent: bot_challenge
+      你到底是什麽？
+    intent: identify_bot
   - action: utter_iamabot

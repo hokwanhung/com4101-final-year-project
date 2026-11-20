@@ -239,7 +239,7 @@ Dialogue tests:
 rasa test
 ```
 
-Story tests live in `tests/test_stories.yml`. Update them if you change greet / goodbye flows in `domain.yml`.
+Story tests live in `tests/test_stories.yml`. Update them if you change the greet, booking, food, visit, shopping, feedback, or identify-bot paths in `data/stories.yml` or `data/rules.yml`.
 
 Commit-message checker:
 
