@@ -22,7 +22,7 @@ PyJWT>=2.0.0
 PyMySQL==1.0.3
 PySocks==1.7.1
 SQLAlchemy==1.4.47
-Werkzeug==2.3.8
+Werkzeug==3.1.9
 absl-py~=0.13.0
 aio-pika==6.8.2
 aiofiles==23.1.0
